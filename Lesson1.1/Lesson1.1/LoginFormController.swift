@@ -11,6 +11,8 @@ import UIKit
 
 class LoginFormController: UIViewController {
 
+    private let slSegue = "successLoginSegue"
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var loginLabel: UILabel!
@@ -18,25 +20,12 @@ class LoginFormController: UIViewController {
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var signButton: UIButton!
-    @IBOutlet weak var welcomeLabel: UILabel!
-    
-    private var isAuthorized = false
-    private let weatherKinds = [
-        ("fine", UIColor.orange),
-        ("awful", UIColor.darkGray),
-        ("cloudless", UIColor(red: 0, green: 204, blue: 255, alpha: 255)),
-        ("sunny", UIColor.yellow),
-        ("rainy", UIColor.lightGray)
-    ]
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // tap gesture -> hideKeyboard action
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
-        // initial form state
-        welcomeLabel.text = nil
-        updateLoginForm()
     }
  
     override func viewWillAppear(_ animated: Bool) {
@@ -61,35 +50,23 @@ class LoginFormController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    // SignIn/SignOut action handler
+    // SignIn action handler
     @IBAction func signinTouch(_ sender: Any) {
-        if !isAuthorized {
-            // Sign In: assume that authorization is success then login and password are not empty...
-            if let login = loginInput.text, let password = passwordInput.text {
-                if login.isEmpty || password.isEmpty {
-                    welcomeLabel.text = "Valid login and password required"
-                } else {
-                    let rand = Int(arc4random_uniform(UInt32(weatherKinds.count)))
-                    if rand >= 0 && rand < weatherKinds.count {
-                        let currentWeather =  weatherKinds[rand]
-                        welcomeLabel.text = "Hi, \(login)!\nThe weather is \(currentWeather.0) today"
-                        contentView?.backgroundColor = currentWeather.1
-                    } else {
-                        welcomeLabel.text = "Hi, \(login)!\nUnknown weather now:-("
-                        contentView?.backgroundColor = UIColor.white
-                    }
-                    isAuthorized = true
-                }
+        // Sign In: assume that authorization is success then login and password are not empty...
+        if let login = loginInput.text, let password = passwordInput.text {
+            if login.isEmpty || password.isEmpty {
+                ShowAlert("Authorization", "Valid login and password required")
+            } else {
+                performSegue(withIdentifier: slSegue, sender: self)
             }
-        } else {
-            isAuthorized = false // Sign Out
-            passwordInput.text = nil
-            welcomeLabel.text = nil
-            contentView?.backgroundColor = UIColor.white
-            // set focus to password text field
-            passwordInput.becomeFirstResponder()
         }
-        updateLoginForm()
+    }
+    
+    private func ShowAlert(_ title: String, _ message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     // keyboard show notification handler
@@ -116,15 +93,6 @@ class LoginFormController: UIViewController {
         scrollView?.endEditing(true)
     }
 
-    // set form content state depend on authorization status
-    private func updateLoginForm() {
-        loginLabel.isHidden = isAuthorized
-        loginInput.isHidden = isAuthorized
-        passwordLabel.isHidden = isAuthorized
-        passwordInput.isHidden = isAuthorized
-        signButton.setTitle(isAuthorized ? "Sign Out" : "Sign In", for: UIControl.State.normal)
-    }
-    
     /*
     // MARK: - Navigation
 
