@@ -11,7 +11,7 @@ import UIKit
 
 class LoginFormController: UIViewController {
 
-    private let slSegue = "successLoginSegue"
+    private let segSuccessLogin = "successLoginSegue"
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -57,7 +57,7 @@ class LoginFormController: UIViewController {
             if login.isEmpty || password.isEmpty {
                 ShowAlert("Authorization", "Valid login and password required")
             } else {
-                performSegue(withIdentifier: slSegue, sender: self)
+                performSegue(withIdentifier: segSuccessLogin, sender: self)
             }
         }
     }

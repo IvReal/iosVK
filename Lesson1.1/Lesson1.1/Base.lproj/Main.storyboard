@@ -142,7 +142,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="25j-5F-cfa">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tab1Cell" id="25j-5F-cfa">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="25j-5F-cfa" id="7ML-nH-smO">
@@ -156,7 +156,13 @@
                             <outlet property="delegate" destination="72r-Yx-AEF" id="A6M-gO-Hod"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="First Table" id="Lr4-u6-B4z"/>
+                    <navigationItem key="navigationItem" title="First Table" id="Lr4-u6-B4z">
+                        <barButtonItem key="rightBarButtonItem" title="Forward" id="mt8-Pp-XKD">
+                            <connections>
+                                <segue destination="B9t-9e-464" kind="show" identifier="tab1forwardSegue" id="R7M-TO-bPX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="B9t-9e-464" kind="show" identifier="tab1collSegue" id="HXX-a7-l5O"/>
                     </connections>
@@ -180,7 +186,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aR1-5b-ehY">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collCell" id="aR1-5b-ehY">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -244,7 +250,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="E3u-WW-kWy">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tab2Cell" id="E3u-WW-kWy">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E3u-WW-kWy" id="nFF-Oi-vc3">
@@ -258,7 +264,13 @@
                             <outlet property="delegate" destination="OAp-4D-Zql" id="Q8Y-wY-4CX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Second Table" id="3yq-9O-pFG"/>
+                    <navigationItem key="navigationItem" title="Second Table" id="3yq-9O-pFG">
+                        <barButtonItem key="rightBarButtonItem" title="Forward" id="urw-bp-2Qx">
+                            <connections>
+                                <segue destination="bDx-Hb-4PZ" kind="show" identifier="tab2forwardSegue" id="M1p-mI-VQ9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="bDx-Hb-4PZ" kind="show" identifier="tab2tab3Segue" id="lRp-fH-iL4"/>
                     </connections>
@@ -276,7 +288,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SW7-me-92n">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tab3Cell" id="SW7-me-92n">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SW7-me-92n" id="whh-pb-ynR">
@@ -313,4 +325,8 @@
             <point key="canvasLocation" x="-732" y="524"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="lRp-fH-iL4"/>
+        <segue reference="R7M-TO-bPX"/>
+    </inferredMetricsTieBreakers>
 </document>
