@@ -133,10 +133,10 @@
             </objects>
             <point key="canvasLocation" x="-2521" y="1"/>
         </scene>
-        <!--First Table-->
+        <!--Table 1-->
         <scene sceneID="5GF-MJ-iUl">
             <objects>
-                <tableViewController title="First Table" id="72r-Yx-AEF" sceneMemberID="viewController">
+                <tableViewController title="Table 1" id="72r-Yx-AEF" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KBk-79-gfS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,7 +156,7 @@
                             <outlet property="delegate" destination="72r-Yx-AEF" id="A6M-gO-Hod"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="First Table" id="Lr4-u6-B4z">
+                    <navigationItem key="navigationItem" title="Table 1" id="Lr4-u6-B4z">
                         <barButtonItem key="rightBarButtonItem" title="Forward" id="mt8-Pp-XKD">
                             <connections>
                                 <segue destination="B9t-9e-464" kind="show" identifier="tab1forwardSegue" id="R7M-TO-bPX"/>
@@ -205,10 +205,10 @@
             </objects>
             <point key="canvasLocation" x="901" y="-642"/>
         </scene>
-        <!--First Navigation-->
+        <!--Navigation 1-->
         <scene sceneID="8U6-AH-QO9">
             <objects>
-                <navigationController title="First Navigation" id="3sx-LV-5zw" sceneMemberID="viewController">
+                <navigationController title="Navigation 1" id="3sx-LV-5zw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Table 1" id="ZYq-fO-1ng"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QbH-QC-8vL">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -241,10 +241,10 @@
             </objects>
             <point key="canvasLocation" x="-1702" y="0.0"/>
         </scene>
-        <!--Second Table-->
+        <!--Table 2-->
         <scene sceneID="6l9-pz-lWr">
             <objects>
-                <tableViewController title="Second Table" id="OAp-4D-Zql" sceneMemberID="viewController">
+                <tableViewController title="Table 2" id="OAp-4D-Zql" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Asy-AK-Fu2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -264,7 +264,7 @@
                             <outlet property="delegate" destination="OAp-4D-Zql" id="Q8Y-wY-4CX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Second Table" id="3yq-9O-pFG">
+                    <navigationItem key="navigationItem" title="Table 2" id="3yq-9O-pFG">
                         <barButtonItem key="rightBarButtonItem" title="Forward" id="urw-bp-2Qx">
                             <connections>
                                 <segue destination="bDx-Hb-4PZ" kind="show" identifier="tab2forwardSegue" id="M1p-mI-VQ9"/>
@@ -279,10 +279,10 @@
             </objects>
             <point key="canvasLocation" x="222" y="524"/>
         </scene>
-        <!--Third Table-->
+        <!--Table 3-->
         <scene sceneID="4oS-Q6-lYT">
             <objects>
-                <tableViewController title="Third Table" id="bDx-Hb-4PZ" sceneMemberID="viewController">
+                <tableViewController title="Table 3" id="bDx-Hb-4PZ" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bXc-X9-Yen">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -307,10 +307,10 @@
             </objects>
             <point key="canvasLocation" x="1049" y="527"/>
         </scene>
-        <!--Second Navigation-->
+        <!--Navigation 2-->
         <scene sceneID="TdI-s4-BES">
             <objects>
-                <navigationController title="Second Navigation" id="TdW-uw-8RU" sceneMemberID="viewController">
+                <navigationController title="Navigation 2" id="TdW-uw-8RU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Table 2" id="Kr6-e2-PNh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uQm-we-gEN">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

@@ -9,7 +9,7 @@
 
 import UIKit
 
-class LoginFormController: UIViewController {
+class LoginFormController: UIViewController, UITextFieldDelegate {
 
     private let segSuccessLogin = "successLoginSegue"
     
@@ -26,9 +26,14 @@ class LoginFormController: UIViewController {
         // tap gesture -> hideKeyboard action
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
+        // text fields return buttons on keyboard
+        loginInput.delegate = self
+        loginInput.returnKeyType = .continue
+        passwordInput.delegate = self
+        passwordInput.returnKeyType = .done
     }
- 
-    override func viewWillAppear(_ animated: Bool) {
+
+     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // keyboard show notification
         NotificationCenter.default.addObserver(self,
@@ -92,7 +97,17 @@ class LoginFormController: UIViewController {
     @objc func hideKeyboard() {
         scrollView?.endEditing(true)
     }
-
+    
+    // keyboard return buttons handler
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === loginInput {
+            passwordInput.becomeFirstResponder()
+        } else if textField.returnKeyType == .done {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
     /*
     // MARK: - Navigation
 
