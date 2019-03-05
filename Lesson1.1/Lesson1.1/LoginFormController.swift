@@ -108,6 +108,12 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // unwind action
+    @IBAction func loginUnwind(unwindSegue: UIStoryboardSegue) {
+        loginInput.text = nil
+        passwordInput.text = nil
+    }
+    
     /*
     // MARK: - Navigation
 

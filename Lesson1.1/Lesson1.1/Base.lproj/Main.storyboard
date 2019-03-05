@@ -65,7 +65,7 @@
                                                 <rect key="frame" x="50" y="142" width="275" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UMy-n3-G7W" userLabel="SignInButton">
                                                 <rect key="frame" x="164" y="197" width="47" height="30"/>
@@ -169,7 +169,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xlg-nW-Qdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="105" y="-639"/>
+            <point key="canvasLocation" x="38" y="-744"/>
         </scene>
         <!--Collection-->
         <scene sceneID="4EQ-78-44y">
@@ -203,7 +203,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ARC-WJ-YMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901" y="-642"/>
+            <point key="canvasLocation" x="796" y="-744"/>
         </scene>
         <!--Navigation 1-->
         <scene sceneID="8U6-AH-QO9">
@@ -220,7 +220,53 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E0H-Co-E7X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-732" y="-639"/>
+            <point key="canvasLocation" x="-732" y="-744"/>
+        </scene>
+        <!--Logout-->
+        <scene sceneID="l9i-CE-ZsY">
+            <objects>
+                <viewController title="Logout" id="k2A-50-xjk" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Qe-td-Vak">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are your sure?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YbP-2O-eDp">
+                                <rect key="frame" x="132" y="323" width="111" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4R-6P-Tlm">
+                                <rect key="frame" x="172.5" y="369" width="30" height="30"/>
+                                <state key="normal" title="Yes"/>
+                                <connections>
+                                    <segue destination="1ja-SK-DgD" kind="unwind" unwindAction="loginUnwindWithUnwindSegue:" id="RWc-ZF-qbL"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icu-YD-bsU">
+                                <rect key="frame" x="154.5" y="277" width="66.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YbP-2O-eDp" firstAttribute="centerY" secondItem="0Qe-td-Vak" secondAttribute="centerY" id="2VV-ch-ySW"/>
+                            <constraint firstItem="YbP-2O-eDp" firstAttribute="top" secondItem="icu-YD-bsU" secondAttribute="bottom" constant="25" id="9VH-Pp-nIl"/>
+                            <constraint firstItem="icu-YD-bsU" firstAttribute="centerX" secondItem="0Qe-td-Vak" secondAttribute="centerX" id="Rhn-DO-0p8"/>
+                            <constraint firstItem="z4R-6P-Tlm" firstAttribute="centerX" secondItem="0Qe-td-Vak" secondAttribute="centerX" id="f2J-A7-bm9"/>
+                            <constraint firstItem="YbP-2O-eDp" firstAttribute="centerX" secondItem="0Qe-td-Vak" secondAttribute="centerX" id="fNT-T5-znJ"/>
+                            <constraint firstItem="z4R-6P-Tlm" firstAttribute="top" secondItem="YbP-2O-eDp" secondAttribute="bottom" constant="25" id="pEd-rd-hjD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CoK-kc-57f"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Sign Out" id="hJt-in-gso"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALj-H3-brE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1ja-SK-DgD" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-732" y="0.0"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3aN-wj-QSp">
@@ -235,6 +281,7 @@
                     <connections>
                         <segue destination="3sx-LV-5zw" kind="relationship" relationship="viewControllers" id="fC6-35-YLB"/>
                         <segue destination="TdW-uw-8RU" kind="relationship" relationship="viewControllers" id="vI9-LH-RM8"/>
+                        <segue destination="k2A-50-xjk" kind="relationship" relationship="viewControllers" id="DJk-di-IyE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmJ-xX-ozs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -277,7 +324,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANj-hh-tvk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="222" y="524"/>
+            <point key="canvasLocation" x="38" y="770"/>
         </scene>
         <!--Table 3-->
         <scene sceneID="4oS-Q6-lYT">
@@ -305,7 +352,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZA9-6c-JZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1049" y="527"/>
+            <point key="canvasLocation" x="796" y="770"/>
         </scene>
         <!--Navigation 2-->
         <scene sceneID="TdI-s4-BES">
@@ -322,7 +369,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M8W-EP-f2I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-732" y="524"/>
+            <point key="canvasLocation" x="-732" y="770"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
