@@ -1,10 +1,7 @@
-//
 //  FriendController.swift
 //  Lesson1.1
-//
 //  Created by Iv on 08/03/2019.
 //  Copyright © 2019 Iv. All rights reserved.
-//
 
 import UIKit
 
@@ -12,7 +9,7 @@ import UIKit
 
 class FriendController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
  
-    public var selectedFriend: (name: String, image: String)? = nil
+    public var selectedFriend: Person?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +46,10 @@ class FriendController: UICollectionViewController, UICollectionViewDelegateFlow
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendCell", for: indexPath) as! FriendCell
-        
         if let sf = selectedFriend {
-            cell.nameFriend.text = sf.0
-            cell.fotoFriend.image = UIImage(named: sf.1)
+            cell.nameFriend.text = sf.name
+            cell.fotoFriend.image = sf.foto
         }
-        
         return cell
     }
 
@@ -89,6 +84,7 @@ class FriendController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     */
 
+    // Adjust collection view cell size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height / 2
         let width  = collectionView.frame.width

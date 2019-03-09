@@ -1,21 +1,27 @@
-//
 //  FriendsController.swift
 //  Lesson1.1
-//
 //  Created by Iv on 08/03/2019.
 //  Copyright © 2019 Iv. All rights reserved.
-//
 
 import UIKit
+
+struct Person {
+    var name: String
+    var foto: UIImage?
+    init(_ name: String, _ foto: String) {
+        self.name = name
+        self.foto = UIImage(named: foto)
+    }
+}
 
 class FriendsController: UITableViewController {
 
     var friends = [
-        ("Алешечкин Вася", "1"),
-        ("Мамолькин Илья", "2"),
-        ("Харчочкин Заур", "3"),
-        ("Васечкин Алеша", "4"),
-        ("Лебеда Иван Петрович", "5")
+        Person("Алешечкин Вася", "Алешечкин"),
+        Person("Мамолькин Илья", "Мамолькин"),
+        Person("Харчочкин Заур", "Харчочкин"),
+        Person("Васечкин Алеша", "Васечкин"),
+        Person("Лебеда Иван Петрович", "Лебеда"),
     ]
     
     override func viewDidLoad() {
@@ -41,7 +47,8 @@ class FriendsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath) as! FriendsCell
         let friend = friends[indexPath.row]
-        cell.nameFriend.text = friend.0
+        cell.nameFriend.text = friend.name
+        cell.fotoFriend.image = friend.foto
         return cell
     }
 
@@ -94,6 +101,7 @@ class FriendsController: UITableViewController {
         }
     }
     
+    // Perform manual segue "showFriend" on select row
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showFriend", sender: nil)
     }

@@ -150,19 +150,29 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Rg-KA-jmF">
-                                            <rect key="frame" x="26" y="11.5" width="323" height="21"/>
+                                            <rect key="frame" x="60" y="11.5" width="305" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zeb-FC-oAF">
+                                            <rect key="frame" x="10" y="2" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="Vy1-fa-6R0"/>
+                                                <constraint firstAttribute="height" constant="40" id="fC3-sd-iK6"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="2Rg-KA-jmF" firstAttribute="centerY" secondItem="7ML-nH-smO" secondAttribute="centerY" id="eGy-X9-LCt"/>
-                                        <constraint firstItem="2Rg-KA-jmF" firstAttribute="leading" secondItem="7ML-nH-smO" secondAttribute="leadingMargin" constant="10" id="qax-Fi-OXq"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="2Rg-KA-jmF" secondAttribute="trailing" constant="10" id="x6x-Ek-6vN"/>
+                                        <constraint firstItem="zeb-FC-oAF" firstAttribute="leading" secondItem="7ML-nH-smO" secondAttribute="leading" constant="10" id="hFp-F3-bQB"/>
+                                        <constraint firstItem="zeb-FC-oAF" firstAttribute="centerY" secondItem="7ML-nH-smO" secondAttribute="centerY" id="hVc-PT-6MG"/>
+                                        <constraint firstItem="2Rg-KA-jmF" firstAttribute="centerY" secondItem="7ML-nH-smO" secondAttribute="centerY" id="nYI-4k-9fI"/>
+                                        <constraint firstAttribute="trailing" secondItem="2Rg-KA-jmF" secondAttribute="trailing" constant="10" id="vXf-eB-fMh"/>
+                                        <constraint firstItem="2Rg-KA-jmF" firstAttribute="leading" secondItem="zeb-FC-oAF" secondAttribute="trailing" constant="10" id="zB6-ff-6Bc"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="fotoFriend" destination="zeb-FC-oAF" id="sNC-A9-UoW"/>
                                     <outlet property="nameFriend" destination="2Rg-KA-jmF" id="x2t-3C-rtC"/>
                                 </connections>
                             </tableViewCell>
@@ -179,12 +189,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xlg-nW-Qdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38" y="-744"/>
+            <point key="canvasLocation" x="37.600000000000001" y="-744.3778110944528"/>
         </scene>
-        <!--My friend-->
+        <!--My Friend-->
         <scene sceneID="4EQ-78-44y">
             <objects>
-                <collectionViewController title="My friend" id="B9t-9e-464" customClass="FriendController" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="My Friend" id="B9t-9e-464" customClass="FriendController" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="RoL-dL-4mT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
