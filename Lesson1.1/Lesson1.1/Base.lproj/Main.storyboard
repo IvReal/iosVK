@@ -131,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2521" y="1"/>
+            <point key="canvasLocation" x="-2522.4000000000001" y="0.44977511244377816"/>
         </scene>
         <!--Friends-->
         <scene sceneID="5GF-MJ-iUl">
@@ -155,12 +155,27 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zeb-FC-oAF">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zeb-FC-oAF" customClass="RoundImageView" customModule="Lesson1_1" customModuleProvider="target">
                                             <rect key="frame" x="10" y="2" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="Vy1-fa-6R0"/>
                                                 <constraint firstAttribute="height" constant="40" id="fC3-sd-iK6"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="size" keyPath="ShadowOffset">
+                                                    <size key="value" width="3" height="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="NeedShadow" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="ShadowColor">
+                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="ShadowOpacity">
+                                                    <real key="value" value="0.80000000000000004"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="ShadowRadius">
+                                                    <real key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -200,36 +215,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="x8G-7T-SlD">
-                            <size key="itemSize" width="150" height="150"/>
+                            <size key="itemSize" width="330" height="411"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="friendCell" id="aR1-5b-ehY" customClass="FriendCell" customModule="Lesson1_1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                <rect key="frame" x="22.5" y="0.0" width="330" height="411"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="330" height="411"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mn-Tz-u5D">
-                                            <rect key="frame" x="54" y="10" width="42" height="21"/>
+                                            <rect key="frame" x="144" y="10" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lAz-p3-4UA">
-                                            <rect key="frame" x="10" y="41" width="130" height="99"/>
+                                            <rect key="frame" x="90" y="41" width="150" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="150" id="QoA-ZG-G6d"/>
+                                                <constraint firstAttribute="height" constant="150" id="dsE-Xt-dcs"/>
+                                            </constraints>
                                         </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMH-yN-xKD" customClass="LikeControl" customModule="Lesson1_1" customModuleProvider="target">
+                                            <rect key="frame" x="140" y="201" width="50" height="25"/>
+                                            <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="25" id="kPV-oN-6HB"/>
+                                                <constraint firstAttribute="width" constant="50" id="uKg-kI-e0n"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="lAz-p3-4UA" secondAttribute="trailing" constant="10" id="8UE-V5-wem"/>
-                                    <constraint firstItem="lAz-p3-4UA" firstAttribute="leading" secondItem="aR1-5b-ehY" secondAttribute="leading" constant="10" id="Mlb-la-kPH"/>
-                                    <constraint firstItem="lAz-p3-4UA" firstAttribute="top" secondItem="9mn-Tz-u5D" secondAttribute="bottom" constant="10" id="dqz-Qu-oal"/>
+                                    <constraint firstItem="lAz-p3-4UA" firstAttribute="centerX" secondItem="aR1-5b-ehY" secondAttribute="centerX" id="2in-4E-380"/>
+                                    <constraint firstItem="oMH-yN-xKD" firstAttribute="top" secondItem="lAz-p3-4UA" secondAttribute="bottom" constant="10" id="8S6-er-pTg"/>
+                                    <constraint firstItem="oMH-yN-xKD" firstAttribute="centerX" secondItem="aR1-5b-ehY" secondAttribute="centerX" id="HKd-8I-M3S"/>
+                                    <constraint firstItem="lAz-p3-4UA" firstAttribute="top" secondItem="9mn-Tz-u5D" secondAttribute="bottom" constant="10" id="Iir-ie-ZFo"/>
                                     <constraint firstItem="9mn-Tz-u5D" firstAttribute="top" secondItem="aR1-5b-ehY" secondAttribute="top" constant="10" id="iLG-oo-XA7"/>
-                                    <constraint firstAttribute="bottom" secondItem="lAz-p3-4UA" secondAttribute="bottom" constant="10" id="rBf-kn-OtT"/>
                                     <constraint firstItem="9mn-Tz-u5D" firstAttribute="centerX" secondItem="aR1-5b-ehY" secondAttribute="centerX" id="syy-E9-H2s"/>
                                 </constraints>
                                 <connections>

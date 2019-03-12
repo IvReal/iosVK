@@ -22,6 +22,7 @@ class FriendsController: UITableViewController {
         Person("Харчочкин Заур", "Харчочкин"),
         Person("Васечкин Алеша", "Васечкин"),
         Person("Лебеда Иван Петрович", "Лебеда"),
+        Person("Маша", "photo2"),
     ]
     
     override func viewDidLoad() {
