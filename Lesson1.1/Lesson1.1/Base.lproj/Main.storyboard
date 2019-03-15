@@ -188,15 +188,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45l-1j-t48" customClass="LetterControl" customModule="Lesson1_1" customModuleProvider="target">
+                                <rect key="frame" x="355" y="0.0" width="20" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="57r-6y-C0X"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YbP-2O-eDp" firstAttribute="centerY" secondItem="0Qe-td-Vak" secondAttribute="centerY" id="2VV-ch-ySW"/>
+                            <constraint firstAttribute="bottom" secondItem="45l-1j-t48" secondAttribute="bottom" id="5h3-7m-UYm"/>
                             <constraint firstItem="YbP-2O-eDp" firstAttribute="top" secondItem="icu-YD-bsU" secondAttribute="bottom" constant="25" id="9VH-Pp-nIl"/>
                             <constraint firstItem="icu-YD-bsU" firstAttribute="centerX" secondItem="0Qe-td-Vak" secondAttribute="centerX" id="Rhn-DO-0p8"/>
+                            <constraint firstAttribute="trailing" secondItem="45l-1j-t48" secondAttribute="trailing" id="UxR-Fg-JlL"/>
                             <constraint firstItem="z4R-6P-Tlm" firstAttribute="centerX" secondItem="0Qe-td-Vak" secondAttribute="centerX" id="f2J-A7-bm9"/>
                             <constraint firstItem="YbP-2O-eDp" firstAttribute="centerX" secondItem="0Qe-td-Vak" secondAttribute="centerX" id="fNT-T5-znJ"/>
                             <constraint firstItem="z4R-6P-Tlm" firstAttribute="top" secondItem="YbP-2O-eDp" secondAttribute="bottom" constant="25" id="pEd-rd-hjD"/>
+                            <constraint firstItem="45l-1j-t48" firstAttribute="top" secondItem="0Qe-td-Vak" secondAttribute="top" id="qWW-az-re4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CoK-kc-57f"/>
                     </view>
