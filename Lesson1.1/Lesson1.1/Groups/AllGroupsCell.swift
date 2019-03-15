@@ -9,7 +9,7 @@
 import UIKit
 
 class AllGroupsCell: UITableViewCell {
-
+    
     @IBOutlet weak var nameAllGroup: UILabel!
     
     override func awakeFromNib() {
