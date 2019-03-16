@@ -10,14 +10,17 @@ struct Person {
     var foto: UIImage?
     init(_ name: String, _ foto: String) {
         self.name = name
-        self.foto = UIImage(named: foto)
+        if !foto.isEmpty {
+            self.foto = UIImage(named: foto)
+        }
     }
 }
 
 class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var tableView: UITableView!    
+    @IBOutlet weak var letterControl: LetterControl!
+   
     var friends = [
         Person("Алешечкин Вася", "Алешечкин"),
         Person("Мамолькин Илья", "Мамолькин"),
@@ -25,10 +28,29 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         Person("Васечкин Алеша", "Васечкин"),
         Person("Лебеда Иван Петрович", "Лебеда"),
         Person("Маша", "photo2"),
+        Person("Иванов Иван", ""),
+        Person("Петров Петр", ""),
+        Person("Сидоров Сидр", ""),
+        Person("Алибабаев Алибаб", ""),
+        Person("Степанов Степа", ""),
+        Person("Александров Саша", ""),
+        Person("Егоров Егор", ""),
+        Person("Юрьев Юра", ""),
         ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // letter control init
+        var letters: [String] = []
+        //for val in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
+        for friend in friends {
+            let letter = friend.name.prefix(1).uppercased()
+            if !letters.contains(letter) {
+                letters.append(letter)
+            }
+         }
+         letterControl.setupLetters(letters.sorted())
     }
     
     // MARK: - Table view data source

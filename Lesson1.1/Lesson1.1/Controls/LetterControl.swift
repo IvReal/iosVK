@@ -17,6 +17,7 @@ class LetterControl: UIControl {
     
     private var buttons: [UIButton] = []
     private var stackView: UIStackView!
+    private var scrollView: UIScrollView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,35 +30,40 @@ class LetterControl: UIControl {
     }
     
     func setupLetters(_ letters: [String]) {
+        
         Letters.removeAll()
         for val in letters {
             Letters.append(val)
         }
-        setupView()
-    }
-    
-    private func setupView() {
-        if Letters.isEmpty {
-            for val in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
-                Letters.append(String(val))
-            }
-        }
+        buttons.removeAll()
         for val in Letters {
             let button = UIButton(type: .system)
             button.setTitle(val, for: .normal)
             button.setTitleColor(.lightGray, for: .normal)
             button.setTitleColor(.white, for: .selected)
             button.addTarget(self, action: #selector(selectLetter(_:)), for: .touchUpInside)
-            self.buttons.append(button)
+            buttons.append(button)
+            stackView.addArrangedSubview(button)
         }
-        stackView = UIStackView(arrangedSubviews: self.buttons)
-        
-        self.addSubview(stackView)
-        
+    }
+    
+    private func setupView() {
+        scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(scrollView)
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: .alignAllCenterX, metrics: nil, views: ["scrollView": scrollView]))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|", options: .alignAllCenterY, metrics: nil, views: ["scrollView": scrollView]))
+        stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 0
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.distribution = .fillEqually
+        scrollView.addSubview(stackView)
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: .alignAllCenterX, metrics: nil, views: ["stackView": stackView]))
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: .alignAllCenterY, metrics: nil, views: ["stackView": stackView]))
     }
     
     private func updateSelectedChar() {
@@ -76,7 +82,8 @@ class LetterControl: UIControl {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        stackView.frame = bounds
+        //scrollView.frame = bounds
+        //scrollView.contentSize = CGSize(width: stackView.frame.width, height: stackView.frame.height)
     }
     
     /*

@@ -20,7 +20,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var signButton: UIButton!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // tap gesture -> hideKeyboard action
