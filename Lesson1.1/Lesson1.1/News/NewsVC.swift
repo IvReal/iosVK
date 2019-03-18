@@ -37,9 +37,4 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    //func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-        //return cell.countLikes.frame.origin.y + cell.countLikes.frame.height + 5.0
-    //}
-    
 }

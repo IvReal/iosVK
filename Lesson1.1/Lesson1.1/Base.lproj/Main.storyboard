@@ -249,7 +249,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6c-Ww-WCl" customClass="LetterControl" customModule="Lesson1_1" customModuleProvider="target">
-                                <rect key="frame" x="350" y="120" width="25" height="497"/>
+                                <rect key="frame" x="350" y="60" width="25" height="557"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="nem-sG-v9U"/>
@@ -262,7 +262,7 @@
                             <constraint firstAttribute="trailing" secondItem="aDS-j2-gAq" secondAttribute="trailing" id="MbM-yk-BbF"/>
                             <constraint firstItem="aDS-j2-gAq" firstAttribute="leading" secondItem="nbL-Fw-vTJ" secondAttribute="leading" id="N5E-lI-nLJ"/>
                             <constraint firstItem="aDS-j2-gAq" firstAttribute="top" secondItem="nbL-Fw-vTJ" secondAttribute="top" id="Tpi-hA-IHe"/>
-                            <constraint firstItem="j6c-Ww-WCl" firstAttribute="top" secondItem="nbL-Fw-vTJ" secondAttribute="top" constant="120" id="WIb-1Z-Qer"/>
+                            <constraint firstItem="j6c-Ww-WCl" firstAttribute="top" secondItem="nbL-Fw-vTJ" secondAttribute="top" constant="60" id="WIb-1Z-Qer"/>
                             <constraint firstAttribute="bottom" secondItem="j6c-Ww-WCl" secondAttribute="bottom" constant="50" id="nFP-7R-mHB"/>
                             <constraint firstAttribute="trailing" secondItem="j6c-Ww-WCl" secondAttribute="trailing" id="rp4-T3-jXw"/>
                         </constraints>
