@@ -109,7 +109,8 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
             groupFriends(friends)
         } else {
             let filteredFriends = friends.filter({ (Person) -> Bool in
-                return Person.name.lowercased().starts(with: searchText.lowercased())
+                //return Person.name.lowercased().starts(with: searchText.lowercased())
+                return Person.name.lowercased().contains(searchText.lowercased())
             })
             groupFriends(filteredFriends)
         }

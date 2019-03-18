@@ -1,14 +1,17 @@
-//  FriendsCell.swift
+//  NewsCell.swift
 //  Lesson1.1
-//  Created by Iv on 08/03/2019.
+//  Created by Iv on 18/03/2019.
 //  Copyright © 2019 Iv. All rights reserved.
 
 import UIKit
 
-class FriendsCell: UITableViewCell {
+class NewsCell: UITableViewCell {
 
-    @IBOutlet weak var nameFriend: UILabel!
-    @IBOutlet weak var fotoFriend: UIImageView!
+    @IBOutlet weak var labelAuthor: UILabel!
+    @IBOutlet weak var labelDate: UILabel!
+    @IBOutlet weak var textNews: UILabel!
+    @IBOutlet weak var imageNews: UIImageView!
+    @IBOutlet weak var countLikes: LikeControl!
     
     override func awakeFromNib() {
         super.awakeFromNib()

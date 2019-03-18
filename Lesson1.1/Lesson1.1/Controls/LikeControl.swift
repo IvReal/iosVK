@@ -67,6 +67,8 @@ class LikeControl: UIControl {
     private var buttonHeart: HeartButton!
     private var buttonCount: UIButton!
 
+    private var isUnlike: Bool? = nil
+    
     var countLike: Int = 0 {
         didSet {
             self.updateControl()
@@ -102,14 +104,18 @@ class LikeControl: UIControl {
     }
     
     private func updateControl() {
-        let color = countLike > 0 ? UIColor.red : self.tintColor
+        var color = UIColor.gray
+        if let ul = isUnlike {
+            color = ul ? self.tintColor : .red
+        }
         buttonHeart.color = color
         buttonCount.setTitle("\(countLike)", for: .normal)
         buttonCount.setTitleColor(color, for: .normal)
     }
     
     @objc private func updateLikeCount(_ sender: UIButton) {
-        countLike = countLike > 0 ? 0 : 1
+        isUnlike = !(isUnlike ?? true)
+        countLike = countLike + 1 * (isUnlike! ? -1 : 1)
     }
     
     override func layoutSubviews() {

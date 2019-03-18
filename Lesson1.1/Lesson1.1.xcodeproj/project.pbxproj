@@ -26,6 +26,8 @@
 		AA9729E4223BE75D00C24885 /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9729E3223BE75D00C24885 /* FriendVC.swift */; };
 		AA9729E6223C06A900C24885 /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9729E5223C06A900C24885 /* FriendsVC.swift */; };
 		AAD4EF32223E50CE0061F2F4 /* FriendsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4EF31223E50CE0061F2F4 /* FriendsHeader.xib */; };
+		AAFDA35E223FFB3300606D34 /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDA35D223FFB3300606D34 /* NewsVC.swift */; };
+		AAFDA360223FFDA200606D34 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDA35F223FFDA200606D34 /* NewsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		AA9729E3223BE75D00C24885 /* FriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
 		AA9729E5223C06A900C24885 /* FriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
 		AAD4EF31223E50CE0061F2F4 /* FriendsHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsHeader.xib; sourceTree = "<group>"; };
+		AAFDA35D223FFB3300606D34 /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
+		AAFDA35F223FFDA200606D34 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 		AA55592D222816B800C1A86C /* Lesson1.1 */ = {
 			isa = PBXGroup;
 			children = (
+				AAFDA35C223FFB0500606D34 /* News */,
 				AA570454223D7935003F2E3F /* Data */,
 				AA9729D822368BC300C24885 /* Controls */,
 				AA5559442232B81300C1A86C /* Groups */,
@@ -136,6 +141,15 @@
 				AA16D33F223C4B9D008BB559 /* LetterControl.swift */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		AAFDA35C223FFB0500606D34 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				AAFDA35D223FFB3300606D34 /* NewsVC.swift */,
+				AAFDA35F223FFDA200606D34 /* NewsCell.swift */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +237,8 @@
 				AA9729E4223BE75D00C24885 /* FriendVC.swift in Sources */,
 				AA55594C2232C5B000C1A86C /* MyGroupsCell.swift in Sources */,
 				AA5559502232D71600C1A86C /* FriendsCell.swift in Sources */,
+				AAFDA360223FFDA200606D34 /* NewsCell.swift in Sources */,
+				AAFDA35E223FFB3300606D34 /* NewsVC.swift in Sources */,
 				AA9729E6223C06A900C24885 /* FriendsVC.swift in Sources */,
 				AA9729D52232DCE500C24885 /* FriendCell.swift in Sources */,
 			);
