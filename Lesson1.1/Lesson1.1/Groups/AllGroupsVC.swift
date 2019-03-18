@@ -6,14 +6,6 @@
 import UIKit
 
 class AllGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    var groups = [
-        "Клуб любителей шампанского",
-        "Программирование на Swift для домохозяек",
-        "Европа на автомобиле",
-        "Боевые искусства антарктиды",
-        "Обучение французскому во сне"
-    ]
 
     @IBOutlet weak var tableView: UITableView!
     

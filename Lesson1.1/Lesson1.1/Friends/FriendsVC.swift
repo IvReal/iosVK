@@ -5,70 +5,79 @@
 
 import UIKit
 
-struct Person {
+struct Section {
     var name: String
-    var foto: UIImage?
-    init(_ name: String, _ foto: String) {
-        self.name = name
-        if !foto.isEmpty {
-            self.foto = UIImage(named: foto)
-        }
-    }
+    var persons: [Person]
 }
 
 class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!    
     @IBOutlet weak var letterControl: LetterControl!
-   
-    var friends = [
-        Person("Алешечкин Вася", "Алешечкин"),
-        Person("Мамолькин Илья", "Мамолькин"),
-        Person("Харчочкин Заур", "Харчочкин"),
-        Person("Васечкин Алеша", "Васечкин"),
-        Person("Лебеда Иван Петрович", "Лебеда"),
-        Person("Маша", "photo2"),
-        Person("Иванов Иван", ""),
-        Person("Петров Петр", ""),
-        Person("Сидоров Сидр", ""),
-        Person("Алибабаев Алибаб", ""),
-        Person("Степанов Степа", ""),
-        Person("Александров Саша", ""),
-        Person("Егоров Егор", ""),
-        Person("Юрьев Юра", ""),
-        ]
-
+    
+    private var groupedFriends: [Section] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // letter control init
-        var letters: [String] = []
-        //for val in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
+        //tableView.register(FriendsHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsHeader")
+        tableView.register(UINib(nibName: "FriendsHeader", bundle: Bundle.main), forHeaderFooterViewReuseIdentifier: "FriendsHeader")
+        groupFriends()
+        letterControl.changeLetterHandler = letterChanged
+    }
+    
+    // letter control change letter handler
+    private func letterChanged(_ letter: String) {
+        for (index, value) in groupedFriends.enumerated() {
+            if value.name == letter {
+                tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
+            }
+        }
+    }
+
+    // set friends group array
+    private func groupFriends() {
+        groupedFriends.removeAll()
+        var dict = [String: [Person]]()
         for friend in friends {
             let letter = friend.name.prefix(1).uppercased()
-            if !letters.contains(letter) {
-                letters.append(letter)
+            var p = dict[letter]
+            if p == nil {
+                p = [Person]()
             }
-         }
-         letterControl.setupLetters(letters.sorted())
+            p!.append(friend)
+            dict[letter] = p
+        }
+        for letter in dict.keys.sorted() {
+            groupedFriends.append(Section(name: letter, persons: dict[letter]!))
+        }
+        letterControl.Letters = dict.keys.sorted()
     }
     
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return groupedFriends.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+        return groupedFriends[section].persons.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as! FriendsCell
-        let friend = friends[indexPath.row]
+        let friend = groupedFriends[indexPath.section].persons[indexPath.row]
         cell.nameFriend.text = friend.name
         cell.fotoFriend.image = friend.foto
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FriendsHeader") as? FriendsHeader
+        //header?.contentView.backgroundColor = .red
+        header?.nameSection.text = groupedFriends[section].name
+        header?.contentView.backgroundColor = .white
+        header?.contentView.alpha = 0.5
+        return header
     }
 
     // MARK: - Navigation
@@ -78,8 +87,8 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         let fc = segue.destination as! FriendVC
-        if let ind = tableView.indexPathForSelectedRow {
-            fc.selectedFriend = friends[ind.row]
+        if let indexPath = tableView.indexPathForSelectedRow {
+            fc.selectedFriend = groupedFriends[indexPath.section].persons[indexPath.row]
         }
     }
     
@@ -87,5 +96,25 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showFriend", sender: nil)
     }
+    
+    /* TODO
+    // change letter control selected letter while scrolling tableView
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        SetTopLetter()
+    }
 
+    private func SetTopLetter() {
+        if let array = tableView.indexPathsForVisibleRows {
+            var section: Int? = nil
+            if array.count > 1 {
+                section = array[1].section
+            } else if array.count > 0 {
+                section = array[0].section
+            }
+            if let s = section {
+                letterControl.selectedLetter = groupedFriends[s].name
+            }
+        }
+    }
+    */
 }

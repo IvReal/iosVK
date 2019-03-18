@@ -7,7 +7,7 @@ import UIKit
 
 class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var groups = [String]()
+    var mygroups = [String]()
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,12 +22,12 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        return mygroups.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroupsCell", for: indexPath) as! MyGroupsCell
-        let group = groups[indexPath.row]
+        let group = mygroups[indexPath.row]
         cell.nameMyGroup.text = group
         return cell
     }
@@ -41,7 +41,7 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // Support editing the table view.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            groups.remove(at: indexPath.row)
+            mygroups.remove(at: indexPath.row)
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -66,10 +66,10 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             // cell index
             if let indexPath = allGroupsController.tableView.indexPathForSelectedRow {
                 // group by index
-                let group = allGroupsController.groups[indexPath.row]
+                let group = groups[indexPath.row]
                 // add group to target
-                if !groups.contains(group) {
-                    groups.append(group)
+                if !mygroups.contains(group) {
+                    mygroups.append(group)
                 }
                 // refresh table
                 tableView.reloadData()
