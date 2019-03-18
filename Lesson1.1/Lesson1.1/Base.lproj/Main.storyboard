@@ -43,32 +43,20 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1P-L2-jS0" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jB2-7q-DBB" userLabel="LoginLabel">
-                                                <rect key="frame" x="50" y="40" width="42" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xm4-mG-6im" userLabel="PasswordLabel">
-                                                <rect key="frame" x="50" y="111" width="74" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZA8-Xi-Zyj" userLabel="LoginText">
-                                                <rect key="frame" x="50" y="71" width="275" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZA8-Xi-Zyj" userLabel="LoginText">
+                                                <rect key="frame" x="50" y="50" width="275" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ba6-3Q-pZD" userLabel="PasswordText">
-                                                <rect key="frame" x="50" y="142" width="275" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ba6-3Q-pZD" userLabel="PasswordText">
+                                                <rect key="frame" x="50" y="100" width="275" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UMy-n3-G7W" userLabel="SignInButton">
-                                                <rect key="frame" x="50" y="197" width="275" height="30"/>
+                                                <rect key="frame" x="50" y="150" width="275" height="30"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                 <state key="normal" title="Sign In">
@@ -82,20 +70,14 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ba6-3Q-pZD" secondAttribute="trailing" constant="50" id="05c-ND-QVT"/>
-                                            <constraint firstItem="jB2-7q-DBB" firstAttribute="top" secondItem="E1P-L2-jS0" secondAttribute="top" constant="40" id="4uG-5A-7ov"/>
-                                            <constraint firstItem="xm4-mG-6im" firstAttribute="leading" secondItem="E1P-L2-jS0" secondAttribute="leading" constant="50" id="Be8-wm-9uG"/>
-                                            <constraint firstItem="ZA8-Xi-Zyj" firstAttribute="top" secondItem="jB2-7q-DBB" secondAttribute="bottom" constant="10" id="HT7-TE-NMM"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xm4-mG-6im" secondAttribute="trailing" constant="20" symbolic="YES" id="JjL-Ie-Lci"/>
+                                            <constraint firstItem="ba6-3Q-pZD" firstAttribute="top" secondItem="ZA8-Xi-Zyj" secondAttribute="bottom" constant="20" id="5z5-1l-DXY"/>
                                             <constraint firstItem="ZA8-Xi-Zyj" firstAttribute="leading" secondItem="E1P-L2-jS0" secondAttribute="leading" constant="50" id="LEZ-hz-Qbc"/>
                                             <constraint firstItem="UMy-n3-G7W" firstAttribute="leading" secondItem="E1P-L2-jS0" secondAttribute="leading" constant="50" id="O28-MA-q3L"/>
-                                            <constraint firstItem="xm4-mG-6im" firstAttribute="top" secondItem="ZA8-Xi-Zyj" secondAttribute="bottom" constant="10" id="SKt-s7-6K4"/>
+                                            <constraint firstItem="ZA8-Xi-Zyj" firstAttribute="top" secondItem="E1P-L2-jS0" secondAttribute="top" constant="50" id="W5u-eY-7Uf"/>
                                             <constraint firstItem="ba6-3Q-pZD" firstAttribute="leading" secondItem="E1P-L2-jS0" secondAttribute="leading" constant="50" id="h2a-rM-Kr0"/>
-                                            <constraint firstItem="ba6-3Q-pZD" firstAttribute="top" secondItem="xm4-mG-6im" secondAttribute="bottom" constant="10" id="hPF-tf-uIt"/>
-                                            <constraint firstItem="jB2-7q-DBB" firstAttribute="leading" secondItem="E1P-L2-jS0" secondAttribute="leading" constant="50" id="nVp-yG-U2E"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jB2-7q-DBB" secondAttribute="trailing" constant="20" symbolic="YES" id="pmQ-au-C8p"/>
                                             <constraint firstAttribute="trailing" secondItem="ZA8-Xi-Zyj" secondAttribute="trailing" constant="50" id="u4x-K5-A3g"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="UMy-n3-G7W" secondAttribute="trailing" constant="50" id="uS4-G2-utw"/>
-                                            <constraint firstItem="UMy-n3-G7W" firstAttribute="top" secondItem="ba6-3Q-pZD" secondAttribute="bottom" constant="25" id="yIk-X7-7QL"/>
+                                            <constraint firstItem="UMy-n3-G7W" firstAttribute="top" secondItem="ba6-3Q-pZD" secondAttribute="bottom" constant="20" id="yIk-X7-7QL"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -126,9 +108,7 @@
                     <connections>
                         <outlet property="contentView" destination="E1P-L2-jS0" id="QfU-r6-JWS"/>
                         <outlet property="loginInput" destination="ZA8-Xi-Zyj" id="Z9q-JE-Upr"/>
-                        <outlet property="loginLabel" destination="jB2-7q-DBB" id="8Ae-4L-Vmm"/>
                         <outlet property="passwordInput" destination="ba6-3Q-pZD" id="vme-yH-v4x"/>
-                        <outlet property="passwordLabel" destination="xm4-mG-6im" id="ALH-bo-QIN"/>
                         <outlet property="scrollView" destination="oA2-zA-U2r" id="AOT-JQ-E3s"/>
                         <outlet property="signButton" destination="UMy-n3-G7W" id="scj-wv-pEw"/>
                         <segue destination="gsi-mO-t4M" kind="presentation" identifier="successLoginSegue" id="QAE-fw-oDQ"/>
@@ -218,9 +198,17 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aDS-j2-gAq">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.66601425409317017" green="0.92343807220458984" blue="0.62194186449050903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="eS5-zM-NXO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="BOs-fk-9lU" id="Apz-Wj-JCT"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsCell" id="65Q-VM-whk" customClass="FriendsCell" customModule="Lesson1_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="84" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="65Q-VM-whk" id="Cuw-fF-lHW">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -261,7 +249,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6c-Ww-WCl" customClass="LetterControl" customModule="Lesson1_1" customModuleProvider="target">
-                                <rect key="frame" x="350" y="65" width="25" height="552"/>
+                                <rect key="frame" x="350" y="120" width="25" height="497"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="nem-sG-v9U"/>
@@ -274,7 +262,7 @@
                             <constraint firstAttribute="trailing" secondItem="aDS-j2-gAq" secondAttribute="trailing" id="MbM-yk-BbF"/>
                             <constraint firstItem="aDS-j2-gAq" firstAttribute="leading" secondItem="nbL-Fw-vTJ" secondAttribute="leading" id="N5E-lI-nLJ"/>
                             <constraint firstItem="aDS-j2-gAq" firstAttribute="top" secondItem="nbL-Fw-vTJ" secondAttribute="top" id="Tpi-hA-IHe"/>
-                            <constraint firstItem="j6c-Ww-WCl" firstAttribute="top" secondItem="nbL-Fw-vTJ" secondAttribute="top" constant="65" id="WIb-1Z-Qer"/>
+                            <constraint firstItem="j6c-Ww-WCl" firstAttribute="top" secondItem="nbL-Fw-vTJ" secondAttribute="top" constant="120" id="WIb-1Z-Qer"/>
                             <constraint firstAttribute="bottom" secondItem="j6c-Ww-WCl" secondAttribute="bottom" constant="50" id="nFP-7R-mHB"/>
                             <constraint firstAttribute="trailing" secondItem="j6c-Ww-WCl" secondAttribute="trailing" id="rp4-T3-jXw"/>
                         </constraints>
@@ -283,6 +271,7 @@
                     <navigationItem key="navigationItem" title="Friends" id="0zK-6c-VVl"/>
                     <connections>
                         <outlet property="letterControl" destination="j6c-Ww-WCl" id="Hd7-ib-S6w"/>
+                        <outlet property="searchBar" destination="eS5-zM-NXO" id="pxt-f2-U5f"/>
                         <outlet property="tableView" destination="aDS-j2-gAq" id="Ng3-Bm-fd7"/>
                         <segue destination="ag6-OD-gLW" kind="show" identifier="showFriend" id="nnm-LR-nl2"/>
                     </connections>
@@ -321,7 +310,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KZZ-tN-qXT">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.66601425409317017" green="0.92343807220458984" blue="0.62194186449050903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyGroupsCell" id="4lB-o5-XWd" customClass="MyGroupsCell" customModule="Lesson1_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -352,6 +341,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="N2F-Qi-GFL" secondAttribute="bottom" constant="5" id="yan-Em-8Rh"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="nameMyGroup" destination="Kd8-mb-NI9" id="BOn-xu-Hol"/>
                                         </connections>

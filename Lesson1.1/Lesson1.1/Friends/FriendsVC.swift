@@ -10,19 +10,22 @@ struct Section {
     var persons: [Person]
 }
 
-class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!    
     @IBOutlet weak var letterControl: LetterControl!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     private var groupedFriends: [Section] = []
+    private var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //tableView.register(FriendsHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsHeader")
         tableView.register(UINib(nibName: "FriendsHeader", bundle: Bundle.main), forHeaderFooterViewReuseIdentifier: "FriendsHeader")
-        groupFriends()
+        groupFriends(friends)
         letterControl.changeLetterHandler = letterChanged
+        searchBar.returnKeyType = .done
     }
     
     // letter control change letter handler
@@ -35,10 +38,10 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
 
     // set friends group array
-    private func groupFriends() {
+    private func groupFriends(_ friendList: [Person]) {
         groupedFriends.removeAll()
         var dict = [String: [Person]]()
-        for friend in friends {
+        for friend in friendList {
             let letter = friend.name.prefix(1).uppercased()
             var p = dict[letter]
             if p == nil {
@@ -96,7 +99,23 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showFriend", sender: nil)
     }
+
+    // MARK: - Search bar
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        isSearching = !searchText.isEmpty
+        if !isSearching {
+            //view.endEditing(true)
+            groupFriends(friends)
+        } else {
+            let filteredFriends = friends.filter({ (Person) -> Bool in
+                return Person.name.lowercased().starts(with: searchText.lowercased())
+            })
+            groupFriends(filteredFriends)
+        }
+        tableView.reloadData()
+    }
+
     /* TODO
     // change letter control selected letter while scrolling tableView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

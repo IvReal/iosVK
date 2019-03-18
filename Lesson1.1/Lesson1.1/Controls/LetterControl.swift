@@ -13,6 +13,7 @@ class LetterControl: UIControl {
         didSet {
             for button in buttons {
                 stackView.removeArrangedSubview(button)
+                button.removeFromSuperview()
             }
             buttons.removeAll()
             for val in Letters {
