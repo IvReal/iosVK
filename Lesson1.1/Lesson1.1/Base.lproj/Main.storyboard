@@ -338,16 +338,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lSI-I2-GgS">
-                                                    <rect key="frame" x="10" y="10" width="355" height="16"/>
+                                                    <rect key="frame" x="10" y="10" width="355" height="16.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcG-e7-VAp">
-                                                            <rect key="frame" x="0.0" y="0.0" width="165" height="16"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="176.5" height="16.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztp-kc-kvm">
-                                                            <rect key="frame" x="170" y="0.0" width="185" height="16"/>
+                                                            <rect key="frame" x="181.5" y="0.0" width="173.5" height="16.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -355,7 +355,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiS-BN-xKc">
-                                                    <rect key="frame" x="10" y="36" width="355" height="18.5"/>
+                                                    <rect key="frame" x="10" y="36.5" width="355" height="18"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

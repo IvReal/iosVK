@@ -60,7 +60,7 @@ var groups = [
 ]
 
 var news = [
-    News(author: "Бунин", date: Date.init(timeIntervalSinceNow: -6000), text:
+    News(author: "Бунин", date: Date.init(timeIntervalSinceNow: 0), text:
         """
         О счастье мы всегда лишь вспоминаем.
         А счастье всюду. Может быть, оно —
@@ -72,7 +72,7 @@ var news = [
         А счастье только знающим дано...
         """,
          image: "photo1", likes: 500),
-    News(author: "Пушкин", date: Date.init(timeIntervalSinceNow: -600), text:
+    News(author: "Пушкин", date: Date.init(timeIntervalSinceNow: -20000), text:
         """
         ...Унылая пора! очей очарованье!
         Приятна мне твоя прощальная краса —
@@ -84,7 +84,7 @@ var news = [
         И отдаленные седой зимы угрозы...
         """,
          image: "photo1", likes: 33),
-    News(author: "Лермонтов", date: Date.init(timeIntervalSinceNow: 0), text:
+    News(author: "Лермонтов", date: Date.init(timeIntervalSinceNow: -200000), text:
         """
         Тучки небесные, вечные странники!
         Степью лазурною, цепью жемчужною
