@@ -83,7 +83,7 @@ var news = [
         И редкий солнца луч, и первые морозы,
         И отдаленные седой зимы угрозы...
         """,
-         image: "photo1", likes: 33),
+         image: "photo2", likes: 33),
     News(author: "Лермонтов", date: Date.init(timeIntervalSinceNow: -200000), text:
         """
         Тучки небесные, вечные странники!
@@ -91,5 +91,5 @@ var news = [
         Мчитесь вы, будто как я же, изгнанники
         С милого севера в сторону южную...
         """,
-         image: "photo1", likes: 67)
+         image: "photo3", likes: 67)
 ]
