@@ -104,6 +104,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
             passwordInput.becomeFirstResponder()
         } else if textField.returnKeyType == .done {
             textField.resignFirstResponder()
+            signinTouch(signButton)
         }
         return true
     }

@@ -27,7 +27,7 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         letterControl.changeLetterHandler = letterChanged
         searchBar.returnKeyType = .done
     }
-    
+
     // letter control change letter handler
     private func letterChanged(_ letter: String) {
         for (index, value) in groupedFriends.enumerated() {
@@ -105,7 +105,8 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         isSearching = !searchText.isEmpty
         if !isSearching {
-            //view.endEditing(true)
+            // trick to end editing on clear button too
+            perform(#selector(hideKeyboard), with: searchBar, afterDelay: 0)
             groupFriends(friends)
         } else {
             let filteredFriends = friends.filter({ (Person) -> Bool in
@@ -116,7 +117,12 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         }
         tableView.reloadData()
     }
-
+    
+    // hide keyboard action
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
     /* TODO
     // change letter control selected letter while scrolling tableView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
