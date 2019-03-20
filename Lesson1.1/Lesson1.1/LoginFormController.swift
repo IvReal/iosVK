@@ -1,11 +1,7 @@
-//  Вадим Иванов, СПб, Россия
-//
 //  LoginFormController.swift
 //  Lesson1.1
-//
 //  Created by Iv on 28/02/2019.
 //  Copyright © 2019 Iv. All rights reserved.
-//
 
 import UIKit
 
@@ -20,7 +16,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var signButton: UIButton!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // tap gesture -> hideKeyboard action
@@ -67,13 +63,6 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func ShowAlert(_ title: String, _ message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-    
     // keyboard show notification handler
     @objc func keyboardWasShown(notification: Notification) {
         // keyboard size
@@ -104,6 +93,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
             passwordInput.becomeFirstResponder()
         } else if textField.returnKeyType == .done {
             textField.resignFirstResponder()
+            signinTouch(signButton)
         }
         return true
     }
