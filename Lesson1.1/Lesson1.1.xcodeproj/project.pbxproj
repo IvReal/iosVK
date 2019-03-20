@@ -28,6 +28,7 @@
 		AAD4EF32223E50CE0061F2F4 /* FriendsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4EF31223E50CE0061F2F4 /* FriendsHeader.xib */; };
 		AAFDA35E223FFB3300606D34 /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDA35D223FFB3300606D34 /* NewsVC.swift */; };
 		AAFDA360223FFDA200606D34 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDA35F223FFDA200606D34 /* NewsCell.swift */; };
+		AAFDA3622242954000606D34 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDA3612242954000606D34 /* Functions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		AAD4EF31223E50CE0061F2F4 /* FriendsHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsHeader.xib; sourceTree = "<group>"; };
 		AAFDA35D223FFB3300606D34 /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		AAFDA35F223FFDA200606D34 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		AAFDA3612242954000606D34 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				AA9729D62235AC1400C24885 /* LikeControl.swift */,
 				AA9729D922368C2D00C24885 /* RoundImageView.swift */,
 				AA16D33F223C4B9D008BB559 /* LetterControl.swift */,
+				AAFDA3612242954000606D34 /* Functions.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				AA9729E0223BCBF200C24885 /* MyGroupsVC.swift in Sources */,
 				AA5559482232BD1000C1A86C /* AllGroupsCell.swift in Sources */,
 				AA9729E4223BE75D00C24885 /* FriendVC.swift in Sources */,
+				AAFDA3622242954000606D34 /* Functions.swift in Sources */,
 				AA55594C2232C5B000C1A86C /* MyGroupsCell.swift in Sources */,
 				AA5559502232D71600C1A86C /* FriendsCell.swift in Sources */,
 				AAFDA360223FFDA200606D34 /* NewsCell.swift in Sources */,

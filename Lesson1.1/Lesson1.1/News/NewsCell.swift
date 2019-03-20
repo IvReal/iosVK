@@ -15,6 +15,11 @@ class NewsCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        countLikes.changeLikeHandler = likesChanged
+    }
+    
+    private func likesChanged(_ count: Int, _ plus: Bool) {
+        //print("You \(plus ? "+" : "-") like, now \(count) likes")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

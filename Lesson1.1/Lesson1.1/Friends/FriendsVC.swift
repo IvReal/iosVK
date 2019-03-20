@@ -17,7 +17,6 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     @IBOutlet weak var searchBar: UISearchBar!
     
     private var groupedFriends: [Section] = []
-    private var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +25,7 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         groupFriends(friends)
         letterControl.changeLetterHandler = letterChanged
         searchBar.returnKeyType = .done
+        tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.size.height)
     }
 
     // letter control change letter handler
@@ -103,24 +103,43 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     // MARK: - Search bar
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        isSearching = !searchText.isEmpty
-        if !isSearching {
-            // trick to end editing on clear button too
-            perform(#selector(hideKeyboard), with: searchBar, afterDelay: 0)
-            groupFriends(friends)
+        if searchText.isEmpty {
+            clearSearching()
         } else {
             let filteredFriends = friends.filter({ (Person) -> Bool in
                 //return Person.name.lowercased().starts(with: searchText.lowercased())
                 return Person.name.lowercased().contains(searchText.lowercased())
             })
             groupFriends(filteredFriends)
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
     
-    // hide keyboard action
-    @objc func hideKeyboard() {
-        view.endEditing(true)
+    private func clearSearching(endEditing end: Bool = false) {
+        searchBar.text = nil
+        groupFriends(friends)
+        tableView.reloadData()
+        if end {
+            view.endEditing(true)
+        }
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = true
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = false
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        clearSearching(endEditing: true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        clearSearching(endEditing: true)
     }
     
     /* TODO
