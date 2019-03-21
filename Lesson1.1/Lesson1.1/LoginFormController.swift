@@ -11,9 +11,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var loginInput: UITextField!
-    @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var signButton: UIButton!
     
@@ -27,9 +25,26 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         loginInput.returnKeyType = .continue
         passwordInput.delegate = self
         passwordInput.returnKeyType = .done
+        
+        /*signButton.alpha = 0.1
+        passwordInput.alpha = 0.1
+        loginInput.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        passwordInput.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)*/
     }
+    
+    /*@objc func textFieldDidChange(_ textField: UITextField) {
+        if textField === loginInput {
+            UIView.animate(withDuration: 2, delay: 0, options: [], animations: {
+                self.passwordInput.alpha = (textField.text ?? "").isEmpty ? 0.1 :  1
+            })
+        } else if textField === passwordInput {
+            UIView.animate(withDuration: 2, delay: 0, options: [], animations: {
+                self.signButton.alpha = (textField.text ?? "").isEmpty ? 0.1 :  1
+            })
+        }
+    }*/
 
-     override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // keyboard show notification
         NotificationCenter.default.addObserver(self,

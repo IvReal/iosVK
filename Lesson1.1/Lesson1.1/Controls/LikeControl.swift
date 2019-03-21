@@ -49,10 +49,7 @@ class HeartButton: UIButton {
         // left line
         path.close()
         // color
-        if color == nil {
-            color = tintColor
-        }
-        color!.setFill()
+        (color ?? tintColor).setFill()
         path.fill()
     }
     

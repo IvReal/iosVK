@@ -29,6 +29,7 @@
 		AAFDA35E223FFB3300606D34 /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDA35D223FFB3300606D34 /* NewsVC.swift */; };
 		AAFDA360223FFDA200606D34 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDA35F223FFDA200606D34 /* NewsCell.swift */; };
 		AAFDA3622242954000606D34 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDA3612242954000606D34 /* Functions.swift */; };
+		AAFDA3642242DDF000606D34 /* LoadingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDA3632242DDF000606D34 /* LoadingControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		AAFDA35D223FFB3300606D34 /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		AAFDA35F223FFDA200606D34 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		AAFDA3612242954000606D34 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		AAFDA3632242DDF000606D34 /* LoadingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				AA9729D922368C2D00C24885 /* RoundImageView.swift */,
 				AA16D33F223C4B9D008BB559 /* LetterControl.swift */,
 				AAFDA3612242954000606D34 /* Functions.swift */,
+				AAFDA3632242DDF000606D34 /* LoadingControl.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				AA5559502232D71600C1A86C /* FriendsCell.swift in Sources */,
 				AAFDA360223FFDA200606D34 /* NewsCell.swift in Sources */,
 				AAFDA35E223FFB3300606D34 /* NewsVC.swift in Sources */,
+				AAFDA3642242DDF000606D34 /* LoadingControl.swift in Sources */,
 				AA9729E6223C06A900C24885 /* FriendsVC.swift in Sources */,
 				AA9729D52232DCE500C24885 /* FriendCell.swift in Sources */,
 			);
