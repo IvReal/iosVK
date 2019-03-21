@@ -121,6 +121,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="YpY-3z-vQF"/>
                     <connections>
                         <outlet property="contentView" destination="E1P-L2-jS0" id="QfU-r6-JWS"/>
+                        <outlet property="loadIndicator" destination="Dry-UC-GBX" id="dsZ-1P-VtC"/>
                         <outlet property="loginInput" destination="ZA8-Xi-Zyj" id="Z9q-JE-Upr"/>
                         <outlet property="passwordInput" destination="ba6-3Q-pZD" id="vme-yH-v4x"/>
                         <outlet property="scrollView" destination="oA2-zA-U2r" id="AOT-JQ-E3s"/>

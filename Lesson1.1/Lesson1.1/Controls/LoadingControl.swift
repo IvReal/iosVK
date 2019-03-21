@@ -49,10 +49,9 @@ class LoadingControl: UIView {
         self.addSubview(stackView)
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        run()
     }
     
-    private func run()
+    func run()
     {
         let scale1: CGFloat = 1.2
         let scale2: CGFloat = 0.5
