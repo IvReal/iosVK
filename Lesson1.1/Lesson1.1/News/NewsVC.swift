@@ -37,4 +37,21 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    // MARK: -  Animation of cells appearance
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let newscell = cell as? NewsCell {
+            UIView.animate(withDuration: 1.5) {
+                newscell.contentView.alpha = 1
+                newscell.contentView.transform = CGAffineTransform.identity
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let newscell = cell as? NewsCell {
+            newscell.contentView.alpha = 0
+            newscell.contentView.transform = CGAffineTransform(scaleX: 0.25, y: 0.25)
+        }
+    }
 }

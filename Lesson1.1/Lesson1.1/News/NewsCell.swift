@@ -22,6 +22,14 @@ class NewsCell: UITableViewCell {
         imageNews.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:))))
     }
     
+    override func prepareForReuse() {
+        labelAuthor.text = nil
+        labelDate.text = nil
+        textNews.text = nil
+        imageNews.image = nil
+        countLikes.countLike = 0
+    }
+    
     @objc func imageTapped(_ sender: UITapGestureRecognizer) {
         // first decrease scale
         UIView.animate(withDuration: 0.5, delay: 0, options: [], animations:
