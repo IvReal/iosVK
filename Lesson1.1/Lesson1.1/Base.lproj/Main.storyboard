@@ -357,16 +357,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lSI-I2-GgS">
-                                                    <rect key="frame" x="10" y="10" width="355" height="16.5"/>
+                                                    <rect key="frame" x="10" y="10" width="355" height="18"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcG-e7-VAp">
-                                                            <rect key="frame" x="0.0" y="0.0" width="176.5" height="16.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="176.5" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztp-kc-kvm">
-                                                            <rect key="frame" x="181.5" y="0.0" width="173.5" height="16.5"/>
+                                                            <rect key="frame" x="181.5" y="0.0" width="173.5" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -374,15 +374,15 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiS-BN-xKc">
-                                                    <rect key="frame" x="10" y="36.5" width="355" height="18"/>
+                                                    <rect key="frame" x="10" y="38" width="355" height="87.5"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cN3-F9-igs">
-                                                    <rect key="frame" x="10" y="64.5" width="355" height="355"/>
+                                                    <rect key="frame" x="10" y="135.5" width="355" height="284"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="cN3-F9-igs" secondAttribute="height" multiplier="1:1" id="sWN-gl-SgA"/>
+                                                        <constraint firstAttribute="width" secondItem="cN3-F9-igs" secondAttribute="height" multiplier="5:4" id="NVL-yk-sMV"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-EV-dgZ" customClass="LikeControl" customModule="Lesson1_1" customModuleProvider="target">
@@ -399,14 +399,14 @@
                                                 <constraint firstAttribute="trailing" secondItem="RiS-BN-xKc" secondAttribute="trailing" constant="10" id="AZn-pu-Mn0"/>
                                                 <constraint firstItem="lSI-I2-GgS" firstAttribute="leading" secondItem="Z6l-34-D6b" secondAttribute="leading" constant="10" id="OKY-ko-ubN"/>
                                                 <constraint firstItem="RiS-BN-xKc" firstAttribute="leading" secondItem="Z6l-34-D6b" secondAttribute="leading" constant="10" id="Osv-eL-CTI"/>
+                                                <constraint firstItem="cN3-F9-igs" firstAttribute="top" secondItem="RiS-BN-xKc" secondAttribute="bottom" constant="10" id="QVb-af-U9z"/>
                                                 <constraint firstItem="uMa-EV-dgZ" firstAttribute="leading" secondItem="Z6l-34-D6b" secondAttribute="leading" constant="10" id="RMt-av-EB4"/>
-                                                <constraint firstAttribute="trailing" secondItem="cN3-F9-igs" secondAttribute="trailing" constant="10" id="Xgg-bl-6Yi"/>
-                                                <constraint firstItem="cN3-F9-igs" firstAttribute="leading" secondItem="Z6l-34-D6b" secondAttribute="leading" constant="10" id="cDo-Nb-nfy"/>
+                                                <constraint firstItem="cN3-F9-igs" firstAttribute="leading" secondItem="Z6l-34-D6b" secondAttribute="leading" constant="10" id="Ssa-Ts-nR2"/>
                                                 <constraint firstItem="lSI-I2-GgS" firstAttribute="top" secondItem="Z6l-34-D6b" secondAttribute="top" constant="10" id="cXz-5E-BEL"/>
-                                                <constraint firstItem="cN3-F9-igs" firstAttribute="top" secondItem="RiS-BN-xKc" secondAttribute="bottom" constant="10" id="nPX-YZ-Nak"/>
+                                                <constraint firstAttribute="trailing" secondItem="cN3-F9-igs" secondAttribute="trailing" constant="10" id="e75-g4-Au0"/>
+                                                <constraint firstItem="uMa-EV-dgZ" firstAttribute="top" secondItem="cN3-F9-igs" secondAttribute="bottom" constant="5" id="hHR-tu-sdf"/>
                                                 <constraint firstItem="RiS-BN-xKc" firstAttribute="top" secondItem="lSI-I2-GgS" secondAttribute="bottom" constant="10" id="qPh-im-092"/>
                                                 <constraint firstAttribute="trailing" secondItem="lSI-I2-GgS" secondAttribute="trailing" constant="10" id="rgi-6V-6nu"/>
-                                                <constraint firstItem="uMa-EV-dgZ" firstAttribute="top" secondItem="cN3-F9-igs" secondAttribute="bottom" constant="5" id="yAh-Wr-z3w"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
