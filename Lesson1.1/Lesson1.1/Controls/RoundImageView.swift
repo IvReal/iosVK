@@ -5,12 +5,80 @@
 
 import UIKit
 
+class RoundImageView: UIView {
+    
+    @IBInspectable var image: UIImage? = nil {
+        didSet {
+            imageView?.image = image
+            updateView()
+        }
+    }
+    @IBInspectable var NeedShadow: Bool = true
+    @IBInspectable var ShadowColor: UIColor? = .black
+    @IBInspectable var ShadowOpacity: Float = 1.0
+    @IBInspectable var ShadowOffset: CGSize = .zero //CGSize(width: 3, height: 2)
+    @IBInspectable var ShadowRadius: Float = 5.0
+    
+    private var imageView: UIImageView!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.setupView()
+    }
+
+    private func setupView() {
+        imageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = true
+        self.addSubview(imageView)
+        
+        updateView()
+    }
+    
+    private func updateView() {
+        let roundPath = UIBezierPath(ovalIn: self.bounds)
+        
+        self.backgroundColor = UIColor.clear
+        self.layer.masksToBounds = false
+        if NeedShadow {
+            self.layer.shadowColor = ShadowColor?.cgColor
+            self.layer.shadowOpacity = ShadowOpacity
+            self.layer.shadowOffset = ShadowOffset
+            self.layer.shadowRadius = CGFloat(ShadowRadius)
+            self.layer.shadowPath = roundPath.cgPath
+        } else {
+            self.layer.shadowColor = nil
+            self.layer.shadowOpacity = 0
+            self.layer.shadowOffset = CGSize(width: 0, height: 0)
+            self.layer.shadowRadius = 0
+            self.layer.shadowPath = nil
+        }
+
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = roundPath.cgPath
+
+        imageView.backgroundColor = .white
+        imageView.layer.mask = maskLayer
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.frame = self.bounds
+    }
+
+}
+
 /*
  Idea:
  Подкладывать слой с тенью под замаскированный овалом основной слой ImageView,
  добавляя его в superlayer перед основным слоем
 */
-class RoundImageView: UIImageView {
+class RoundImageView2: UIImageView {
 
     @IBInspectable var NeedShadow: Bool = true
     @IBInspectable var ShadowColor: UIColor? = .black

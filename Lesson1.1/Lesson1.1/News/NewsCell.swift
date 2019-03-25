@@ -15,7 +15,35 @@ class NewsCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        // likecontrol handler
         countLikes.changeLikeHandler = likesChanged
+        // image tap recognizer
+        imageNews.isUserInteractionEnabled = true
+        imageNews.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:))))
+    }
+    
+    override func prepareForReuse() {
+        labelAuthor.text = nil
+        labelDate.text = nil
+        textNews.text = nil
+        imageNews.image = nil
+        countLikes.countLike = 0
+    }
+    
+    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
+        // first decrease scale
+        UIView.animate(withDuration: 0.5, delay: 0, options: [], animations:
+        {
+            self.imageNews.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        }, completion: { _ in
+            // next revert scale with spring effect
+            UIView.animate(withDuration: 2, delay: 0,
+                           usingSpringWithDamping: 0.25, initialSpringVelocity: 0,
+                           options: [], animations:
+            {
+                self.imageNews.transform = .identity
+            })
+        })
     }
     
     private func likesChanged(_ count: Int, _ plus: Bool) {

@@ -42,12 +42,12 @@ var friends = [
     Person("Лебеда Иван Петрович", "Лебеда"),
     Person("Калинина Маша", "Калинина"),
     Person("Иванов Иван", "photo1"),
-    Person("Петров Петр", "photo1"),
-    Person("Сидоров Сидр", "photo1"),
+    Person("Петров Петр", "photo2"),
+    Person("Сидоров Сидр", "photo3"),
     Person("Алибабаева Алибаба", "Алибабаева"),
     Person("Кириллов Кирилл", "photo1"),
-    Person("Александров Саша", "photo1"),
-    Person("Егоров Егор", "photo1"),
+    Person("Александров Саша", "photo2"),
+    Person("Егоров Егор", "photo3"),
     Person("Юрьев Юра", "photo1"),
 ]
 

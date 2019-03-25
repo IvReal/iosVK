@@ -49,10 +49,7 @@ class HeartButton: UIButton {
         // left line
         path.close()
         // color
-        if color == nil {
-            color = tintColor
-        }
-        color!.setFill()
+        (color ?? tintColor).setFill()
         path.fill()
     }
     
@@ -113,6 +110,7 @@ class LikeControl: UIControl {
     @objc private func updateLikeCount(_ sender: UIButton) {
         doneLike = !doneLike
         countLike = countLike + 1 * (doneLike ? 1 : -1)
+        animate(doneLike)
         if let handler = changeLikeHandler {
             handler(countLike, doneLike)
         }
@@ -122,5 +120,15 @@ class LikeControl: UIControl {
         super.layoutSubviews()
         stackView.frame = bounds
     }
-
+    
+    private func animate(_ doneLike: Bool) {
+        UIView.transition(with: self.buttonHeart,
+                          duration: 1.5,
+                          options: .transitionCrossDissolve,
+                          animations: nil)
+        UIView.transition(with: self.buttonCount,
+                          duration: 1.5,
+                          options: doneLike ? .transitionFlipFromRight : .transitionFlipFromLeft,
+                          animations: nil)
+    }
 }

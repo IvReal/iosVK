@@ -11,11 +11,10 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var loginInput: UITextField!
-    @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var signButton: UIButton!
+    @IBOutlet weak var loadIndicator: LoadingControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +27,8 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         passwordInput.delegate = self
         passwordInput.returnKeyType = .done
     }
-
-     override func viewWillAppear(_ animated: Bool) {
+    
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // keyboard show notification
         NotificationCenter.default.addObserver(self,
@@ -43,6 +42,8 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
             object: nil)
         // set focus to login text field
         loginInput.becomeFirstResponder()
+        // start loading animation
+        loadIndicator.run()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
