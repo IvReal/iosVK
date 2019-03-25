@@ -7,10 +7,14 @@ import UIKit
 
 class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    @IBOutlet weak var collView: UICollectionView!
+    
     public var selectedFriend: Person?
+    public var selectedFriends: [Person] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        collView.isPagingEnabled = true
     }    
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -18,15 +22,18 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        //return 1
+        return selectedFriends.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendCell", for: indexPath) as! FriendCell
-        if let sf = selectedFriend {
+        /*if let sf = selectedFriend {
             cell.nameFriend.text = sf.name
             cell.fotoFriend.image = sf.foto
-        }
+        }*/
+        cell.nameFriend.text = selectedFriends[indexPath.row].name
+        cell.fotoFriend.image = selectedFriends[indexPath.row].foto
         return cell
     }
     

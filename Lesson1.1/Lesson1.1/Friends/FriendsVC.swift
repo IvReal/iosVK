@@ -89,15 +89,41 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        let fc = segue.destination as! FriendVC
-        if let indexPath = tableView.indexPathForSelectedRow {
-            fc.selectedFriend = groupedFriends[indexPath.section].persons[indexPath.row]
+        if let fc = segue.destination as? FriendVC {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let p = groupedFriends[indexPath.section].persons[indexPath.row]
+                fc.selectedFriend = p
+                fc.selectedFriends = []
+                if p.foto != nil {
+                    fc.selectedFriends.append(p)
+                }
+                for friend in friends {
+                    if friend.name != p.name, friend.foto != nil {
+                        fc.selectedFriends.append(friend)
+                    }
+                }
+            }
+        }
+        if let fc2 = segue.destination as? Friend2VC {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let p = groupedFriends[indexPath.section].persons[indexPath.row]
+                fc2.images = []
+                if p.foto != nil {
+                    fc2.images.append(p.foto!)
+                }
+                for friend in friends {
+                    if friend.name != p.name, friend.foto != nil {
+                        fc2.images.append(friend.foto!)
+                    }
+                }
+            }
         }
     }
     
     // Perform manual segue "showFriend" on select row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showFriend", sender: nil)
+        //performSegue(withIdentifier: "showFriend", sender: nil)
+        performSegue(withIdentifier: "showFriend2", sender: nil)
     }
 
     // MARK: - Search bar

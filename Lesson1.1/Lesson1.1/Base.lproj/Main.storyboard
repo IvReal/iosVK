@@ -226,7 +226,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsCell" id="65Q-VM-whk" customClass="FriendsCell" customModule="Lesson1_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FriendsCell" id="65Q-VM-whk" customClass="FriendsCell" customModule="Lesson1_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="84" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="65Q-VM-whk" id="Cuw-fF-lHW">
@@ -235,6 +235,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jze-k7-7OX" customClass="RoundImageView" customModule="Lesson1_1" customModuleProvider="target">
                                                     <rect key="frame" x="5" y="2" width="40" height="40"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="05g-Hn-Fl5"/>
                                                         <constraint firstAttribute="height" constant="40" id="48V-E1-69m"/>
@@ -257,7 +258,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="fotoFriend" destination="Jze-k7-7OX" id="rEj-6g-P8c"/>
+                                            <outlet property="fotoFriend" destination="Jze-k7-7OX" id="ydU-fs-1rN"/>
                                             <outlet property="nameFriend" destination="Pif-6b-Iy4" id="xD2-0r-3PZ"/>
                                         </connections>
                                     </tableViewCell>
@@ -293,6 +294,7 @@
                         <outlet property="searchBar" destination="eS5-zM-NXO" id="pxt-f2-U5f"/>
                         <outlet property="tableView" destination="aDS-j2-gAq" id="Ng3-Bm-fd7"/>
                         <segue destination="ag6-OD-gLW" kind="show" identifier="showFriend" id="nnm-LR-nl2"/>
+                        <segue destination="OpG-Z6-MUK" kind="show" identifier="showFriend2" id="HQw-ue-mb6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ydf-j5-NJA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -349,7 +351,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.66601425409317017" green="0.92343807220458984" blue="0.62194186449050903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="455" id="iG0-m8-Rwv" customClass="NewsCell" customModule="Lesson1_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="455" id="iG0-m8-Rwv" customClass="NewsCell" customModule="Lesson1_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="455"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iG0-m8-Rwv" id="Z6l-34-D6b">
@@ -452,7 +454,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.66601425409317017" green="0.92343807220458984" blue="0.62194186449050903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyGroupsCell" id="4lB-o5-XWd" customClass="MyGroupsCell" customModule="Lesson1_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyGroupsCell" id="4lB-o5-XWd" customClass="MyGroupsCell" customModule="Lesson1_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4lB-o5-XWd" id="lbA-Fl-iRr">
@@ -517,6 +519,37 @@
             </objects>
             <point key="canvasLocation" x="74" y="770"/>
         </scene>
+        <!--My Friend Foto-->
+        <scene sceneID="fgV-tj-rb9">
+            <objects>
+                <viewController id="OpG-Z6-MUK" customClass="Friend2VC" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ORT-ua-5pA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WHI-zo-9cE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WHI-zo-9cE" firstAttribute="top" secondItem="ORT-ua-5pA" secondAttribute="top" id="3d1-XF-oPd"/>
+                            <constraint firstAttribute="bottom" secondItem="WHI-zo-9cE" secondAttribute="bottom" id="QZV-Ng-TYZ"/>
+                            <constraint firstAttribute="trailing" secondItem="WHI-zo-9cE" secondAttribute="trailing" id="djI-Jb-tBy"/>
+                            <constraint firstItem="WHI-zo-9cE" firstAttribute="leading" secondItem="ORT-ua-5pA" secondAttribute="leading" id="o3z-Ra-9g2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BVx-Vm-5cT"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Friend Foto" id="ho8-bs-iHd"/>
+                    <connections>
+                        <outlet property="imageView" destination="WHI-zo-9cE" id="I1x-ax-WKS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dqy-kM-m7r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="841" y="-1430"/>
+        </scene>
         <!--My Friend-->
         <scene sceneID="RzO-1z-rAg">
             <objects>
@@ -528,7 +561,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Pgm-TD-7IB">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fJw-FR-VyE">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fJw-FR-VyE">
                                     <size key="itemSize" width="322" height="353"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -536,7 +569,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="friendCell" id="2tc-Ww-3Hm" customClass="FriendCell" customModule="Lesson1_1" customModuleProvider="target">
-                                        <rect key="frame" x="26.5" y="0.0" width="322" height="353"/>
+                                        <rect key="frame" x="0.0" y="100.5" width="322" height="353"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="322" height="353"/>
@@ -584,6 +617,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bqM-wI-qlm"/>
                     </view>
+                    <connections>
+                        <outlet property="collView" destination="Pgm-TD-7IB" id="rPB-Sg-yMc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HOb-zO-Hou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
