@@ -531,18 +531,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiC-q9-gzs">
+                                <rect key="frame" x="166.5" y="74" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.66847425699234009" green="0.92187327146530151" blue="0.62095803022384644" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WHI-zo-9cE" firstAttribute="top" secondItem="ORT-ua-5pA" secondAttribute="top" id="3d1-XF-oPd"/>
                             <constraint firstAttribute="bottom" secondItem="WHI-zo-9cE" secondAttribute="bottom" id="QZV-Ng-TYZ"/>
+                            <constraint firstItem="yiC-q9-gzs" firstAttribute="top" secondItem="BVx-Vm-5cT" secondAttribute="top" constant="10" id="Sua-Zc-nUQ"/>
                             <constraint firstAttribute="trailing" secondItem="WHI-zo-9cE" secondAttribute="trailing" id="djI-Jb-tBy"/>
                             <constraint firstItem="WHI-zo-9cE" firstAttribute="leading" secondItem="ORT-ua-5pA" secondAttribute="leading" id="o3z-Ra-9g2"/>
+                            <constraint firstItem="yiC-q9-gzs" firstAttribute="centerX" secondItem="ORT-ua-5pA" secondAttribute="centerX" id="rrt-Dc-YmF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BVx-Vm-5cT"/>
                     </view>
                     <navigationItem key="navigationItem" title="My Friend Foto" id="ho8-bs-iHd"/>
                     <connections>
+                        <outlet property="imageLabel" destination="yiC-q9-gzs" id="r8i-lJ-qZc"/>
                         <outlet property="imageView" destination="WHI-zo-9cE" id="I1x-ax-WKS"/>
                     </connections>
                 </viewController>
