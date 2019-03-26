@@ -126,11 +126,11 @@ class LoadingControl: UIView {
         group.repeatCount = Float.infinity
         
         let pathSS = CABasicAnimation(keyPath: "strokeStart")
-        pathSS.fromValue = 0
+        pathSS.fromValue = -1
         pathSS.toValue = 1
         let pathSE = CABasicAnimation(keyPath: "strokeEnd")
         pathSE.fromValue = 0
-        pathSE.toValue = 2
+        pathSE.toValue = 1
 
         group.animations = [pathSS, pathSE]
         cloudLayer.add(group, forKey: nil)
