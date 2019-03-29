@@ -13,6 +13,9 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if groups.count > 0 {
+            mygroups.append(groups[0])
+        }
     }
     
     // MARK: - Table view data source
