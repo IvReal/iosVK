@@ -92,7 +92,7 @@ final class GroupsPopAnimator: NSObject, UIViewControllerAnimatedTransitioning
     /*
      Простая анимация: source перемещается вправо и становится прозрачным
      При использовании в интерактивном режиме позволяет "подсмотреть" destination не переходя на него
-     Что назывется - не только красота, но и польза
+     - все какая-то польза
     */
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
