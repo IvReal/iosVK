@@ -42,7 +42,7 @@ class Friend2VC: UIViewController {
     }
     
     func animate(backward isBackward: Bool) {
-        UIView.animate(withDuration: 1, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.imageView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         }, completion: { _ in
             self.imageView.image = self.images[self.indexCurrent]
@@ -50,12 +50,12 @@ class Friend2VC: UIViewController {
             self.imageLabel.text = self.getCurrentImageLabel()
 
             let tr1 = CATransition()
-            tr1.duration = 1
+            tr1.duration = 0.5
             tr1.type = CATransitionType.push
             tr1.subtype = isBackward ? CATransitionSubtype.fromLeft : CATransitionSubtype.fromRight
 
             let tr2 = CATransition()
-            tr2.duration = 1
+            tr2.duration = 0.5
             tr2.type = CATransitionType.fade
 
             self.imageView.layer.add(tr1, forKey: nil)

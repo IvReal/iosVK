@@ -158,40 +158,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are your sure?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YbP-2O-eDp">
-                                <rect key="frame" x="132" y="323" width="111" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4R-6P-Tlm">
-                                <rect key="frame" x="147.5" y="369" width="80" height="30"/>
-                                <color key="backgroundColor" red="0.2324257481" green="0.3619790846" blue="0.50685924589999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LlE-bT-K2b">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are your sure?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YbP-2O-eDp">
+                                        <rect key="frame" x="132" y="121" width="111" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4R-6P-Tlm">
+                                        <rect key="frame" x="147.5" y="162" width="80" height="30"/>
+                                        <color key="backgroundColor" red="0.2324257481" green="0.3619790846" blue="0.50685924589999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="zab-y2-YPH"/>
+                                        </constraints>
+                                        <state key="normal" title="Yes">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="1ja-SK-DgD" kind="unwind" unwindAction="loginUnwindWithUnwindSegue:" id="RWc-ZF-qbL"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icu-YD-bsU">
+                                        <rect key="frame" x="154.5" y="80" width="66.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.29803921570000003" green="0.45882352939999999" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="zab-y2-YPH"/>
+                                    <constraint firstItem="YbP-2O-eDp" firstAttribute="centerX" secondItem="LlE-bT-K2b" secondAttribute="centerX" id="7ny-tI-O2O"/>
+                                    <constraint firstItem="icu-YD-bsU" firstAttribute="top" secondItem="LlE-bT-K2b" secondAttribute="top" constant="80" id="EBJ-Ld-Pl9"/>
+                                    <constraint firstItem="z4R-6P-Tlm" firstAttribute="centerX" secondItem="LlE-bT-K2b" secondAttribute="centerX" id="aIv-7S-Xi9"/>
+                                    <constraint firstItem="z4R-6P-Tlm" firstAttribute="top" secondItem="YbP-2O-eDp" secondAttribute="bottom" constant="20" id="hfp-6b-kTh"/>
+                                    <constraint firstItem="icu-YD-bsU" firstAttribute="centerX" secondItem="LlE-bT-K2b" secondAttribute="centerX" id="jwM-LR-GJc"/>
+                                    <constraint firstItem="YbP-2O-eDp" firstAttribute="top" secondItem="icu-YD-bsU" secondAttribute="bottom" constant="20" id="r8h-Pc-d6J"/>
                                 </constraints>
-                                <state key="normal" title="Yes">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="1ja-SK-DgD" kind="unwind" unwindAction="loginUnwindWithUnwindSegue:" id="RWc-ZF-qbL"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icu-YD-bsU">
-                                <rect key="frame" x="154.5" y="277" width="66.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.29803921570000003" green="0.45882352939999999" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="YbP-2O-eDp" firstAttribute="centerY" secondItem="0Qe-td-Vak" secondAttribute="centerY" id="2VV-ch-ySW"/>
-                            <constraint firstItem="YbP-2O-eDp" firstAttribute="top" secondItem="icu-YD-bsU" secondAttribute="bottom" constant="25" id="9VH-Pp-nIl"/>
-                            <constraint firstItem="icu-YD-bsU" firstAttribute="centerX" secondItem="0Qe-td-Vak" secondAttribute="centerX" id="Rhn-DO-0p8"/>
-                            <constraint firstItem="z4R-6P-Tlm" firstAttribute="centerX" secondItem="0Qe-td-Vak" secondAttribute="centerX" id="f2J-A7-bm9"/>
-                            <constraint firstItem="YbP-2O-eDp" firstAttribute="centerX" secondItem="0Qe-td-Vak" secondAttribute="centerX" id="fNT-T5-znJ"/>
-                            <constraint firstItem="z4R-6P-Tlm" firstAttribute="top" secondItem="YbP-2O-eDp" secondAttribute="bottom" constant="25" id="pEd-rd-hjD"/>
+                            <constraint firstItem="LlE-bT-K2b" firstAttribute="leading" secondItem="0Qe-td-Vak" secondAttribute="leading" id="Vog-Jz-fmL"/>
+                            <constraint firstAttribute="bottom" secondItem="LlE-bT-K2b" secondAttribute="bottom" id="wnq-Oa-S8g"/>
+                            <constraint firstAttribute="trailing" secondItem="LlE-bT-K2b" secondAttribute="trailing" id="yT5-p0-uwc"/>
+                            <constraint firstItem="LlE-bT-K2b" firstAttribute="top" secondItem="CoK-kc-57f" secondAttribute="top" id="z7d-Fn-8il"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CoK-kc-57f"/>
                     </view>
@@ -200,7 +212,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALj-H3-brE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="1ja-SK-DgD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1519" y="-744"/>
+            <point key="canvasLocation" x="-1519.2" y="-744.3778110944528"/>
         </scene>
         <!--Friends-->
         <scene sceneID="fxf-5R-0mu">
