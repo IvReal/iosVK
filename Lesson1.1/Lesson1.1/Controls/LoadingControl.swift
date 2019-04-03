@@ -85,24 +85,16 @@ class LoadingControl: UIView {
     func cloud() {
         if cloudLayer == nil {
             let cloudPath = UIBezierPath()
-            let w = self.bounds.width
-            let h = self.bounds.height
-            cloudPath.addArc(withCenter: CGPoint(x: h / 4, y: h - h / 4),
-                             radius: h / 4,
-                             startAngle: CGFloat(-3 * Float.pi / 8),
-                             endAngle: CGFloat(Float.pi / 2),
-                             clockwise: false)
-            cloudPath.addLine(to: CGPoint(x: w - h / 2, y: h))
-            cloudPath.addArc(withCenter: CGPoint(x: w - h / 4, y: h - h / 4),
-                             radius: h / 4,
-                             startAngle: CGFloat(Float.pi / 2),
-                             endAngle: CGFloat(-5 * Float.pi / 8),
-                             clockwise: false)
-            cloudPath.addArc(withCenter: CGPoint(x: w / 2, y: w / 2),
-                             radius: w / 2,
-                             startAngle: CGFloat(-Float.pi / 4),
-                             endAngle: CGFloat(5 * Float.pi / 4),
-                             clockwise: false)
+            cloudPath.move(to: CGPoint(x: 22, y: 22))
+            cloudPath.addArc(withCenter: CGPoint(x: 22, y: 42), radius: 20,
+                             startAngle: CGFloat(-Float.pi / 2), endAngle: CGFloat(Float.pi / 2), clockwise: false)
+            cloudPath.addLine(to: CGPoint(x: 73, y: 62))
+            cloudPath.addArc(withCenter: CGPoint(x: 73, y: 42), radius: 20,
+                             startAngle: CGFloat(Float.pi / 2), endAngle: CGFloat(-Float.pi / 2), clockwise: false)
+            cloudPath.addArc(withCenter: CGPoint(x: 63, y: 22), radius: 10,
+                             startAngle: CGFloat(0), endAngle: CGFloat(-5 * Float.pi / 8), clockwise: false)
+            cloudPath.addArc(withCenter: CGPoint(x: 42, y: 22), radius: 20,
+                             startAngle: CGFloat(-Float.pi / 4), endAngle: CGFloat(Float.pi), clockwise: false)
             cloudPath.close()
             cloudPath.stroke()
             
