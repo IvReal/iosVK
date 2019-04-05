@@ -170,9 +170,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA55592A222816B800C1A86C /* Lesson1.1 */ = {
+		AA55592A222816B800C1A86C /* IvVk */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA55593D222816B900C1A86C /* Build configuration list for PBXNativeTarget "Lesson1.1" */;
+			buildConfigurationList = AA55593D222816B900C1A86C /* Build configuration list for PBXNativeTarget "IvVk" */;
 			buildPhases = (
 				AA555927222816B800C1A86C /* Sources */,
 				AA555928222816B800C1A86C /* Frameworks */,
@@ -182,7 +182,7 @@
 			);
 			dependencies = (
 			);
-			name = Lesson1.1;
+			name = IvVk;
 			productName = Lesson1.1;
 			productReference = AA55592B222816B800C1A86C /* IvVk.app */;
 			productType = "com.apple.product-type.application";
@@ -216,7 +216,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA55592A222816B800C1A86C /* Lesson1.1 */,
+				AA55592A222816B800C1A86C /* IvVk */,
 			);
 		};
 /* End PBXProject section */
@@ -453,7 +453,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA55593D222816B900C1A86C /* Build configuration list for PBXNativeTarget "Lesson1.1" */ = {
+		AA55593D222816B900C1A86C /* Build configuration list for PBXNativeTarget "IvVk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA55593E222816B900C1A86C /* Debug */,

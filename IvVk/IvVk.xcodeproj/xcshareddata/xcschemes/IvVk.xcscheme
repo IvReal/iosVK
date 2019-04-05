@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AA55592A222816B800C1A86C"
                BuildableName = "IvVk.app"
-               BlueprintName = "Lesson1.1"
+               BlueprintName = "IvVk"
                ReferencedContainer = "container:IvVk.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA55592A222816B800C1A86C"
             BuildableName = "IvVk.app"
-            BlueprintName = "Lesson1.1"
+            BlueprintName = "IvVk"
             ReferencedContainer = "container:IvVk.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -57,7 +57,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA55592A222816B800C1A86C"
             BuildableName = "IvVk.app"
-            BlueprintName = "Lesson1.1"
+            BlueprintName = "IvVk"
             ReferencedContainer = "container:IvVk.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -76,7 +76,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA55592A222816B800C1A86C"
             BuildableName = "IvVk.app"
-            BlueprintName = "Lesson1.1"
+            BlueprintName = "IvVk"
             ReferencedContainer = "container:IvVk.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
