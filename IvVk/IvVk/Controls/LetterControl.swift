@@ -56,8 +56,8 @@ class LetterControl: UIControl {
             scrollView.showsHorizontalScrollIndicator = false
             scrollView.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview(scrollView)
-            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: .init(rawValue: 0), metrics: nil, views: ["scrollView": scrollView]))
-            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|", options: .init(rawValue: 0), metrics: nil, views: ["scrollView": scrollView]))
+            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: .init(rawValue: 0), metrics: nil, views: ["scrollView": scrollView!]))
+            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|", options: .init(rawValue: 0), metrics: nil, views: ["scrollView": scrollView!]))
         }
         stackView = UIStackView()
         stackView.spacing = 0
@@ -67,14 +67,14 @@ class LetterControl: UIControl {
         if scrollable {
             stackView.translatesAutoresizingMaskIntoConstraints = false
             scrollView.addSubview(stackView)
-            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: .init(rawValue: 0), metrics: nil, views: ["stackView": stackView]))
-            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: .init(rawValue: 0), metrics: nil, views: ["stackView": stackView]))
-            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[stackView(==scrollView)]", options: .init(rawValue: 0), metrics: nil, views: ["stackView": stackView, "scrollView": scrollView]))
+            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: .init(rawValue: 0), metrics: nil, views: ["stackView": stackView!]))
+            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: .init(rawValue: 0), metrics: nil, views: ["stackView": stackView!]))
+            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[stackView(==scrollView)]", options: .init(rawValue: 0), metrics: nil, views: ["stackView": stackView!, "scrollView": scrollView!]))
         } else {
             self.addSubview(stackView)
             stackView.translatesAutoresizingMaskIntoConstraints = false
-            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: .init(rawValue: 0), metrics: nil, views: ["stackView": stackView]))
-            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: .init(rawValue: 0), metrics: nil, views: ["stackView": stackView]))
+            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: .init(rawValue: 0), metrics: nil, views: ["stackView": stackView!]))
+            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: .init(rawValue: 0), metrics: nil, views: ["stackView": stackView!]))
         }
     }
     
