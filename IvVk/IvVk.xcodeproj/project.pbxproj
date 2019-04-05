@@ -40,7 +40,7 @@
 		AA02DFC4224E5155003FC1B0 /* GroupsNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsNC.swift; sourceTree = "<group>"; };
 		AA16D33F223C4B9D008BB559 /* LetterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterControl.swift; sourceTree = "<group>"; };
 		AA5370CB22482598006A6D7F /* Friend2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend2VC.swift; sourceTree = "<group>"; };
-		AA55592B222816B800C1A86C /* Lesson1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson1.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA55592B222816B800C1A86C /* IvVk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IvVk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA55592E222816B800C1A86C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA555933222816B800C1A86C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA555935222816B900C1A86C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		AA555922222816B800C1A86C = {
 			isa = PBXGroup;
 			children = (
-				AA55592D222816B800C1A86C /* Lesson1.1 */,
+				AA55592D222816B800C1A86C /* IvVk */,
 				AA55592C222816B800C1A86C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,12 +88,12 @@
 		AA55592C222816B800C1A86C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA55592B222816B800C1A86C /* Lesson1.1.app */,
+				AA55592B222816B800C1A86C /* IvVk.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AA55592D222816B800C1A86C /* Lesson1.1 */ = {
+		AA55592D222816B800C1A86C /* IvVk */ = {
 			isa = PBXGroup;
 			children = (
 				AAFDA35C223FFB0500606D34 /* News */,
@@ -108,7 +108,7 @@
 				AA55593A222816B900C1A86C /* Info.plist */,
 				AA555940222824E100C1A86C /* LoginFormController.swift */,
 			);
-			path = Lesson1.1;
+			path = IvVk;
 			sourceTree = "<group>";
 		};
 		AA5559432232B80300C1A86C /* Friends */ = {
@@ -184,7 +184,7 @@
 			);
 			name = Lesson1.1;
 			productName = Lesson1.1;
-			productReference = AA55592B222816B800C1A86C /* Lesson1.1.app */;
+			productReference = AA55592B222816B800C1A86C /* IvVk.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -202,7 +202,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AA555926222816B800C1A86C /* Build configuration list for PBXProject "Lesson1.1" */;
+			buildConfigurationList = AA555926222816B800C1A86C /* Build configuration list for PBXProject "IvVk" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -408,14 +408,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77ZCAQB7LG;
-				INFOPLIST_FILE = Lesson1.1/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/IvVk/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Iv.Lesson1-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = Iv.IvVk;
+				PRODUCT_NAME = IvVk;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -427,14 +427,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77ZCAQB7LG;
-				INFOPLIST_FILE = Lesson1.1/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/IvVk/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Iv.Lesson1-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = Iv.IvVk;
+				PRODUCT_NAME = IvVk;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -443,7 +443,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA555926222816B800C1A86C /* Build configuration list for PBXProject "Lesson1.1" */ = {
+		AA555926222816B800C1A86C /* Build configuration list for PBXProject "IvVk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA55593B222816B900C1A86C /* Debug */,

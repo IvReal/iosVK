@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Lesson1.1.xcodeproj">
+      location = "self:/Users/iv/Documents/GitHub/iosVK/Lesson1.1/IvVk.xcodeproj">
    </FileRef>
 </Workspace>
