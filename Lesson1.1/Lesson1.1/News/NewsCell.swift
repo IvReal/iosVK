@@ -13,13 +13,28 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var imageNews: UIImageView!
     @IBOutlet weak var countLikes: LikeControl!
     
+    private weak var currentNews: News? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // likecontrol handler
-        countLikes.changeLikeHandler = likesChanged
+        countLikes.tryChangeLike = likesChanged
         // image tap recognizer
         imageNews.isUserInteractionEnabled = true
         imageNews.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:))))
+    }
+    
+    func setCurrentNews(_ news: News?) {
+        currentNews = news
+        if let n = currentNews {
+            labelAuthor.text = n.author
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            labelDate.text = dateFormatter.string(from: n.date)
+            textNews.text = n.text
+            imageNews.image = n.image
+            countLikes.setLikeStatus(n.countLike, n.isCurrentUserLiked)
+        }
     }
     
     override func prepareForReuse() {
@@ -27,9 +42,20 @@ class NewsCell: UITableViewCell {
         labelDate.text = nil
         textNews.text = nil
         imageNews.image = nil
-        countLikes.countLike = 0
+        countLikes.setLikeStatus(0, false)
     }
     
+    // likes tap handler
+    private func likesChanged() -> (Int, Bool?) {
+        var res: (Int, Bool?) = (0, nil)
+        if let n = currentNews {
+            res.1 = n.changeLike()
+            res.0 = n.countLike
+        }
+        return res
+    }
+
+    // image tap handler
     @objc func imageTapped(_ sender: UITapGestureRecognizer) {
         // first decrease scale
         UIView.animate(withDuration: 0.5, delay: 0, options: [], animations:
@@ -45,14 +71,11 @@ class NewsCell: UITableViewCell {
             })
         })
     }
-    
-    private func likesChanged(_ count: Int, _ plus: Bool) {
-        //print("You \(plus ? "+" : "-") like, now \(count) likes")
-    }
 
+    /*
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-
+    */
 }

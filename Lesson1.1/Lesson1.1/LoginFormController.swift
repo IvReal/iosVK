@@ -59,6 +59,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
             if login.isEmpty || password.isEmpty {
                 ShowAlert("Authorization", "Valid login and password required")
             } else {
+                currentUser = login
                 performSegue(withIdentifier: segSuccessLogin, sender: self)
             }
         }
@@ -103,6 +104,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     @IBAction func loginUnwind(unwindSegue: UIStoryboardSegue) {
         loginInput.text = nil
         passwordInput.text = nil
+        currentUser = nil
     }
     
     /*

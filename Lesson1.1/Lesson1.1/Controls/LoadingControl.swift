@@ -18,6 +18,7 @@ class LoadingControl: UIView {
 
     private var points: [UIView] = []
     private var stackView: UIStackView!
+    private var cloudLayer: CAShapeLayer!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,6 +54,7 @@ class LoadingControl: UIView {
     
     func run()
     {
+        self.layer.removeAllAnimations()
         let scale1: CGFloat = 1.2
         let scale2: CGFloat = 0.5
         UIView.animateKeyframes(withDuration: 4.0, delay: 0, options: [.calculationModeLinear, .repeat], animations: {
@@ -77,6 +79,53 @@ class LoadingControl: UIView {
                 self.points[2].alpha = 0
             })
         })
+        cloud()
+    }
+    
+    func cloud() {
+        if cloudLayer == nil {
+            let cloudPath = UIBezierPath()
+            cloudPath.move(to: CGPoint(x: 22, y: 22))
+            cloudPath.addArc(withCenter: CGPoint(x: 22, y: 42), radius: 20,
+                             startAngle: CGFloat(-Float.pi / 2), endAngle: CGFloat(Float.pi / 2), clockwise: false)
+            cloudPath.addLine(to: CGPoint(x: 73, y: 62))
+            cloudPath.addArc(withCenter: CGPoint(x: 73, y: 42), radius: 20,
+                             startAngle: CGFloat(Float.pi / 2), endAngle: CGFloat(-Float.pi / 2), clockwise: false)
+            cloudPath.addArc(withCenter: CGPoint(x: 63, y: 22), radius: 10,
+                             startAngle: CGFloat(0), endAngle: CGFloat(-5 * Float.pi / 8), clockwise: false)
+            cloudPath.addArc(withCenter: CGPoint(x: 42, y: 22), radius: 20,
+                             startAngle: CGFloat(-Float.pi / 4), endAngle: CGFloat(Float.pi), clockwise: false)
+            cloudPath.close()
+            cloudPath.stroke()
+            
+            let bcloudLayer = CAShapeLayer()
+            bcloudLayer.lineWidth = 3
+            bcloudLayer.path = cloudPath.cgPath
+            bcloudLayer.strokeColor = color?.withAlphaComponent(0.25).cgColor
+            bcloudLayer.fillColor = UIColor.clear.cgColor
+            layer.addSublayer(bcloudLayer)
+
+            cloudLayer = CAShapeLayer()
+            cloudLayer.lineWidth = 3
+            cloudLayer.path = cloudPath.cgPath
+            cloudLayer.strokeColor = color?.cgColor
+            cloudLayer.fillColor = UIColor.clear.cgColor
+            bcloudLayer.addSublayer(cloudLayer)
+        }
+        
+        let group = CAAnimationGroup()
+        group.duration = 10
+        group.repeatCount = Float.infinity
+        
+        let pathSS = CABasicAnimation(keyPath: "strokeStart")
+        pathSS.fromValue = -1
+        pathSS.toValue = 1
+        let pathSE = CABasicAnimation(keyPath: "strokeEnd")
+        pathSE.fromValue = 0
+        pathSE.toValue = 1
+
+        group.animations = [pathSS, pathSE]
+        cloudLayer.add(group, forKey: nil)
     }
 
     /*

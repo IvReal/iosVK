@@ -6,6 +6,8 @@
 
 import UIKit
 
+var currentUser: String? = nil
+
 struct Person {
     var name: String
     var foto: UIImage?
@@ -17,12 +19,13 @@ struct Person {
     }
 }
 
-struct News {
+class News {
     var author: String
     var date: Date
     var text: String
     var image: UIImage?
     var countLike: Int = 0
+    var userLike: Set<String> = []
     var countView: Int = 0
     
     init(author: String, date: Date, text: String, image: String, likes: Int) {
@@ -31,6 +34,30 @@ struct News {
         self.text = text
         self.image = UIImage(named: image)
         self.countLike = likes
+    }
+    
+    var isCurrentUserLiked: Bool {
+        if let cu = currentUser {
+            return userLike.contains(cu)
+        }
+        return false
+    }
+    
+    // return true if likes increased, false if likes decreased, nil if likes no changed
+    func changeLike() -> Bool? {
+        var res: Bool? = nil
+        if let cu = currentUser {
+            if userLike.contains(cu) { // user already liked
+                countLike = countLike - 1
+                userLike.remove(cu)
+                res = false
+            } else { // user not liked yet
+                countLike = countLike + 1
+                userLike.insert(cu)
+                res = true
+            }
+        }
+        return res
     }
 }
 
@@ -48,14 +75,14 @@ var friends = [
     Person("Кириллов Кирилл", "photo1"),
     Person("Александров Саша", "photo2"),
     Person("Егоров Егор", "photo3"),
-    Person("Юрьев Юра", "photo1"),
+    Person("Юрьев Юра", "photo4"),
 ]
 
 var groups = [
-    "Клуб любителей шампанского",
-    "Программирование на Swift для домохозяек",
-    "Европа на автомобиле",
     "Боевые искусства антарктиды",
+    "Клуб любителей шампанского Вдова Клико",
+    "Программирование на Swift для домохозяек за 5 минут",
+    "Европа на автомобиле или тракторе",
     "Обучение французскому во сне"
 ]
 
@@ -91,5 +118,25 @@ var news = [
         Мчитесь вы, будто как я же, изгнанники
         С милого севера в сторону южную...
         """,
-         image: "photo3", likes: 67)
+         image: "photo3", likes: 67),
+    News(author: "Фет", date: Date.init(timeIntervalSinceNow: -2000000), text:
+        """
+        Я пришел к тебе с приветом,
+        Рассказать, что солнце встало,
+        Что оно горячим светом
+        По листам затрепетало;
+        Рассказать, что лес проснулся,
+        Весь проснулся, веткой каждой,
+        Каждой птицей встрепенулся
+        И весенней полон жаждой;
+        Рассказать, что с той же страстью,
+        Как вчера, пришел я снова,
+        Что душа все так же счастью
+        И тебе служить готова;
+        Рассказать, что отовсюду
+        На меня весельем веет,
+        Что не знаю сам, что буду
+        Петь — но только песня зреет.
+        """,
+         image: "photo4", likes: 135)
 ]

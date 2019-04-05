@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA02DFC3224D5D20003FC1B0 /* FriendsNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02DFC2224D5D20003FC1B0 /* FriendsNC.swift */; };
+		AA02DFC5224E5155003FC1B0 /* GroupsNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA02DFC4224E5155003FC1B0 /* GroupsNC.swift */; };
 		AA16D340223C4B9D008BB559 /* LetterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA16D33F223C4B9D008BB559 /* LetterControl.swift */; };
 		AA5370CC22482598006A6D7F /* Friend2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5370CB22482598006A6D7F /* Friend2VC.swift */; };
 		AA55592F222816B800C1A86C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55592E222816B800C1A86C /* AppDelegate.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA02DFC2224D5D20003FC1B0 /* FriendsNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsNC.swift; sourceTree = "<group>"; };
+		AA02DFC4224E5155003FC1B0 /* GroupsNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsNC.swift; sourceTree = "<group>"; };
 		AA16D33F223C4B9D008BB559 /* LetterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterControl.swift; sourceTree = "<group>"; };
 		AA5370CB22482598006A6D7F /* Friend2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend2VC.swift; sourceTree = "<group>"; };
 		AA55592B222816B800C1A86C /* Lesson1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson1.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +121,7 @@
 				AA9729E3223BE75D00C24885 /* FriendVC.swift */,
 				AA9729D42232DCE500C24885 /* FriendCell.swift */,
 				AA5370CB22482598006A6D7F /* Friend2VC.swift */,
+				AA02DFC2224D5D20003FC1B0 /* FriendsNC.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 				AA5559472232BD1000C1A86C /* AllGroupsCell.swift */,
 				AA9729DF223BCBF200C24885 /* MyGroupsVC.swift */,
 				AA55594B2232C5B000C1A86C /* MyGroupsCell.swift */,
+				AA02DFC4224E5155003FC1B0 /* GroupsNC.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -241,6 +247,7 @@
 				AA9729E2223BCC1500C24885 /* AllGroupsVC.swift in Sources */,
 				AA570456223D7973003F2E3F /* FakeData.swift in Sources */,
 				AA570458223D8DD3003F2E3F /* FriendsHeader.swift in Sources */,
+				AA02DFC5224E5155003FC1B0 /* GroupsNC.swift in Sources */,
 				AA9729E0223BCBF200C24885 /* MyGroupsVC.swift in Sources */,
 				AA5559482232BD1000C1A86C /* AllGroupsCell.swift in Sources */,
 				AA9729E4223BE75D00C24885 /* FriendVC.swift in Sources */,
@@ -249,6 +256,7 @@
 				AA5559502232D71600C1A86C /* FriendsCell.swift in Sources */,
 				AAFDA360223FFDA200606D34 /* NewsCell.swift in Sources */,
 				AAFDA35E223FFB3300606D34 /* NewsVC.swift in Sources */,
+				AA02DFC3224D5D20003FC1B0 /* FriendsNC.swift in Sources */,
 				AAFDA3642242DDF000606D34 /* LoadingControl.swift in Sources */,
 				AA5370CC22482598006A6D7F /* Friend2VC.swift in Sources */,
 				AA9729E6223C06A900C24885 /* FriendsVC.swift in Sources */,

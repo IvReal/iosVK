@@ -26,14 +26,7 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-        let n = news[indexPath.row]
-        cell.labelAuthor.text = n.author
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        cell.labelDate.text = dateFormatter.string(from: n.date)
-        cell.textNews.text = n.text
-        cell.imageNews.image = n.image
-        cell.countLikes.countLike = n.countLike
+        cell.setCurrentNews(news[indexPath.row])
         return cell
     }
     

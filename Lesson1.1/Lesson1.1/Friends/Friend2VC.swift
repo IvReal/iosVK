@@ -8,50 +8,63 @@ import UIKit
 class Friend2VC: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageLabel: UILabel!
     
     var images: [UIImage] = []
-    var index = 0
+    var indexCurrent = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if images.count > 0 {
-            imageView.image = images[0]
-        }
+        
+        imageView.image = images.count > 0 ? images[0] : nil
+        imageLabel.text = getCurrentImageLabel()
+        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
         self.view.addGestureRecognizer(swipeLeft)
-        // Do any additional setup after loading the view.
     }
 
     @objc func handleSwipes(sender: UISwipeGestureRecognizer) {
         if (sender.direction == .left) {
-            if index < images.count - 1 {
-                index += 1
+            if indexCurrent < images.count - 1 {
+                indexCurrent += 1
                 animate(backward: false)
             }
         } else if (sender.direction == .right) {
-            if (index > 0) {
-                index -= 1
+            if (indexCurrent > 0) {
+                indexCurrent -= 1
                 animate(backward: true)
             }
         }
     }
     
     func animate(backward isBackward: Bool) {
-        UIView.animate(withDuration: 1, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.imageView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         }, completion: { _ in
-            self.imageView.image = self.images[self.index]
-            let tr = CATransition()
-            tr.duration = 1
-            tr.type = CATransitionType.moveIn
-            tr.subtype = isBackward ? CATransitionSubtype.fromLeft : CATransitionSubtype.fromRight
-            self.imageView.layer.add(tr, forKey: nil)
+            self.imageView.image = self.images[self.indexCurrent]
             self.imageView.transform = .identity
-        })
+            self.imageLabel.text = self.getCurrentImageLabel()
+
+            let tr1 = CATransition()
+            tr1.duration = 0.5
+            tr1.type = CATransitionType.push
+            tr1.subtype = isBackward ? CATransitionSubtype.fromLeft : CATransitionSubtype.fromRight
+
+            let tr2 = CATransition()
+            tr2.duration = 0.5
+            tr2.type = CATransitionType.fade
+
+            self.imageView.layer.add(tr1, forKey: nil)
+            self.imageLabel.layer.add(tr2, forKey: nil)
+       })
+    }
+    
+    func getCurrentImageLabel() -> String {
+        return "image \(images.count > 0 ? indexCurrent + 1 : 0) of \(images.count)"
     }
 
     /*
