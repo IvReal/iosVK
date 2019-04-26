@@ -6,8 +6,6 @@
 
 import UIKit
 
-var currentUser: String? = nil
-
 struct Person {
     var name: String
     var foto: UIImage?
@@ -37,7 +35,7 @@ class News {
     }
     
     var isCurrentUserLiked: Bool {
-        if let cu = currentUser {
+        if let cu = Session.instance.login {
             return userLike.contains(cu)
         }
         return false
@@ -46,7 +44,7 @@ class News {
     // return true if likes increased, false if likes decreased, nil if likes no changed
     func changeLike() -> Bool? {
         var res: Bool? = nil
-        if let cu = currentUser {
+        if let cu = Session.instance.login {
             if userLike.contains(cu) { // user already liked
                 countLike = countLike - 1
                 userLike.remove(cu)
