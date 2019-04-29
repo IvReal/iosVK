@@ -150,70 +150,6 @@
             </objects>
             <point key="canvasLocation" x="-732" y="-744"/>
         </scene>
-        <!--Logout-->
-        <scene sceneID="l9i-CE-ZsY">
-            <objects>
-                <viewController title="Logout" id="k2A-50-xjk" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0Qe-td-Vak">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LlE-bT-K2b">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are your sure?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YbP-2O-eDp">
-                                        <rect key="frame" x="132" y="121" width="111" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4R-6P-Tlm">
-                                        <rect key="frame" x="147.5" y="162" width="80" height="30"/>
-                                        <color key="backgroundColor" red="0.2324257481" green="0.3619790846" blue="0.50685924589999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="zab-y2-YPH"/>
-                                        </constraints>
-                                        <state key="normal" title="Yes">
-                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="1ja-SK-DgD" kind="unwind" unwindAction="loginUnwindWithUnwindSegue:" id="RWc-ZF-qbL"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icu-YD-bsU">
-                                        <rect key="frame" x="154.5" y="80" width="66.5" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.29803921570000003" green="0.45882352939999999" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="YbP-2O-eDp" firstAttribute="centerX" secondItem="LlE-bT-K2b" secondAttribute="centerX" id="7ny-tI-O2O"/>
-                                    <constraint firstItem="icu-YD-bsU" firstAttribute="top" secondItem="LlE-bT-K2b" secondAttribute="top" constant="80" id="EBJ-Ld-Pl9"/>
-                                    <constraint firstItem="z4R-6P-Tlm" firstAttribute="centerX" secondItem="LlE-bT-K2b" secondAttribute="centerX" id="aIv-7S-Xi9"/>
-                                    <constraint firstItem="z4R-6P-Tlm" firstAttribute="top" secondItem="YbP-2O-eDp" secondAttribute="bottom" constant="20" id="hfp-6b-kTh"/>
-                                    <constraint firstItem="icu-YD-bsU" firstAttribute="centerX" secondItem="LlE-bT-K2b" secondAttribute="centerX" id="jwM-LR-GJc"/>
-                                    <constraint firstItem="YbP-2O-eDp" firstAttribute="top" secondItem="icu-YD-bsU" secondAttribute="bottom" constant="20" id="r8h-Pc-d6J"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="LlE-bT-K2b" firstAttribute="leading" secondItem="0Qe-td-Vak" secondAttribute="leading" id="Vog-Jz-fmL"/>
-                            <constraint firstAttribute="bottom" secondItem="LlE-bT-K2b" secondAttribute="bottom" id="wnq-Oa-S8g"/>
-                            <constraint firstAttribute="trailing" secondItem="LlE-bT-K2b" secondAttribute="trailing" id="yT5-p0-uwc"/>
-                            <constraint firstItem="LlE-bT-K2b" firstAttribute="top" secondItem="CoK-kc-57f" secondAttribute="top" id="z7d-Fn-8il"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="CoK-kc-57f"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Sign Out" image="logout48" id="hJt-in-gso"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ALj-H3-brE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="1ja-SK-DgD" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="-1519.2" y="-744.3778110944528"/>
-        </scene>
         <!--Friends-->
         <scene sceneID="fxf-5R-0mu">
             <objects>
@@ -341,11 +277,12 @@
                     </view>
                     <connections>
                         <outlet property="webView" destination="SZo-qB-6R7" id="52I-ri-Uov"/>
+                        <segue destination="gsi-mO-t4M" kind="presentation" identifier="successVKLoginSegue" id="ZEE-sT-ovm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xw0-iY-fyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2527" y="14"/>
+            <point key="canvasLocation" x="-2514" y="1"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3aN-wj-QSp">
@@ -361,7 +298,6 @@
                         <segue destination="3sx-LV-5zw" kind="relationship" relationship="viewControllers" id="fC6-35-YLB"/>
                         <segue destination="TdW-uw-8RU" kind="relationship" relationship="viewControllers" id="vI9-LH-RM8"/>
                         <segue destination="qp4-jv-UBa" kind="relationship" relationship="viewControllers" id="Blp-XM-MWP"/>
-                        <segue destination="k2A-50-xjk" kind="relationship" relationship="viewControllers" id="p48-da-VmV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmJ-xX-ozs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -773,8 +709,10 @@
     <resources>
         <image name="friends48" width="48" height="48"/>
         <image name="groups48" width="48" height="48"/>
-        <image name="logout48" width="48" height="48"/>
         <image name="news48" width="48" height="48"/>
         <image name="vk" width="200" height="90"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="QAE-fw-oDQ"/>
+    </inferredMetricsTieBreakers>
 </document>

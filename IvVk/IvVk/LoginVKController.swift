@@ -8,6 +8,8 @@ import WebKit
 
 class LoginVKController: UIViewController, WKNavigationDelegate {
 
+    private let segSuccessLogin = "successVKLoginSegue"
+
     @IBOutlet weak var webView: WKWebView! {
         didSet{
             webView.navigationDelegate = self
@@ -51,8 +53,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
                 dict[key] = value
                 return dict
         }
-        
-        let session = Session.instance
+                let session = Session.instance
         // token
         session.token = params["access_token"] ?? ""
         session.userId = Int(params["user_id"] ?? "0") ?? 0
@@ -60,14 +61,18 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         // friends
         PrintVkApiAnswer("friends.get",
                          ["user_id": String(Session.instance.userId), "fields": "online"])
-        // groups
-        PrintVkApiAnswer("groups.get",
-                         ["user_id": String(Session.instance.userId), "extended": "1"])
         // photos
         PrintVkApiAnswer("photos.getAll",
                          ["owner_id": String(Session.instance.userId), "count": "2"])
+        // user groups
+        PrintVkApiAnswer("groups.get",
+                         ["user_id": String(Session.instance.userId), "extended": "1"])
+        // search groups
+        PrintVkApiAnswer("groups.search",
+                         ["q": "Travel", "count": "10"])
 
         decisionHandler(.cancel)
+        performSegue(withIdentifier: segSuccessLogin, sender: self)
     }
     
     private func PrintVkApiAnswer(_ method: String, _ params: [String: String]) {

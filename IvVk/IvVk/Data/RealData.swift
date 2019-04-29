@@ -14,13 +14,12 @@ class Session {
     private init() {}
     
     public func clear() {
-        login = nil
         fio = ""
         token = ""
         userId = 0
     }
     
-    var login: String?
+    var login: String? { return userId > 0 ? String(userId) : nil  }
     var fio: String = ""
     var token: String = ""
     var userId: Int = 0
