@@ -8,7 +8,9 @@ import Foundation
 
 class Session {
     static let instance = Session()
-    
+    static let vkAPI = "5.95"
+    static let vkClientId = "6964606"
+
     private init() {}
     
     public func clear() {
