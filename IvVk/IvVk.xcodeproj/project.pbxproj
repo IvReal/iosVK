@@ -22,6 +22,8 @@
 		AA570456223D7973003F2E3F /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA570455223D7973003F2E3F /* FakeData.swift */; };
 		AA570458223D8DD3003F2E3F /* FriendsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA570457223D8DD3003F2E3F /* FriendsHeader.swift */; };
 		AA90145322735A7A009C558B /* RealData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90145222735A7A009C558B /* RealData.swift */; };
+		AA90145522774BAF009C558B /* LoginVKController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90145422774BAF009C558B /* LoginVKController.swift */; };
+		AA9014582277521E009C558B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9014572277521D009C558B /* WebKit.framework */; };
 		AA9729D52232DCE500C24885 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9729D42232DCE500C24885 /* FriendCell.swift */; };
 		AA9729D72235AC1400C24885 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9729D62235AC1400C24885 /* LikeControl.swift */; };
 		AA9729DA22368C2D00C24885 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9729D922368C2D00C24885 /* RoundImageView.swift */; };
@@ -54,6 +56,8 @@
 		AA570455223D7973003F2E3F /* FakeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
 		AA570457223D8DD3003F2E3F /* FriendsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsHeader.swift; sourceTree = "<group>"; };
 		AA90145222735A7A009C558B /* RealData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealData.swift; sourceTree = "<group>"; };
+		AA90145422774BAF009C558B /* LoginVKController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVKController.swift; sourceTree = "<group>"; };
+		AA9014572277521D009C558B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		AA9729D42232DCE500C24885 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		AA9729D62235AC1400C24885 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		AA9729D922368C2D00C24885 /* RoundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9014582277521E009C558B /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +89,7 @@
 			children = (
 				AA55592D222816B800C1A86C /* IvVk */,
 				AA55592C222816B800C1A86C /* Products */,
+				AA9014562277521D009C558B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +115,7 @@
 				AA555937222816B900C1A86C /* LaunchScreen.storyboard */,
 				AA55593A222816B900C1A86C /* Info.plist */,
 				AA555940222824E100C1A86C /* LoginFormController.swift */,
+				AA90145422774BAF009C558B /* LoginVKController.swift */,
 			);
 			path = IvVk;
 			sourceTree = "<group>";
@@ -147,6 +154,14 @@
 				AA90145222735A7A009C558B /* RealData.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		AA9014562277521D009C558B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA9014572277521D009C558B /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		AA9729D822368BC300C24885 /* Controls */ = {
@@ -251,6 +266,7 @@
 				AA9729E2223BCC1500C24885 /* AllGroupsVC.swift in Sources */,
 				AA570456223D7973003F2E3F /* FakeData.swift in Sources */,
 				AA570458223D8DD3003F2E3F /* FriendsHeader.swift in Sources */,
+				AA90145522774BAF009C558B /* LoginVKController.swift in Sources */,
 				AA02DFC5224E5155003FC1B0 /* GroupsNC.swift in Sources */,
 				AA9729E0223BCBF200C24885 /* MyGroupsVC.swift in Sources */,
 				AA90145322735A7A009C558B /* RealData.swift in Sources */,

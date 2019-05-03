@@ -59,8 +59,8 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
             if login.isEmpty || password.isEmpty {
                 ShowAlert("Authorization", "Valid login and password required")
             } else {
-                let session = Session.instance
-                session.login = login
+                //let session = Session.instance
+                //session.login = login
                 performSegue(withIdentifier: segSuccessLogin, sender: self)
             }
         }

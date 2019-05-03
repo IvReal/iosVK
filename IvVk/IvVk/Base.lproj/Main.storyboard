@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sB8-tl-tNi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Login" id="BYZ-38-t0r" customClass="LoginFormController" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Login" id="BYZ-38-t0r" customClass="LoginFormController" customModule="IvVk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -65,7 +65,7 @@
                                                     <action selector="signinTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9jS-ce-rDp"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dry-UC-GBX" customClass="LoadingControl" customModule="Lesson1_1" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dry-UC-GBX" customClass="LoadingControl" customModule="IvVk" customModuleProvider="target">
                                                 <rect key="frame" x="140" y="195" width="95" height="65"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -84,11 +84,11 @@
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ba6-3Q-pZD" secondAttribute="trailing" constant="50" id="05c-ND-QVT"/>
                                             <constraint firstItem="ba6-3Q-pZD" firstAttribute="top" secondItem="ZA8-Xi-Zyj" secondAttribute="bottom" constant="20" id="5z5-1l-DXY"/>
                                             <constraint firstItem="ZA8-Xi-Zyj" firstAttribute="leading" secondItem="E1P-L2-jS0" secondAttribute="leading" constant="50" id="LEZ-hz-Qbc"/>
+                                            <constraint firstItem="Dry-UC-GBX" firstAttribute="top" secondItem="UMy-n3-G7W" secondAttribute="bottom" constant="15" id="LpK-yx-Hv0"/>
                                             <constraint firstItem="UMy-n3-G7W" firstAttribute="leading" secondItem="E1P-L2-jS0" secondAttribute="leading" constant="50" id="O28-MA-q3L"/>
                                             <constraint firstItem="ZA8-Xi-Zyj" firstAttribute="top" secondItem="E1P-L2-jS0" secondAttribute="top" constant="50" id="W5u-eY-7Uf"/>
                                             <constraint firstItem="ba6-3Q-pZD" firstAttribute="leading" secondItem="E1P-L2-jS0" secondAttribute="leading" constant="50" id="h2a-rM-Kr0"/>
-                                            <constraint firstItem="Dry-UC-GBX" firstAttribute="centerX" secondItem="E1P-L2-jS0" secondAttribute="centerX" id="i0L-HW-HDX"/>
-                                            <constraint firstItem="Dry-UC-GBX" firstAttribute="top" secondItem="E1P-L2-jS0" secondAttribute="top" constant="195" id="mBQ-m7-Vkz"/>
+                                            <constraint firstItem="Dry-UC-GBX" firstAttribute="centerX" secondItem="E1P-L2-jS0" secondAttribute="centerX" id="iUF-WT-xSE"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ZA8-Xi-Zyj" secondAttribute="trailing" constant="50" id="u4x-K5-A3g"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="UMy-n3-G7W" secondAttribute="trailing" constant="50" id="uS4-G2-utw"/>
                                             <constraint firstItem="UMy-n3-G7W" firstAttribute="top" secondItem="ba6-3Q-pZD" secondAttribute="bottom" constant="20" id="yIk-X7-7QL"/>
@@ -131,12 +131,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2522.4000000000001" y="0.44977511244377816"/>
+            <point key="canvasLocation" x="-2514" y="-744"/>
         </scene>
         <!--Navigation 1-->
         <scene sceneID="8U6-AH-QO9">
             <objects>
-                <navigationController title="Navigation 1" id="3sx-LV-5zw" customClass="FriendsNC" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="Navigation 1" id="3sx-LV-5zw" customClass="FriendsNC" customModule="IvVk" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="friends48" id="ZYq-fO-1ng"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QbH-QC-8vL">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -150,74 +150,10 @@
             </objects>
             <point key="canvasLocation" x="-732" y="-744"/>
         </scene>
-        <!--Logout-->
-        <scene sceneID="l9i-CE-ZsY">
-            <objects>
-                <viewController title="Logout" id="k2A-50-xjk" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0Qe-td-Vak">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LlE-bT-K2b">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are your sure?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YbP-2O-eDp">
-                                        <rect key="frame" x="132" y="121" width="111" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4R-6P-Tlm">
-                                        <rect key="frame" x="147.5" y="162" width="80" height="30"/>
-                                        <color key="backgroundColor" red="0.2324257481" green="0.3619790846" blue="0.50685924589999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="zab-y2-YPH"/>
-                                        </constraints>
-                                        <state key="normal" title="Yes">
-                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="1ja-SK-DgD" kind="unwind" unwindAction="loginUnwindWithUnwindSegue:" id="RWc-ZF-qbL"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icu-YD-bsU">
-                                        <rect key="frame" x="154.5" y="80" width="66.5" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.29803921570000003" green="0.45882352939999999" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="YbP-2O-eDp" firstAttribute="centerX" secondItem="LlE-bT-K2b" secondAttribute="centerX" id="7ny-tI-O2O"/>
-                                    <constraint firstItem="icu-YD-bsU" firstAttribute="top" secondItem="LlE-bT-K2b" secondAttribute="top" constant="80" id="EBJ-Ld-Pl9"/>
-                                    <constraint firstItem="z4R-6P-Tlm" firstAttribute="centerX" secondItem="LlE-bT-K2b" secondAttribute="centerX" id="aIv-7S-Xi9"/>
-                                    <constraint firstItem="z4R-6P-Tlm" firstAttribute="top" secondItem="YbP-2O-eDp" secondAttribute="bottom" constant="20" id="hfp-6b-kTh"/>
-                                    <constraint firstItem="icu-YD-bsU" firstAttribute="centerX" secondItem="LlE-bT-K2b" secondAttribute="centerX" id="jwM-LR-GJc"/>
-                                    <constraint firstItem="YbP-2O-eDp" firstAttribute="top" secondItem="icu-YD-bsU" secondAttribute="bottom" constant="20" id="r8h-Pc-d6J"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="LlE-bT-K2b" firstAttribute="leading" secondItem="0Qe-td-Vak" secondAttribute="leading" id="Vog-Jz-fmL"/>
-                            <constraint firstAttribute="bottom" secondItem="LlE-bT-K2b" secondAttribute="bottom" id="wnq-Oa-S8g"/>
-                            <constraint firstAttribute="trailing" secondItem="LlE-bT-K2b" secondAttribute="trailing" id="yT5-p0-uwc"/>
-                            <constraint firstItem="LlE-bT-K2b" firstAttribute="top" secondItem="CoK-kc-57f" secondAttribute="top" id="z7d-Fn-8il"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="CoK-kc-57f"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Sign Out" image="logout48" id="hJt-in-gso"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ALj-H3-brE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="1ja-SK-DgD" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="-1519.2" y="-744.3778110944528"/>
-        </scene>
         <!--Friends-->
         <scene sceneID="fxf-5R-0mu">
             <objects>
-                <viewController title="Friends" id="BOs-fk-9lU" customClass="FriendsVC" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Friends" id="BOs-fk-9lU" customClass="FriendsVC" customModule="IvVk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nbL-Fw-vTJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -238,14 +174,14 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FriendsCell" id="65Q-VM-whk" customClass="FriendsCell" customModule="Lesson1_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FriendsCell" id="65Q-VM-whk" customClass="FriendsCell" customModule="IvVk" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="84" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="65Q-VM-whk" id="Cuw-fF-lHW">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jze-k7-7OX" customClass="RoundImageView" customModule="Lesson1_1" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jze-k7-7OX" customClass="RoundImageView" customModule="IvVk" customModuleProvider="target">
                                                     <rect key="frame" x="5" y="2" width="40" height="40"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -280,7 +216,7 @@
                                     <outlet property="delegate" destination="BOs-fk-9lU" id="1Y2-8n-DcC"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6c-Ww-WCl" customClass="LetterControl" customModule="Lesson1_1" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6c-Ww-WCl" customClass="LetterControl" customModule="IvVk" customModuleProvider="target">
                                 <rect key="frame" x="355" y="100" width="20" height="517"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -313,6 +249,41 @@
             </objects>
             <point key="canvasLocation" x="45.600000000000001" y="-744.3778110944528"/>
         </scene>
+        <!--LoginVK-->
+        <scene sceneID="Qrk-xq-Yvt">
+            <objects>
+                <viewController title="LoginVK" id="sB8-tl-tNi" customClass="LoginVKController" customModule="IvVk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iUB-by-bSK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZo-qB-6R7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SZo-qB-6R7" firstAttribute="leading" secondItem="iUB-by-bSK" secondAttribute="leading" id="F9u-8B-JqO"/>
+                            <constraint firstAttribute="trailing" secondItem="SZo-qB-6R7" secondAttribute="trailing" id="byT-Fr-jiE"/>
+                            <constraint firstAttribute="bottom" secondItem="SZo-qB-6R7" secondAttribute="bottom" id="dlb-Zr-fm6"/>
+                            <constraint firstItem="SZo-qB-6R7" firstAttribute="top" secondItem="iUB-by-bSK" secondAttribute="top" id="qZ8-g2-DmG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qdF-LK-v8N"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="SZo-qB-6R7" id="52I-ri-Uov"/>
+                        <segue destination="gsi-mO-t4M" kind="presentation" identifier="successVKLoginSegue" id="ZEE-sT-ovm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xw0-iY-fyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2514" y="1"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3aN-wj-QSp">
             <objects>
@@ -327,7 +298,6 @@
                         <segue destination="3sx-LV-5zw" kind="relationship" relationship="viewControllers" id="fC6-35-YLB"/>
                         <segue destination="TdW-uw-8RU" kind="relationship" relationship="viewControllers" id="vI9-LH-RM8"/>
                         <segue destination="qp4-jv-UBa" kind="relationship" relationship="viewControllers" id="Blp-XM-MWP"/>
-                        <segue destination="k2A-50-xjk" kind="relationship" relationship="viewControllers" id="p48-da-VmV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmJ-xX-ozs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -354,7 +324,7 @@
         <!--News-->
         <scene sceneID="o0v-h5-NfA">
             <objects>
-                <viewController title="News" id="hSa-Yl-c3k" customClass="NewsVC" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="News" id="hSa-Yl-c3k" customClass="NewsVC" customModule="IvVk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wau-7F-6J8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -363,7 +333,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.66601425409317017" green="0.92343807220458984" blue="0.62194186449050903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="455" id="iG0-m8-Rwv" customClass="NewsCell" customModule="Lesson1_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="455" id="iG0-m8-Rwv" customClass="NewsCell" customModule="IvVk" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="455"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iG0-m8-Rwv" id="Z6l-34-D6b">
@@ -399,7 +369,7 @@
                                                         <constraint firstAttribute="width" secondItem="cN3-F9-igs" secondAttribute="height" multiplier="5:4" id="NVL-yk-sMV"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-EV-dgZ" customClass="LikeControl" customModule="Lesson1_1" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-EV-dgZ" customClass="LikeControl" customModule="IvVk" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="424.5" width="60" height="25"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -457,7 +427,7 @@
         <!--MyGroups-->
         <scene sceneID="FOn-gT-3s4">
             <objects>
-                <viewController title="MyGroups" id="Cno-K0-lqc" customClass="MyGroupsVC" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="MyGroups" id="Cno-K0-lqc" customClass="MyGroupsVC" customModule="IvVk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fgZ-oQ-fjs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -466,7 +436,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.66601425409317017" green="0.92343807220458984" blue="0.62194186449050903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyGroupsCell" id="4lB-o5-XWd" customClass="MyGroupsCell" customModule="Lesson1_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyGroupsCell" id="4lB-o5-XWd" customClass="MyGroupsCell" customModule="IvVk" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4lB-o5-XWd" id="lbA-Fl-iRr">
@@ -534,7 +504,7 @@
         <!--My Friend Foto-->
         <scene sceneID="fgV-tj-rb9">
             <objects>
-                <viewController id="OpG-Z6-MUK" customClass="Friend2VC" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OpG-Z6-MUK" customClass="Friend2VC" customModule="IvVk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ORT-ua-5pA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -574,7 +544,7 @@
         <!--My Friend-->
         <scene sceneID="RzO-1z-rAg">
             <objects>
-                <viewController title="My Friend" id="ag6-OD-gLW" customClass="FriendVC" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Friend" id="ag6-OD-gLW" customClass="FriendVC" customModule="IvVk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YUz-IV-Grk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -589,7 +559,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="friendCell" id="2tc-Ww-3Hm" customClass="FriendCell" customModule="Lesson1_1" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="friendCell" id="2tc-Ww-3Hm" customClass="FriendCell" customModule="IvVk" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="100.5" width="322" height="353"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -649,7 +619,7 @@
         <!--All Groups-->
         <scene sceneID="149-lz-qsS">
             <objects>
-                <viewController title="All Groups" id="UXP-PI-r9e" customClass="AllGroupsVC" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="All Groups" id="UXP-PI-r9e" customClass="AllGroupsVC" customModule="IvVk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tzu-sw-qEn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -658,7 +628,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.66847425699234009" green="0.92187327146530151" blue="0.62095803022384644" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AllGroupsCell" id="oup-RY-bUz" customClass="AllGroupsCell" customModule="Lesson1_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AllGroupsCell" id="oup-RY-bUz" customClass="AllGroupsCell" customModule="IvVk" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oup-RY-bUz" id="CXC-Lf-Wuq">
@@ -721,7 +691,7 @@
         <!--Navigation 2-->
         <scene sceneID="TdI-s4-BES">
             <objects>
-                <navigationController title="Navigation 2" id="TdW-uw-8RU" customClass="GroupsNC" customModule="Lesson1_1" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="Navigation 2" id="TdW-uw-8RU" customClass="GroupsNC" customModule="IvVk" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Groups" image="groups48" id="Kr6-e2-PNh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uQm-we-gEN">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -737,10 +707,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="friends48" width="36" height="36"/>
-        <image name="groups48" width="6.75" height="6.75"/>
-        <image name="logout48" width="1.6875" height="1.6875"/>
-        <image name="news48" width="36" height="36"/>
-        <image name="vk" width="202.81689453125" height="91.267608642578125"/>
+        <image name="friends48" width="48" height="48"/>
+        <image name="groups48" width="48" height="48"/>
+        <image name="news48" width="48" height="48"/>
+        <image name="vk" width="200" height="90"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="QAE-fw-oDQ"/>
+    </inferredMetricsTieBreakers>
 </document>
