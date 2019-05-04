@@ -6,7 +6,7 @@
 
 import UIKit
 
-struct Person {
+/*struct Person {
     var name: String
     var foto: UIImage?
     init(_ name: String, _ foto: String) {
@@ -15,7 +15,7 @@ struct Person {
             self.foto = UIImage(named: foto)
         }
     }
-}
+}*/
 
 class News {
     var author: String
@@ -59,7 +59,7 @@ class News {
     }
 }
 
-var friends = [
+/*var friends = [
     Person("Алешечкин Вася", "Алешечкин"),
     Person("Мамолькин Илья", "Мамолькин"),
     Person("Харчочкин Заур", "Харчочкин"),
@@ -74,7 +74,7 @@ var friends = [
     Person("Александров Саша", "photo2"),
     Person("Егоров Егор", "photo3"),
     Person("Юрьев Юра", "photo4"),
-]
+]*/
 
 var groups = [
     "Боевые искусства антарктиды",
