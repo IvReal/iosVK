@@ -7,6 +7,8 @@ import Foundation
 import UIKit
 import Alamofire
 
+//------------- Session
+
 class Session {
     static let instance = Session()
     static let vkAPI = "5.95"
@@ -38,6 +40,10 @@ class Session {
     var token: String = ""
     var userId: Int = 0
 }
+
+//------------- Friends
+
+var friends: [Person] = []
 
 class Person : Decodable {
     var id: Int?
@@ -101,14 +107,39 @@ class FriendsList : Decodable {
     }
 }
 
-var friends: [Person] = []
+// load session user friends list with avatars
+func loadFriendsList(completion: @escaping ([Person]) -> Void ) {
+    let pars = Session.instance.getParams(["user_id": String(Session.instance.userId), "fields": "photo_100"])
+    Alamofire.request("https://api.vk.com/method/friends.get", parameters: pars).responseData { repsonse in
+        guard let data = repsonse.value else { return }
+        let list = try? JSONDecoder().decode(FriendsList.self, from: data)
+        if let flist = list {
+            let res = flist.items.filter { person in
+                person.first_name?.uppercased() != "DELETED"
+            }
+            completion(res)
+        }
+    }
+    /* don't work :-(
+     Alamofire("https://api.vk.com/method/friends.get", parameters: pars).responseArray(keyPath: "items") { (response: DataResponse<[PersonVk]>) in
+     let friends = response.result.value
+     }
+     */
+}
+
+//------------- Photos
 
 /*
  // photos
- pars = session.getParams(["owner_id": String(Session.instance.userId), "count": "2"])
+ pars = session.getParams(["owner_id": String(Session.instance.userId), "count": "10"])
  sessionManager.request("https://api.vk.com/method/photos.getAll", parameters: pars).responseJSON { response in
  print(response.value ?? "")
  }
+*/
+
+//------------- Groups
+
+/*
  // user groups
  pars = session.getParams(["user_id": String(Session.instance.userId), "extended": "1"])
  sessionManager.request("https://api.vk.com/method/groups.get", parameters: pars).responseJSON { response in

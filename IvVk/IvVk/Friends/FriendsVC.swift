@@ -4,7 +4,6 @@
 //  Copyright © 2019 Iv. All rights reserved.
 
 import UIKit
-import Alamofire
 
 struct Section {
     var name: String
@@ -32,26 +31,6 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         letterControl.changeLetterHandler = letterChanged
         searchBar.returnKeyType = .done
         tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.size.height)
-    }
-
-    // load session user friends list with avatars
-    func loadFriendsList(completion: @escaping ([Person]) -> Void ) {
-        let pars = Session.instance.getParams(["user_id": String(Session.instance.userId), "fields": "photo_100"])
-        Alamofire.request("https://api.vk.com/method/friends.get", parameters: pars).responseData { repsonse in
-            guard let data = repsonse.value else { return }
-            let list = try? JSONDecoder().decode(FriendsList.self, from: data)
-            if let flist = list {
-                let res = flist.items.filter { person in
-                    person.first_name != "DELETED"
-                }
-                completion(res)
-            }
-        }
-        /* don't work :-(
-         Alamofire("https://api.vk.com/method/friends.get", parameters: pars).responseArray(keyPath: "items") { (response: DataResponse<[PersonVk]>) in
-            let friends = response.result.value
-         }
-        */
     }
 
     // letter control change letter handler
