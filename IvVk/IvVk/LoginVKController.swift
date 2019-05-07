@@ -19,6 +19,8 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //logoutVK()
+        
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
@@ -36,8 +38,8 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         webView.load(request)
     }
     
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void)
+    {
         guard let url = navigationResponse.response.url, url.path == "/blank.html",
               let fragment = url.fragment  else {
                 decisionHandler(.allow)
@@ -53,54 +55,22 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
                 dict[key] = value
                 return dict
         }
-                let session = Session.instance
+        let session = Session.instance
         // token
         session.token = params["access_token"] ?? ""
         session.userId = Int(params["user_id"] ?? "0") ?? 0
-        print("Access token is \(session.token), user ID is \(session.userId)")
-        // friends
-        PrintVkApiAnswer("friends.get",
-                         ["user_id": String(Session.instance.userId), "fields": "online"])
-        // photos
-        PrintVkApiAnswer("photos.getAll",
-                         ["owner_id": String(Session.instance.userId), "count": "2"])
-        // user groups
-        PrintVkApiAnswer("groups.get",
-                         ["user_id": String(Session.instance.userId), "extended": "1"])
-        // search groups
-        PrintVkApiAnswer("groups.search",
-                         ["q": "Travel", "count": "10"])
-
+        //print("Access token is \(session.token), user ID is \(session.userId)")
+        // success login segue
         decisionHandler(.cancel)
         performSegue(withIdentifier: segSuccessLogin, sender: self)
     }
     
-    private func PrintVkApiAnswer(_ method: String, _ params: [String: String]) {
-        let configuration = URLSessionConfiguration.default
-        let session =  URLSession(configuration: configuration)
-        var urlConstructor = URLComponents()
-        urlConstructor.scheme = "https"
-        urlConstructor.host = "api.vk.com"
-        urlConstructor.path = "/method/\(method)"
-        // required params
-        urlConstructor.queryItems = [
-            URLQueryItem(name: "access_token", value: Session.instance.token),
-            URLQueryItem(name: "v", value: Session.vkAPI)
-        ]
-        // specific params
-        for (key, val) in params {
-            urlConstructor.queryItems?.append(URLQueryItem(name: key, value: val))
+    private func logoutVK() {
+        let dataStore = WKWebsiteDataStore.default()
+        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
+                                 for: records.filter { $0.displayName.contains("vk") },
+                                 completionHandler: {  })
         }
-        let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
-            if let data = data {
-                DispatchQueue.main.async {
-                    let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
-                    if let json = json {
-                        print("\(method): \(json)")
-                    }
-                }
-            }
-        }
-        task.resume()
     }
 }

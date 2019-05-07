@@ -20,9 +20,14 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //tableView.register(FriendsHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsHeader")
+        
+        loadFriendsList { list in
+            friends = list
+            self.groupFriends(friends)
+            self.tableView.reloadData()
+       }
+
         tableView.register(UINib(nibName: "FriendsHeader", bundle: Bundle.main), forHeaderFooterViewReuseIdentifier: "FriendsHeader")
-        groupFriends(friends)
         letterControl.changeLetterHandler = letterChanged
         searchBar.returnKeyType = .done
         tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.size.height)
@@ -36,7 +41,7 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
             }
         }
     }
-
+    
     // set friends group array
     private func groupFriends(_ friendList: [Person]) {
         groupedFriends.removeAll()
@@ -70,13 +75,15 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as! FriendsCell
         let friend = groupedFriends[indexPath.section].persons[indexPath.row]
         cell.nameFriend.text = friend.name
-        cell.fotoFriend.image = friend.foto
+        //cell.fotoFriend.image = friend.foto
+        friend.getFoto { image in
+            cell.fotoFriend.image = image
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FriendsHeader") as? FriendsHeader
-        //header?.contentView.backgroundColor = .red
         header?.nameSection.text = groupedFriends[section].name
         header?.contentView.backgroundColor = .white
         header?.contentView.alpha = 0.5
@@ -167,25 +174,4 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         clearSearching(endEditing: true)
     }
-    
-    /* TODO
-    // change letter control selected letter while scrolling tableView
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        SetTopLetter()
-    }
-
-    private func SetTopLetter() {
-        if let array = tableView.indexPathsForVisibleRows {
-            var section: Int? = nil
-            if array.count > 1 {
-                section = array[1].section
-            } else if array.count > 0 {
-                section = array[0].section
-            }
-            if let s = section {
-                letterControl.selectedLetter = groupedFriends[s].name
-            }
-        }
-    }
-    */
 }

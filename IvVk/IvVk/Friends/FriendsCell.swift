@@ -18,5 +18,10 @@ class FriendsCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
+    
+    override func prepareForReuse() {
+        nameFriend.text = nil
+        fotoFriend.image = nil
+    }
 
 }
