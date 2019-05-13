@@ -29,9 +29,8 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         if let token = KeychainWrapper.standard.string(forKey: keyToken),
            let uid = KeychainWrapper.standard.integer(forKey: keyUid)
         {
-            // TODO: check token is not expired
+            self.saveSessionParams(token: token, uid: uid, saveToKeychain: false)
             print("Token and UserId loaded from keychain")
-            saveSessionParams(token: token, uid: uid, saveToKeychain: false)
         } else {
             // VK login page in webView need to get token
             var urlComponents = URLComponents()
@@ -108,38 +107,5 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         UserDefaults.standard.set(String(Session.instance.userId), forKey: key)
         let uid = UserDefaults.standard.string(forKey: key) ?? ""
         print("Saved in UserDefaults UserId is \(uid)")
-    }
-    
-    // filecaching methods
-    static let cachedFileName = "image.png"
-    private func getDir() -> URL? {
-        return try? FileManager.default.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false)
-    }
-    
-    private func saveImage(_ imageName: String, _ fileName: String) {
-        let img = UIImage(named: imageName)
-        let dir = getDir()
-        guard let image = img, let directory = dir else { return }
-        let path = directory.appendingPathComponent(fileName)
-        do {
-            try image.pngData()?.write(to: path)
-            print("File saved successfully")
-        } catch {
-            print("Error occured while file saving: \(error)")
-        }
-    }
-    
-    private func loadImage(_ fileName: String) -> UIImage? {
-        let dir = getDir()
-        guard let directory = dir else { return nil }
-        let path = directory.appendingPathComponent(fileName)
-        do {
-            let imageData = try Data(contentsOf: path)
-            print("File loaded successfully")
-            return UIImage(data: imageData)
-        } catch {
-            print("Error occured while file loading: \(error)")
-            return nil
-        }
     }
 }

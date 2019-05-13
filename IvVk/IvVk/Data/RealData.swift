@@ -44,6 +44,7 @@ class Session {
 //------------- Friends
 
 var friends: [Person] = []
+var user: Person!
 
 class Person : Decodable {
     var id: Int?
@@ -63,18 +64,24 @@ class Person : Decodable {
 
     func getFoto(completion: @escaping (UIImage?) -> Void ) {
         if foto != nil {
-            completion(foto)
+            completion(foto) // photo already loaded and stored in object
             return
         }
         if let urlString = photoUrl,
            let url = URL(string: urlString)
         {
-            DispatchQueue.main.async {
-                if let data = try? Data(contentsOf: url),
-                   let image = UIImage(data: data)
-                {
-                    self.foto = image
-                    completion(image)
+            if let cachedImage = loadImageFromFile(url) {
+                self.foto = cachedImage
+                completion(cachedImage)  // photo has cached in file
+            } else {
+                DispatchQueue.main.async {
+                    if let data = try? Data(contentsOf: url),
+                       let image = UIImage(data: data)
+                    {
+                        self.foto = image
+                        saveImageToFile(image, url)  // cache image to file
+                        completion(image)  // photo loaded from server
+                    }
                 }
             }
         }
@@ -124,7 +131,19 @@ func loadFriendsList(completion: @escaping ([Person]) -> Void ) {
      Alamofire("https://api.vk.com/method/friends.get", parameters: pars).responseArray(keyPath: "items") { (response: DataResponse<[PersonVk]>) in
      let friends = response.result.value
      }
-     */
+    */
+}
+
+// load current user
+func loadCurrentUser(completion: @escaping (Person?) -> Void ) {
+    let pars = Session.instance.getParams(["user_ids": String(Session.instance.userId), "fields": "photo_100"])
+    Alamofire.request("https://api.vk.com/method/users.get", parameters: pars).responseData { repsonse in
+        guard let data = repsonse.value else { return }
+        let list = try? JSONDecoder().decode(FriendsList.self, from: data)
+        if let ulist = list, ulist.count > 0 {
+            completion(ulist.items[0])
+        }
+    }
 }
 
 //------------- Photos
@@ -255,5 +274,40 @@ func searchGroupsList(searchString: String, completion: @escaping ([Group]) -> V
         if let glist = list {
             completion(glist.items)
         }
+    }
+}
+
+//------------- Save/Load image files
+
+func getCacheDir() -> URL? {
+    return try? FileManager.default.url(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false)
+}
+
+func saveImageToFile(_ image: UIImage, _ imageUrl: URL) {
+    let dir = getCacheDir()
+    guard let directory = dir else { return }
+    let path = directory.appendingPathComponent(String(imageUrl.hashValue))
+    let data = image.jpegData(compressionQuality: 0.5)
+    guard let imgdata = data else { return }
+    do {
+        try imgdata.write(to: path)
+        //print("File saved successfully")
+    } catch {
+        print("Error occured while file saving: \(error)")
+    }
+}
+
+func loadImageFromFile(_ imageUrl: URL) -> UIImage? {
+    let dir = getCacheDir()
+    guard let directory = dir else { return nil }
+    let path = directory.appendingPathComponent(String(imageUrl.hashValue))
+    if !FileManager.default.fileExists(atPath: path.path) { return nil }
+    do {
+        let imageData = try Data(contentsOf: path)
+        //print("File loaded successfully")
+        return UIImage(data: imageData)
+    } catch {
+        print("Error occured while file loading: \(error)")
+        return nil
     }
 }
