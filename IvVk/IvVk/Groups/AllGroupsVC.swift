@@ -11,6 +11,11 @@ class AllGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchGroupsList(searchString: "travel") { list in
+            allGroups = list
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -20,13 +25,16 @@ class AllGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        return allGroups.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllGroupsCell", for: indexPath) as! AllGroupsCell
-        let group = groups[indexPath.row]
-        cell.nameAllGroup.text = group
+        let group = allGroups[indexPath.row]
+        cell.nameAllGroup.text = group.name
+        group.getFoto { photo in
+            cell.imageAllGroup.image = photo
+        }
         return cell
     }
     

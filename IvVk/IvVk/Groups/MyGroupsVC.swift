@@ -7,14 +7,14 @@ import UIKit
 
 class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var mygroups = [String]()
-
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if groups.count > 0 {
-            mygroups.append(groups[0])
+        
+        loadGroupsList(user: Session.instance.userId) { list in
+            myGroups = list
+            self.tableView.reloadData()
         }
     }
     
@@ -25,13 +25,16 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mygroups.count
+        return myGroups.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroupsCell", for: indexPath) as! MyGroupsCell
-        let group = mygroups[indexPath.row]
-        cell.nameMyGroup.text = group
+        let group = myGroups[indexPath.row]
+        cell.nameMyGroup.text = group.name
+        group.getFoto { photo in
+            cell.imageMyGroup.image = photo
+        }
         return cell
     }
     
@@ -44,9 +47,10 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // Support editing the table view.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            mygroups.remove(at: indexPath.row)
+            myGroups.remove(at: indexPath.row)
+            tableView.reloadData()
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            //tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
@@ -69,10 +73,10 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             // cell index
             if let indexPath = allGroupsController.tableView.indexPathForSelectedRow {
                 // group by index
-                let group = groups[indexPath.row]
+                let group = allGroups[indexPath.row]
                 // add group to target
-                if !mygroups.contains(group) {
-                    mygroups.append(group)
+                if !myGroups.contains(group) {
+                    myGroups.append(group)
                 }
                 // refresh table
                 tableView.reloadData()

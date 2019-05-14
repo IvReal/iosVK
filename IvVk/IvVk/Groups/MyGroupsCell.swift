@@ -11,6 +11,7 @@ import UIKit
 class MyGroupsCell: UITableViewCell {
 
     @IBOutlet weak var nameMyGroup: UILabel!
+    @IBOutlet weak var imageMyGroup: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,6 +21,11 @@ class MyGroupsCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
+    }
+    
+    override func prepareForReuse() {
+        nameMyGroup.text = nil
+        imageMyGroup.image = nil
     }
 
 }

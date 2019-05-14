@@ -25,7 +25,7 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
             friends = list
             self.groupFriends(friends)
             self.tableView.reloadData()
-       }
+        }
 
         tableView.register(UINib(nibName: "FriendsHeader", bundle: Bundle.main), forHeaderFooterViewReuseIdentifier: "FriendsHeader")
         letterControl.changeLetterHandler = letterChanged
@@ -115,15 +115,6 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
             if let indexPath = tableView.indexPathForSelectedRow {
                 let p = groupedFriends[indexPath.section].persons[indexPath.row]
                 fc2.loadUserPhotos(userId: p.id ?? 0)
-                /*fc2.images = []
-                if p.foto != nil {
-                    fc2.images.append(p.foto!)
-                }
-                for friend in friends {
-                    if friend.name != p.name, friend.foto != nil {
-                        fc2.images.append(friend.foto!)
-                    }
-                }*/
             }
         }
     }

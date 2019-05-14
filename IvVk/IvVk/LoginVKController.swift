@@ -23,7 +23,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         logoutVK()
         //manageKeychains(isClear: true)
-        clearCache()
+        //clearCache()
     }
     
     override func viewDidAppear(_ animated: Bool) {
