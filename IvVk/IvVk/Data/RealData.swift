@@ -119,9 +119,8 @@ class UsersList : Decodable {
     enum CodingKeys: String, CodingKey {
         case response
     }
-    /*required init(from decoder: Decoder) throws {
-    }*/
 }
+
 // load session user friends list with avatars
 func loadFriendsList(completion: @escaping ([Person]) -> Void ) {
     let pars = Session.instance.getParams(["user_id": String(Session.instance.userId), "fields": "photo_100"])
@@ -167,36 +166,65 @@ class Photo : Decodable {
     var date: Date?
     var likes: Likes?
     var sizes: [PhotoCopy]
+
+    static let allowCache = true
+
     var photoUrl: PhotoCopy? {
-        // todo: find most suitable photo size
-        /*
-         s — пропорциональная копия изображения с максимальной стороной 75px;
-         m — пропорциональная копия изображения с максимальной стороной 130px;
-         x — пропорциональная копия изображения с максимальной стороной 604px;
-         o — если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то пропорциональная копия с максимальной стороной 130px. Если соотношение "ширина/высота" больше 3:2, то копия обрезанного слева изображения с максимальной стороной 130px и соотношением сторон 3:2.
-         p — если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то пропорциональная копия с максимальной стороной 200px. Если соотношение "ширина/высота" больше 3:2, то копия обрезанного слева и справа изображения с максимальной стороной 200px и соотношением сторон 3:2.
-         q — если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то пропорциональная копия с максимальной стороной 320px. Если соотношение "ширина/высота" больше 3:2, то копия обрезанного слева и справа изображения с максимальной стороной 320px и соотношением сторон 3:2.
-         r — если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то пропорциональная копия с максимальной стороной 510px. Если соотношение "ширина/высота" больше 3:2, то копия обрезанного слева и справа изображения с максимальной стороной 510px и соотношением сторон 3:2
-         y — пропорциональная копия изображения с максимальной стороной 807px;
-         z — пропорциональная копия изображения с максимальным размером 1080x1024;
-         w — пропорциональная копия изображения с максимальным размером 2560x2048px.
-         */
-        return sizes.count > 0 ? sizes[0] : nil
+        let list = sizes.sorted(by: { $0.sortOrder < $1.sortOrder })
+        return list.count > 0 ? list[0] : nil
+    }
+    
+    func getFoto(completion: @escaping (UIImage?) -> Void ) {
+        if let urlObject = photoUrl,
+           let urlString = urlObject.url,
+           let url = URL(string: urlString)
+        {
+            if Photo.allowCache, let cachedImage = loadImageFromFile(url) {
+                completion(cachedImage)  // cache allowed and photo has cached in file
+            } else {
+                DispatchQueue.main.async {
+                    if let data = try? Data(contentsOf: url),
+                       let image = UIImage(data: data)
+                    {
+                        if Photo.allowCache { saveImageToFile(image, url) }  // cache image to file
+                        completion(image)  // photo loaded from server
+                    }
+                }
+            }
+        }
     }
 }
 
 class PhotoCopy : Decodable {
-    var type: Character?
+    var type: String?
     var url: String?
     var width: Int?
     var height: Int?
-    required init(from decoder: Decoder) throws {
+    var sortOrder: Int {
+        switch type {
+        case "s": return 7 // пропорциональная копия изображения с максимальной стороной 75px;
+        case "m": return 6 // пропорциональная копия изображения с максимальной стороной 130px;
+        case "x": return 2 // пропорциональная копия изображения с максимальной стороной 604px;
+        case "o": return 5 // если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то пропорциональная копия с максимальной стороной 130px. Если соотношение "ширина/высота" больше 3:2, то копия обрезанного слева изображения с максимальной стороной 130px и соотношением сторон 3:2.
+        case "p": return 4 // если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то пропорциональная копия с максимальной стороной 200px. Если соотношение "ширина/высота" больше 3:2, то копия обрезанного слева и справа изображения с максимальной стороной 200px и соотношением сторон 3:2.
+        case "q": return 3 // если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то пропорциональная копия с максимальной стороной 320px. Если соотношение "ширина/высота" больше 3:2, то копия обрезанного слева и справа изображения с максимальной стороной 320px и соотношением сторон 3:2.
+        case "r": return 1 // если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то пропорциональная копия с максимальной стороной 510px. Если соотношение "ширина/высота" больше 3:2, то копия обрезанного слева и справа изображения с максимальной стороной 510px и соотношением сторон 3:2
+        case "y": return 8 // пропорциональная копия изображения с максимальной стороной 807px;
+        case "z": return 9 // пропорциональная копия изображения с максимальным размером 1080x1024;
+        case "w": return 10 // пропорциональная копия изображения с максимальным размером 2560x2048px.
+        default: return 100
+        }
     }
 }
 
 class Likes : Decodable {
     var count: Int?
     var user_likes: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case count
+        case user_likes
+    }
 }
 
 class PhotosList : Decodable {
@@ -221,11 +249,14 @@ class PhotosList : Decodable {
 func loadPhotosList(owner: Int, completion: @escaping ([Photo]) -> Void ) {
     let pars = Session.instance.getParams(["owner_id": String(owner), "count": "10"])
     Alamofire.request("https://api.vk.com/method/photos.getAll", parameters: pars).responseData { repsonse in
-        guard let data = repsonse.value else { return }
-        let list = try? JSONDecoder().decode(PhotosList.self, from: data)
-        if let plist = list {
-            completion(plist.items)
+        var res: [Photo] = []
+        if let data = repsonse.value {
+            let list = try? JSONDecoder().decode(PhotosList.self, from: data)
+            if let plist = list {
+                res = plist.items
+            }
         }
+        completion(res)
     }
 }
 
@@ -320,5 +351,19 @@ func loadImageFromFile(_ imageUrl: URL) -> UIImage? {
     } catch {
         print("Error occured while file loading: \(error)")
         return nil
+    }
+}
+
+func clearCache() {
+    let dir = getCacheDir()
+    guard let directory = dir else { return }
+    do {
+        var filePaths = try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil, options: [])
+        filePaths = filePaths.filter { !$0.hasDirectoryPath }
+        for filePath in filePaths {
+            try FileManager.default.removeItem(atPath: filePath.path)
+        }
+    } catch {
+        print("Could not clear folder: \(error)")
     }
 }

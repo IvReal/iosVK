@@ -10,21 +10,37 @@ class Friend2VC: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageLabel: UILabel!
     
-    var images: [UIImage] = []
+    //var images: [UIImage] = []
+    var images: [Photo] = []
     var indexCurrent = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.image = images.count > 0 ? images[0] : nil
-        imageLabel.text = getCurrentImageLabel()
-        
+        //imageView.image = images.count > 0 ? images[0] : nil
+        //imageLabel.text = getCurrentImageLabel()
+        imageLabel.text = ""
+
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
         self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    func loadUserPhotos(userId: Int) {
+        images = []
+        loadPhotosList(owner: userId) { photos in
+            self.images = photos
+            if self.images.count > 0 {
+                self.images[0].getFoto { photo in
+                    self.imageView.image = photo
+                    self.imageLabel.text = self.getCurrentImageLabel()
+                }
+            }
+            self.imageLabel.text = self.getCurrentImageLabel()
+        }
     }
 
     @objc func handleSwipes(sender: UISwipeGestureRecognizer) {
@@ -45,26 +61,31 @@ class Friend2VC: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.imageView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         }, completion: { _ in
-            self.imageView.image = self.images[self.indexCurrent]
-            self.imageView.transform = .identity
-            self.imageLabel.text = self.getCurrentImageLabel()
-
-            let tr1 = CATransition()
-            tr1.duration = 0.5
-            tr1.type = CATransitionType.push
-            tr1.subtype = isBackward ? CATransitionSubtype.fromLeft : CATransitionSubtype.fromRight
-
-            let tr2 = CATransition()
-            tr2.duration = 0.5
-            tr2.type = CATransitionType.fade
-
-            self.imageView.layer.add(tr1, forKey: nil)
-            self.imageLabel.layer.add(tr2, forKey: nil)
+            //self.imageView.image = self.images[self.indexCurrent]
+            //self.imageLabel.text = self.getCurrentImageLabel()
+            self.images[self.indexCurrent].getFoto { photo in
+                self.imageView.image = photo
+                self.imageLabel.text = self.getCurrentImageLabel()
+                
+                self.imageView.transform = .identity
+                
+                let tr1 = CATransition()
+                tr1.duration = 0.5
+                tr1.type = CATransitionType.push
+                tr1.subtype = isBackward ? CATransitionSubtype.fromLeft : CATransitionSubtype.fromRight
+                
+                let tr2 = CATransition()
+                tr2.duration = 0.5
+                tr2.type = CATransitionType.fade
+                
+                self.imageView.layer.add(tr1, forKey: nil)
+                self.imageLabel.layer.add(tr2, forKey: nil)
+            }
        })
     }
     
     func getCurrentImageLabel() -> String {
-        return "image \(images.count > 0 ? indexCurrent + 1 : 0) of \(images.count)"
+        return images.count > 0 ? "image \(indexCurrent + 1) of \(images.count)" : "No images"
     }
 
     /*

@@ -114,7 +114,8 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         if let fc2 = segue.destination as? Friend2VC {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let p = groupedFriends[indexPath.section].persons[indexPath.row]
-                fc2.images = []
+                fc2.loadUserPhotos(userId: p.id ?? 0)
+                /*fc2.images = []
                 if p.foto != nil {
                     fc2.images.append(p.foto!)
                 }
@@ -122,7 +123,7 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
                     if friend.name != p.name, friend.foto != nil {
                         fc2.images.append(friend.foto!)
                     }
-                }
+                }*/
             }
         }
     }
