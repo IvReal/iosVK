@@ -114,6 +114,14 @@ class FriendsList : Decodable {
     }
 }
 
+class UsersList : Decodable {
+    let response: [Person]
+    enum CodingKeys: String, CodingKey {
+        case response
+    }
+    /*required init(from decoder: Decoder) throws {
+    }*/
+}
 // load session user friends list with avatars
 func loadFriendsList(completion: @escaping ([Person]) -> Void ) {
     let pars = Session.instance.getParams(["user_id": String(Session.instance.userId), "fields": "photo_100"])
@@ -138,11 +146,14 @@ func loadFriendsList(completion: @escaping ([Person]) -> Void ) {
 func loadCurrentUser(completion: @escaping (Person?) -> Void ) {
     let pars = Session.instance.getParams(["user_ids": String(Session.instance.userId), "fields": "photo_100"])
     Alamofire.request("https://api.vk.com/method/users.get", parameters: pars).responseData { repsonse in
-        guard let data = repsonse.value else { return }
-        let list = try? JSONDecoder().decode(FriendsList.self, from: data)
-        if let ulist = list, ulist.count > 0 {
-            completion(ulist.items[0])
+        var res: Person? = nil
+        if let data = repsonse.value {
+            let list = try? JSONDecoder().decode(UsersList.self, from: data)
+            if let ulist = list, ulist.response.count > 0 {
+                res = ulist.response[0]
+            }
         }
+        completion(res)
     }
 }
 

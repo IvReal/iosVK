@@ -22,15 +22,16 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         logoutVK()
-        //clearKeychains()
+        //manageKeychains(isClear: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if let token = KeychainWrapper.standard.string(forKey: keyToken),
            let uid = KeychainWrapper.standard.integer(forKey: keyUid)
         {
-            self.saveSessionParams(token: token, uid: uid, saveToKeychain: false)
             print("Token and UserId loaded from keychain")
+            saveSessionParams(token: token, uid: uid)
+            checkTokenValid()
         } else {
             // VK login page in webView need to get token
             var urlComponents = URLComponents()
@@ -68,28 +69,42 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
                 return dict
         }
         decisionHandler(.cancel)
-        saveSessionParams(token: params["access_token"] ?? "", uid: Int(params["user_id"] ?? "0") ?? 0, saveToKeychain: true)
+        saveSessionParams(token: params["access_token"] ?? "", uid: Int(params["user_id"] ?? "0") ?? 0)
+        manageKeychains(isClear: false)
+        checkTokenValid()
     }
     
-    private func saveSessionParams(token: String, uid: Int, saveToKeychain: Bool, autoSegue: Bool = true) {
-        if (token != "" && uid > 0) {
+    // Проверка валидности токена (поскольку токен теперь может читаться из keychains, он может потерять актуальность)
+    private func checkTokenValid() {
+        loadCurrentUser(completion: { person in
+            user = person
+            if user != nil {
+                Session.instance.fio = user!.name
+                self.testUserDefaults()
+                self.performSegue(withIdentifier: self.segSuccessLogin, sender: self)
+            } else {
+                self.manageKeychains(isClear: true)
+                // TODO: show failed authorization message
+            }
+        })
+    }
+    
+    private func saveSessionParams(token: String, uid: Int) {
+        if token != "" && uid > 0 {
             let session = Session.instance
             session.token = token
             session.userId = uid
-            if saveToKeychain {
-                KeychainWrapper.standard.set(token, forKey: keyToken)
-                KeychainWrapper.standard.set(uid, forKey: keyUid)
-            }
-            testUserDefaults()
-            if autoSegue {
-                performSegue(withIdentifier: segSuccessLogin, sender: self)
-            }
         }
     }
     
-    private func clearKeychains() {
-        KeychainWrapper.standard.removeObject(forKey: keyToken)
-        KeychainWrapper.standard.removeObject(forKey: keyUid)
+    private func manageKeychains(isClear: Bool) {
+        if isClear {
+            KeychainWrapper.standard.removeObject(forKey: keyToken)
+            KeychainWrapper.standard.removeObject(forKey: keyUid)
+        } else {
+            KeychainWrapper.standard.set(Session.instance.token, forKey: keyToken)
+            KeychainWrapper.standard.set(Session.instance.userId, forKey: keyUid)
+        }
     }
     
     private func logoutVK() {
@@ -104,7 +119,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     // test userdefaults
     private func testUserDefaults() {
         let key = "uid"
-        UserDefaults.standard.set(String(Session.instance.userId), forKey: key)
+        UserDefaults.standard.set(Session.instance.fio, forKey: key)
         let uid = UserDefaults.standard.string(forKey: key) ?? ""
         print("Saved in UserDefaults UserId is \(uid)")
     }
