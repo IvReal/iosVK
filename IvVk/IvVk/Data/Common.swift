@@ -6,6 +6,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import SwiftKeychainWrapper
 
 //------------- Session
 
@@ -40,4 +41,17 @@ class Session {
     var fio: String = ""
     var token: String = ""
     var userId: Int = 0
+}
+
+let keyToken = "vkToken"
+let keyUid = "vkUserId"
+
+func manageKeychains(isClear: Bool) {
+    if isClear {
+        KeychainWrapper.standard.removeObject(forKey: keyToken)
+        KeychainWrapper.standard.removeObject(forKey: keyUid)
+    } else {
+        KeychainWrapper.standard.set(Session.instance.token, forKey: keyToken)
+        KeychainWrapper.standard.set(Session.instance.userId, forKey: keyUid)
+    }
 }

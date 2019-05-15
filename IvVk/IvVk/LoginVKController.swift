@@ -10,8 +10,6 @@ import SwiftKeychainWrapper
 class LoginVKController: UIViewController, WKNavigationDelegate {
 
     private let segSuccessLogin = "successVKLoginSegue"
-    private let keyToken = "vkToken"
-    private let keyUid = "vkUserId"
 
     @IBOutlet weak var webView: WKWebView! {
         didSet{
@@ -22,8 +20,6 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         logoutVK()
-        //manageKeychains(isClear: true)
-        //clearCache()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,7 +80,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
                 self.testUserDefaults()
                 self.performSegue(withIdentifier: self.segSuccessLogin, sender: self)
             } else {
-                self.manageKeychains(isClear: true)
+                manageKeychains(isClear: true)
                 // TODO: show failed authorization message
             }
         })
@@ -98,16 +94,6 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         }
     }
     
-    private func manageKeychains(isClear: Bool) {
-        if isClear {
-            KeychainWrapper.standard.removeObject(forKey: keyToken)
-            KeychainWrapper.standard.removeObject(forKey: keyUid)
-        } else {
-            KeychainWrapper.standard.set(Session.instance.token, forKey: keyToken)
-            KeychainWrapper.standard.set(Session.instance.userId, forKey: keyUid)
-        }
-    }
-    
     private func logoutVK() {
         let dataStore = WKWebsiteDataStore.default()
         dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
@@ -115,6 +101,12 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
                                  for: records.filter { $0.displayName.contains("vk") },
                                  completionHandler: {  })
         }
+    }
+    
+    // unwind logout action
+    @IBAction func loginUnwind(unwindSegue: UIStoryboardSegue) {
+        logoutVK()
+        manageKeychains(isClear: true)
     }
     
     // test userdefaults

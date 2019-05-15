@@ -298,6 +298,7 @@
                         <segue destination="3sx-LV-5zw" kind="relationship" relationship="viewControllers" id="fC6-35-YLB"/>
                         <segue destination="TdW-uw-8RU" kind="relationship" relationship="viewControllers" id="vI9-LH-RM8"/>
                         <segue destination="qp4-jv-UBa" kind="relationship" relationship="viewControllers" id="Blp-XM-MWP"/>
+                        <segue destination="hEH-po-EiA" kind="relationship" relationship="viewControllers" id="JQC-eh-Qbf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmJ-xX-ozs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -690,6 +691,94 @@
             </objects>
             <point key="canvasLocation" x="863" y="770"/>
         </scene>
+        <!--Service-->
+        <scene sceneID="Qji-cV-acT">
+            <objects>
+                <viewController title="Service" id="hEH-po-EiA" customClass="ServiceController" customModule="IvVk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wVM-s8-TFJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftw-zB-jId">
+                                <rect key="frame" x="10" y="40" width="355" height="30"/>
+                                <color key="backgroundColor" red="0.2324257481" green="0.3619790846" blue="0.50685924589999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dZE-Ou-kMz"/>
+                                </constraints>
+                                <state key="normal" title="Clear Image Cache">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearCache:" destination="hEH-po-EiA" eventType="touchUpInside" id="Q1g-Kh-MYA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJA-nv-8k7">
+                                <rect key="frame" x="10" y="80" width="355" height="30"/>
+                                <color key="backgroundColor" red="0.2324257481" green="0.3619790846" blue="0.50685924589999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Xq1-gY-s9s"/>
+                                </constraints>
+                                <state key="normal" title="Clear App Keychains">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearKeychains:" destination="hEH-po-EiA" eventType="touchUpInside" id="fKh-le-VGk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcy-aQ-9Wz">
+                                <rect key="frame" x="10" y="120" width="355" height="30"/>
+                                <color key="backgroundColor" red="0.2324257481" green="0.3619790846" blue="0.50685924589999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="OQx-Us-Q3M"/>
+                                </constraints>
+                                <state key="normal" title="Clear App UserDefaults">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearUserDefaults:" destination="hEH-po-EiA" eventType="touchUpInside" id="EFa-xw-upV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8r-IQ-wZO">
+                                <rect key="frame" x="10" y="567" width="355" height="30"/>
+                                <color key="backgroundColor" red="0.2324257481" green="0.3619790846" blue="0.50685924589999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cmc-zt-mje"/>
+                                </constraints>
+                                <state key="normal" title="Sign Out">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="signOut:" destination="hEH-po-EiA" eventType="touchUpInside" id="Jgn-Zq-Kdb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.29803921570000003" green="0.45882352939999999" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vcy-aQ-9Wz" secondAttribute="trailing" constant="10" id="2aI-dM-1R9"/>
+                            <constraint firstItem="ftw-zB-jId" firstAttribute="top" secondItem="wVM-s8-TFJ" secondAttribute="top" constant="40" id="2k5-Is-tqp"/>
+                            <constraint firstAttribute="trailing" secondItem="ftw-zB-jId" secondAttribute="trailing" constant="10" id="9ql-x7-GsM"/>
+                            <constraint firstItem="MJA-nv-8k7" firstAttribute="leading" secondItem="wVM-s8-TFJ" secondAttribute="leading" constant="10" id="DiN-F6-Rgs"/>
+                            <constraint firstAttribute="bottom" secondItem="h8r-IQ-wZO" secondAttribute="bottom" constant="70" id="L8c-Yw-bbb"/>
+                            <constraint firstItem="vcy-aQ-9Wz" firstAttribute="leading" secondItem="wVM-s8-TFJ" secondAttribute="leading" constant="10" id="Sdj-f5-T5F"/>
+                            <constraint firstItem="h8r-IQ-wZO" firstAttribute="leading" secondItem="wVM-s8-TFJ" secondAttribute="leading" constant="10" id="TpH-l8-gaD"/>
+                            <constraint firstAttribute="trailing" secondItem="MJA-nv-8k7" secondAttribute="trailing" constant="10" id="UgO-LX-uwG"/>
+                            <constraint firstItem="MJA-nv-8k7" firstAttribute="top" secondItem="ftw-zB-jId" secondAttribute="bottom" constant="10" id="ele-Yd-sqY"/>
+                            <constraint firstAttribute="trailing" secondItem="h8r-IQ-wZO" secondAttribute="trailing" constant="10" id="goC-EM-3V8"/>
+                            <constraint firstItem="vcy-aQ-9Wz" firstAttribute="top" secondItem="MJA-nv-8k7" secondAttribute="bottom" constant="10" id="kLw-U0-fCJ"/>
+                            <constraint firstItem="ftw-zB-jId" firstAttribute="leading" secondItem="wVM-s8-TFJ" secondAttribute="leading" constant="10" id="neu-d5-yr1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hi6-od-8e3"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Service" image="hamburger48" id="ozJ-aE-NN3"/>
+                    <connections>
+                        <segue destination="hem-iq-JKs" kind="unwind" identifier="logoutSegue" unwindAction="loginUnwindWithUnwindSegue:" id="fY4-Th-gK2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1fj-Ur-dz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="hem-iq-JKs" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-1703" y="789"/>
+        </scene>
         <!--Navigation 2-->
         <scene sceneID="TdI-s4-BES">
             <objects>
@@ -711,6 +800,7 @@
     <resources>
         <image name="friends48" width="48" height="48"/>
         <image name="groups48" width="48" height="48"/>
+        <image name="hamburger48" width="48" height="48"/>
         <image name="news48" width="48" height="48"/>
         <image name="vk" width="200" height="90"/>
     </resources>

@@ -141,7 +141,7 @@ func loadImageFromFile(_ imageUrl: URL) -> UIImage? {
     }
 }
 
-func clearCache() {
+func clearAppImageCache() {
     let dir = getCacheDir()
     guard let directory = dir else { return }
     do {
