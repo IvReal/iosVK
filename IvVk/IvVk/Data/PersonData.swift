@@ -33,7 +33,7 @@ class Person : Decodable {
         if let urlString = photoUrl,
             let url = URL(string: urlString)
         {
-            if let cachedImage = loadImageFromFile(url) {
+            if !Session.disableImageCache, let cachedImage = loadImageFromFile(url) {
                 self.foto = cachedImage
                 completion(cachedImage)  // photo has cached in file
             } else {
@@ -42,7 +42,7 @@ class Person : Decodable {
                         let image = UIImage(data: data)
                     {
                         self.foto = image
-                        saveImageToFile(image, url)  // cache image to file
+                        if !Session.disableImageCache { saveImageToFile(image, url) }  // cache image to file
                         completion(image)  // photo loaded from server
                     }
                 }

@@ -27,14 +27,14 @@ class Group : Decodable, Equatable {
         if let urlString = photoUrl,
            let url = URL(string: urlString)
         {
-            if let cachedImage = loadImageFromFile(url) {
+            if !Session.disableImageCache, let cachedImage = loadImageFromFile(url) {
                 completion(cachedImage)  // photo has cached in file
             } else {
                 DispatchQueue.main.async {
                     if let data = try? Data(contentsOf: url),
                        let image = UIImage(data: data)
                     {
-                        saveImageToFile(image, url)  // cache image to file
+                        if !Session.disableImageCache { saveImageToFile(image, url) } // cache image to file
                         completion(image)  // photo loaded from server
                     }
                 }

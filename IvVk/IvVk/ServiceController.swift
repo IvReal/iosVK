@@ -7,43 +7,43 @@ import UIKit
 
 class ServiceController: UIViewController {
     
+    @IBOutlet weak var switchCache: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        switchCache.isOn = Session.disableImageCache
     }
     
     @IBAction func clearCache(_ sender: Any) {
-        showConfirmAlert("Service", "Do you want to clear application images cache?") { [weak self] result in
-            if result {
-                clearAppImageCache()
-                // TODO: check errors while cache clearing
-                self?.showAlert("Service", "Applicatioin images cache cleared")
-            }
+        showConfirmAlertOk("Service", "Do you want to clear application images cache?") {
+            clearAppImageCache()
+            // TODO: check errors while cache clearing
+            self.showAlert("Service", "Applicatioin images cache cleared")
         }
     }
     
     @IBAction func clearKeychains(_ sender: Any) {
-        showConfirmAlert("Service", "Do you want to clear application Keychain data?") { [weak self] result in
-            if result {
-                manageKeychains(isClear: true)
-                self?.showAlert("Service", "Applicatioin Keychains removed")
-            }
+        showConfirmAlertOk("Service", "Do you want to clear application Keychain data?") {
+            manageKeychains(isClear: true)
+            self.showAlert("Service", "Applicatioin Keychains removed")
         }
     }
     
     @IBAction func clearUserDefaults(_ sender: Any) {
-        showConfirmAlert("Service", "Do you want to clear application UserDafaults?") { [weak self] result in
-            if result {
-                //clearAppUserDefaults(isClear: true) // TODO
-                self?.showAlert("Service", "Applicatioin UserDefaults removed")
-            }
+        showConfirmAlertOk("Service", "Do you want to clear application UserDafaults?") {
+            clearAppUserDefaults()
+            self.showAlert("Service", "Applicatioin UserDefaults removed")
+        }
+    }
+    
+    @IBAction func signOut(_ sender: Any) {
+        showConfirmAlertOk("Logout", "Are you sure to sign out?") {
+            self.performSegue(withIdentifier: "logoutSegue", sender: self)
         }
     }
 
-    @IBAction func signOut(_ sender: Any) {
-        showConfirmAlert("Logout", "Are you sure to sign out?") { [weak self] result in
-            if result {
-                self?.performSegue(withIdentifier: "logoutSegue", sender: self)
-            }
-        }
+    @IBAction func allowCache(_ sender: Any) {
+        Session.disableImageCache = switchCache.isOn
+        UserDefaults.standard.set(Session.disableImageCache, forKey: keyDisableCache)
     }
 }

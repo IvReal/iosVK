@@ -14,7 +14,7 @@ class Session {
     static let instance = Session()
     static let vkAPI = "5.95"
     static let vkClientId = "6964606"
-    static let allowImageCaching = false
+    static var disableImageCache = false
 
     private init() {}
     
@@ -55,3 +55,11 @@ func manageKeychains(isClear: Bool) {
         KeychainWrapper.standard.set(Session.instance.userId, forKey: keyUid)
     }
 }
+
+let keyDisableCache = "udNoCache"
+
+func clearAppUserDefaults() {
+    UserDefaults.standard.removeObject(forKey: keyDisableCache)
+    UserDefaults.standard.removeObject(forKey: "udCache")
+}
+

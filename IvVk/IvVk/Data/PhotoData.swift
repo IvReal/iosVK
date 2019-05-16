@@ -25,14 +25,14 @@ class Photo : Decodable {
             let urlString = urlObject.url,
             let url = URL(string: urlString)
         {
-            if Session.allowImageCaching, let cachedImage = loadImageFromFile(url) {
+            if !Session.disableImageCache, let cachedImage = loadImageFromFile(url) {
                 completion(cachedImage)  // cache allowed and photo has cached in file
             } else {
                 DispatchQueue.main.async {
                     if let data = try? Data(contentsOf: url),
                         let image = UIImage(data: data)
                     {
-                        if Session.allowImageCaching { saveImageToFile(image, url) }  // cache image to file
+                        if !Session.disableImageCache { saveImageToFile(image, url) }  // cache image to file
                         completion(image)  // photo loaded from server
                     }
                 }
