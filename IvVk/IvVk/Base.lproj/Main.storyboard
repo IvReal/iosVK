@@ -786,7 +786,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hi6-od-8e3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Service" image="hamburger48" id="ozJ-aE-NN3"/>
+                    <tabBarItem key="tabBarItem" title="Service" image="settings32" id="ozJ-aE-NN3"/>
                     <connections>
                         <outlet property="switchCache" destination="IYa-2q-bps" id="s0g-hc-oHn"/>
                         <segue destination="hem-iq-JKs" kind="unwind" identifier="logoutSegue" unwindAction="loginUnwindWithUnwindSegue:" id="fY4-Th-gK2"/>
@@ -818,8 +818,8 @@
     <resources>
         <image name="friends48" width="48" height="48"/>
         <image name="groups48" width="48" height="48"/>
-        <image name="hamburger48" width="48" height="48"/>
         <image name="news48" width="48" height="48"/>
+        <image name="settings32" width="32" height="32"/>
         <image name="vk" width="200" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
