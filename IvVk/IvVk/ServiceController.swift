@@ -16,9 +16,8 @@ class ServiceController: UIViewController {
     
     @IBAction func clearCache(_ sender: Any) {
         showConfirmAlertOk("Service", "Do you want to clear application images cache?") {
-            clearAppImageCache()
-            // TODO: check errors while cache clearing
-            self.showAlert("Service", "Applicatioin images cache cleared")
+            let res = clearAppImageCache()
+            self.showAlert("Service", res ? "Applicatioin images cache cleared successfully" : "Error occured while clearing application image cache")
         }
     }
     

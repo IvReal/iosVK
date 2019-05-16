@@ -74,11 +74,7 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as! FriendsCell
         let friend = groupedFriends[indexPath.section].persons[indexPath.row]
-        cell.nameFriend.text = friend.name
-        //cell.fotoFriend.image = friend.foto
-        friend.getFoto { image in
-            cell.fotoFriend.image = image
-        }
+        cell.loadCell(friend: friend)
         return cell
     }
     

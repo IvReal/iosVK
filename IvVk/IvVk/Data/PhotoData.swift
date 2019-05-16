@@ -141,9 +141,10 @@ func loadImageFromFile(_ imageUrl: URL) -> UIImage? {
     }
 }
 
-func clearAppImageCache() {
+func clearAppImageCache() -> Bool {
+    var res = true
     let dir = getCacheDir()
-    guard let directory = dir else { return }
+    guard let directory = dir else { return res }
     do {
         var filePaths = try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil, options: [])
         filePaths = filePaths.filter { !$0.hasDirectoryPath }
@@ -151,6 +152,8 @@ func clearAppImageCache() {
             try FileManager.default.removeItem(atPath: filePath.path)
         }
     } catch {
+        res = false
         print("Could not clear folder: \(error)")
     }
+    return res
 }

@@ -31,7 +31,7 @@ class Person : Decodable {
             return
         }
         if let urlString = photoUrl,
-            let url = URL(string: urlString)
+           let url = URL(string: urlString)
         {
             if !Session.disableImageCache, let cachedImage = loadImageFromFile(url) {
                 self.foto = cachedImage
@@ -39,7 +39,7 @@ class Person : Decodable {
             } else {
                 DispatchQueue.main.async {
                     if let data = try? Data(contentsOf: url),
-                        let image = UIImage(data: data)
+                       let image = UIImage(data: data)
                     {
                         self.foto = image
                         if !Session.disableImageCache { saveImageToFile(image, url) }  // cache image to file
