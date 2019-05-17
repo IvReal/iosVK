@@ -30,26 +30,12 @@ class Person : Decodable {
             completion(foto) // photo already loaded and stored in object
             return
         }
-        if let urlString = photoUrl,
-           let url = URL(string: urlString)
-        {
-            if !Session.disableImageCache, let cachedImage = loadImageFromFile(url) {
-                self.foto = cachedImage
-                completion(cachedImage)  // photo has cached in file
-            } else {
-                DispatchQueue.main.async {
-                    if let data = try? Data(contentsOf: url),
-                       let image = UIImage(data: data)
-                    {
-                        self.foto = image
-                        if !Session.disableImageCache { saveImageToFile(image, url) }  // cache image to file
-                        completion(image)  // photo loaded from server
-                    }
-                }
-            }
+        getImage(urlString: photoUrl) { image in
+            self.foto = image
+            completion(image)
         }
     }
-    
+
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try? container.decode(Int.self, forKey: .id)

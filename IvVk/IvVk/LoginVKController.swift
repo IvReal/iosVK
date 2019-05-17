@@ -25,7 +25,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         Session.disableImageCache = UserDefaults.standard.bool(forKey: keyDisableCache)
-        logoutVK() // clear webView cache
+        clearWebViewCache()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,11 +36,11 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     // ---------- logout ----------
     
     private func logout() {
-        logoutVK()
-        manageKeychains(isClear: true)
+        clearWebViewCache()
+        clearAppKeychains()
     }
 
-    private func logoutVK() {
+    private func clearWebViewCache() {
         let dataStore = WKWebsiteDataStore.default()
         dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
             dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
@@ -97,7 +97,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         }
         decisionHandler(.cancel)
         saveSessionParams(token: params["access_token"] ?? "", uid: Int(params["user_id"] ?? "0") ?? 0)
-        manageKeychains(isClear: false)
+        setAppKeychains()
         checkTokenValid()
     }
     

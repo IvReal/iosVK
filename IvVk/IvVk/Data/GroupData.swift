@@ -24,22 +24,7 @@ class Group : Decodable, Equatable {
     }
     
     func getFoto(completion: @escaping (UIImage?) -> Void ) {
-        if let urlString = photoUrl,
-           let url = URL(string: urlString)
-        {
-            if !Session.disableImageCache, let cachedImage = loadImageFromFile(url) {
-                completion(cachedImage)  // photo has cached in file
-            } else {
-                DispatchQueue.main.async {
-                    if let data = try? Data(contentsOf: url),
-                       let image = UIImage(data: data)
-                    {
-                        if !Session.disableImageCache { saveImageToFile(image, url) } // cache image to file
-                        completion(image)  // photo loaded from server
-                    }
-                }
-            }
-        }
+        getImage(urlString: photoUrl, completion: completion)
     }
 }
 

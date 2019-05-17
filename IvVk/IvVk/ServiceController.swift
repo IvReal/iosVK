@@ -23,7 +23,7 @@ class ServiceController: UIViewController {
     
     @IBAction func clearKeychains(_ sender: Any) {
         showConfirmAlertOk("Service", "Do you want to clear application Keychain data?") {
-            manageKeychains(isClear: true)
+            clearAppKeychains()
             self.showAlert("Service", "Applicatioin Keychains removed")
         }
     }

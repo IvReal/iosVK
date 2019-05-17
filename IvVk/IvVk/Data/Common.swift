@@ -43,23 +43,39 @@ class Session {
     var userId: Int = 0
 }
 
+func getImage(urlString: String?, completion: @escaping (UIImage?) -> Void ) {
+    if let urlStr = urlString, let url = URL(string: urlStr) {
+        if !Session.disableImageCache, let cachedImage = loadImageFromFile(url) {
+            completion(cachedImage)  // photo has cached in file
+        } else {
+            DispatchQueue.global(qos: .background).async {
+                if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                    if !Session.disableImageCache { saveImageToFile(image, url) }  // cache image to file
+                    DispatchQueue.main.async {
+                        completion(image)  // photo loaded from server
+                    }
+                }
+            }
+        }
+    }
+}
+
 let keyToken = "vkToken"
 let keyUid = "vkUserId"
 
-func manageKeychains(isClear: Bool) {
-    if isClear {
-        KeychainWrapper.standard.removeObject(forKey: keyToken)
-        KeychainWrapper.standard.removeObject(forKey: keyUid)
-    } else {
-        KeychainWrapper.standard.set(Session.instance.token, forKey: keyToken)
-        KeychainWrapper.standard.set(Session.instance.userId, forKey: keyUid)
-    }
+func setAppKeychains() {
+    KeychainWrapper.standard.set(Session.instance.token, forKey: keyToken)
+    KeychainWrapper.standard.set(Session.instance.userId, forKey: keyUid)
+}
+
+func clearAppKeychains() {
+    KeychainWrapper.standard.removeObject(forKey: keyToken)
+    KeychainWrapper.standard.removeObject(forKey: keyUid)
 }
 
 let keyDisableCache = "udNoCache"
 
 func clearAppUserDefaults() {
     UserDefaults.standard.removeObject(forKey: keyDisableCache)
-    UserDefaults.standard.removeObject(forKey: "udCache")
 }
 
