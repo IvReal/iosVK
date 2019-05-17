@@ -30,8 +30,8 @@ class Person : Decodable {
             completion(foto) // photo already loaded and stored in object
             return
         }
-        getImage(urlString: photoUrl) { image in
-            self.foto = image
+        getImage(urlString: photoUrl) { [weak self] image in
+            self?.foto = image
             completion(image)
         }
     }

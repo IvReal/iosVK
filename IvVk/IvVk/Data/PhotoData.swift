@@ -106,7 +106,6 @@ func saveImageToFile(_ image: UIImage, _ imageUrl: URL) {
     guard let imgdata = data else { return }
     do {
         try imgdata.write(to: path)
-        //print("File saved successfully")
     } catch {
         print("Error occured while file saving: \(error)")
     }
@@ -119,7 +118,6 @@ func loadImageFromFile(_ imageUrl: URL) -> UIImage? {
     if !FileManager.default.fileExists(atPath: path.path) { return nil }
     do {
         let imageData = try Data(contentsOf: path)
-        //print("File loaded successfully")
         return UIImage(data: imageData)
     } catch {
         print("Error occured while file loading: \(error)")
