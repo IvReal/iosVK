@@ -9,19 +9,17 @@ class FriendsCell: UITableViewCell {
 
     @IBOutlet weak var nameFriend: UILabel!
     @IBOutlet weak var fotoFriend: RoundImageView!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
     
     override func prepareForReuse() {
         nameFriend.text = nil
         fotoFriend.image = nil
+    }
+    
+    func loadCell(friend: Person) {
+        nameFriend.text = friend.name
+        friend.getFoto { [weak self] image in
+            self?.fotoFriend.image = image
+        }
     }
 
 }

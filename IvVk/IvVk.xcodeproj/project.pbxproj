@@ -22,7 +22,7 @@
 		AA5559502232D71600C1A86C /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55594F2232D71600C1A86C /* FriendsCell.swift */; };
 		AA570456223D7973003F2E3F /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA570455223D7973003F2E3F /* FakeData.swift */; };
 		AA570458223D8DD3003F2E3F /* FriendsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA570457223D8DD3003F2E3F /* FriendsHeader.swift */; };
-		AA90145322735A7A009C558B /* RealData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90145222735A7A009C558B /* RealData.swift */; };
+		AA90145322735A7A009C558B /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90145222735A7A009C558B /* Common.swift */; };
 		AA90145522774BAF009C558B /* LoginVKController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90145422774BAF009C558B /* LoginVKController.swift */; };
 		AA9014582277521E009C558B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9014572277521D009C558B /* WebKit.framework */; };
 		AA9729D52232DCE500C24885 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9729D42232DCE500C24885 /* FriendCell.swift */; };
@@ -32,6 +32,10 @@
 		AA9729E2223BCC1500C24885 /* AllGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9729E1223BCC1500C24885 /* AllGroupsVC.swift */; };
 		AA9729E4223BE75D00C24885 /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9729E3223BE75D00C24885 /* FriendVC.swift */; };
 		AA9729E6223C06A900C24885 /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9729E5223C06A900C24885 /* FriendsVC.swift */; };
+		AABE9960228B3865008B4923 /* PersonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABE995F228B3865008B4923 /* PersonData.swift */; };
+		AABE9962228B38A6008B4923 /* PhotoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABE9961228B38A6008B4923 /* PhotoData.swift */; };
+		AABE9964228B38D2008B4923 /* GroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABE9963228B38D2008B4923 /* GroupData.swift */; };
+		AABE9966228CA4E5008B4923 /* ServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABE9965228CA4E5008B4923 /* ServiceController.swift */; };
 		AAD4EF32223E50CE0061F2F4 /* FriendsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4EF31223E50CE0061F2F4 /* FriendsHeader.xib */; };
 		AAFDA35E223FFB3300606D34 /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDA35D223FFB3300606D34 /* NewsVC.swift */; };
 		AAFDA360223FFDA200606D34 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFDA35F223FFDA200606D34 /* NewsCell.swift */; };
@@ -58,7 +62,7 @@
 		AA55594F2232D71600C1A86C /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		AA570455223D7973003F2E3F /* FakeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
 		AA570457223D8DD3003F2E3F /* FriendsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsHeader.swift; sourceTree = "<group>"; };
-		AA90145222735A7A009C558B /* RealData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealData.swift; sourceTree = "<group>"; };
+		AA90145222735A7A009C558B /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		AA90145422774BAF009C558B /* LoginVKController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVKController.swift; sourceTree = "<group>"; };
 		AA9014572277521D009C558B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		AA9729D42232DCE500C24885 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
@@ -68,6 +72,10 @@
 		AA9729E1223BCC1500C24885 /* AllGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsVC.swift; sourceTree = "<group>"; };
 		AA9729E3223BE75D00C24885 /* FriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
 		AA9729E5223C06A900C24885 /* FriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
+		AABE995F228B3865008B4923 /* PersonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonData.swift; sourceTree = "<group>"; };
+		AABE9961228B38A6008B4923 /* PhotoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoData.swift; sourceTree = "<group>"; };
+		AABE9963228B38D2008B4923 /* GroupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupData.swift; sourceTree = "<group>"; };
+		AABE9965228CA4E5008B4923 /* ServiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceController.swift; sourceTree = "<group>"; };
 		AAD4EF31223E50CE0061F2F4 /* FriendsHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsHeader.xib; sourceTree = "<group>"; };
 		AAFDA35D223FFB3300606D34 /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		AAFDA35F223FFDA200606D34 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -95,7 +103,6 @@
 				551F4F0F4B4CAEB7F1A8C415 /* Pods-IvVk.debug.xcconfig */,
 				E7178ADF24CE525849D540E6 /* Pods-IvVk.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -132,6 +139,7 @@
 				AA55593A222816B900C1A86C /* Info.plist */,
 				AA555940222824E100C1A86C /* LoginFormController.swift */,
 				AA90145422774BAF009C558B /* LoginVKController.swift */,
+				AABE9965228CA4E5008B4923 /* ServiceController.swift */,
 			);
 			path = IvVk;
 			sourceTree = "<group>";
@@ -167,7 +175,10 @@
 			isa = PBXGroup;
 			children = (
 				AA570455223D7973003F2E3F /* FakeData.swift */,
-				AA90145222735A7A009C558B /* RealData.swift */,
+				AA90145222735A7A009C558B /* Common.swift */,
+				AABE995F228B3865008B4923 /* PersonData.swift */,
+				AABE9961228B38A6008B4923 /* PhotoData.swift */,
+				AABE9963228B38D2008B4923 /* GroupData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -336,19 +347,23 @@
 				AA570458223D8DD3003F2E3F /* FriendsHeader.swift in Sources */,
 				AA90145522774BAF009C558B /* LoginVKController.swift in Sources */,
 				AA02DFC5224E5155003FC1B0 /* GroupsNC.swift in Sources */,
+				AABE9964228B38D2008B4923 /* GroupData.swift in Sources */,
 				AA9729E0223BCBF200C24885 /* MyGroupsVC.swift in Sources */,
-				AA90145322735A7A009C558B /* RealData.swift in Sources */,
+				AA90145322735A7A009C558B /* Common.swift in Sources */,
+				AABE9962228B38A6008B4923 /* PhotoData.swift in Sources */,
 				AA5559482232BD1000C1A86C /* AllGroupsCell.swift in Sources */,
 				AA9729E4223BE75D00C24885 /* FriendVC.swift in Sources */,
 				AAFDA3622242954000606D34 /* Functions.swift in Sources */,
 				AA55594C2232C5B000C1A86C /* MyGroupsCell.swift in Sources */,
 				AA5559502232D71600C1A86C /* FriendsCell.swift in Sources */,
+				AABE9966228CA4E5008B4923 /* ServiceController.swift in Sources */,
 				AAFDA360223FFDA200606D34 /* NewsCell.swift in Sources */,
 				AAFDA35E223FFB3300606D34 /* NewsVC.swift in Sources */,
 				AA02DFC3224D5D20003FC1B0 /* FriendsNC.swift in Sources */,
 				AAFDA3642242DDF000606D34 /* LoadingControl.swift in Sources */,
 				AA5370CC22482598006A6D7F /* Friend2VC.swift in Sources */,
 				AA9729E6223C06A900C24885 /* FriendsVC.swift in Sources */,
+				AABE9960228B3865008B4923 /* PersonData.swift in Sources */,
 				AA9729D52232DCE500C24885 /* FriendCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

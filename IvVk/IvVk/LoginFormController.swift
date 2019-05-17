@@ -57,7 +57,7 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
         // Sign In: assume that authorization is success then login and password are not empty...
         if let login = loginInput.text, let password = passwordInput.text {
             if login.isEmpty || password.isEmpty {
-                ShowAlert("Authorization", "Valid login and password required")
+                showAlert("Authorization", "Valid login and password required")
             } else {
                 //let session = Session.instance
                 //session.login = login
@@ -102,9 +102,9 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     }
     
     // unwind action
-    @IBAction func loginUnwind(unwindSegue: UIStoryboardSegue) {
+    /*@IBAction func loginUnwind(unwindSegue: UIStoryboardSegue) {
         loginInput.text = nil
         passwordInput.text = nil
         Session.instance.clear()
-    }
+    }*/
 }

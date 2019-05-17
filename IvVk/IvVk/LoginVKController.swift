@@ -10,8 +10,6 @@ import SwiftKeychainWrapper
 class LoginVKController: UIViewController, WKNavigationDelegate {
 
     private let segSuccessLogin = "successVKLoginSegue"
-    private let keyToken = "vkToken"
-    private let keyUid = "vkUserId"
 
     @IBOutlet weak var webView: WKWebView! {
         didSet{
@@ -19,17 +17,45 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         }
     }
     
+    // unwind logout action
+    @IBAction func loginUnwind(unwindSegue: UIStoryboardSegue) {
+        logout()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        logoutVK()
-        //manageKeychains(isClear: true)
-        clearCache()
+        Session.disableImageCache = UserDefaults.standard.bool(forKey: keyDisableCache)
+        logoutVK() // clear webView cache
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        login()
+    }
+    
+    // ---------- logout ----------
+    
+    private func logout() {
+        logoutVK()
+        manageKeychains(isClear: true)
+    }
+
+    private func logoutVK() {
+        let dataStore = WKWebsiteDataStore.default()
+        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
+                                 for: records.filter { $0.displayName.contains("vk") },
+                                 completionHandler: {  })
+        }
+    }
+    
+    // ---------- login ----------
+    
+    private func login() {
         if let token = KeychainWrapper.standard.string(forKey: keyToken),
            let uid = KeychainWrapper.standard.integer(forKey: keyUid)
         {
+            // if token exists in keychains, try to work with it
             print("Token and UserId loaded from keychain")
             saveSessionParams(token: token, uid: uid)
             checkTokenValid()
@@ -81,11 +107,10 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
             user = person
             if user != nil {
                 Session.instance.fio = user!.name
-                self.testUserDefaults()
                 self.performSegue(withIdentifier: self.segSuccessLogin, sender: self)
             } else {
-                self.manageKeychains(isClear: true)
-                // TODO: show failed authorization message
+                self.logout()
+                self.login()
             }
         })
     }
@@ -96,32 +121,5 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
             session.token = token
             session.userId = uid
         }
-    }
-    
-    private func manageKeychains(isClear: Bool) {
-        if isClear {
-            KeychainWrapper.standard.removeObject(forKey: keyToken)
-            KeychainWrapper.standard.removeObject(forKey: keyUid)
-        } else {
-            KeychainWrapper.standard.set(Session.instance.token, forKey: keyToken)
-            KeychainWrapper.standard.set(Session.instance.userId, forKey: keyUid)
-        }
-    }
-    
-    private func logoutVK() {
-        let dataStore = WKWebsiteDataStore.default()
-        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
-            dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
-                                 for: records.filter { $0.displayName.contains("vk") },
-                                 completionHandler: {  })
-        }
-    }
-    
-    // test userdefaults
-    private func testUserDefaults() {
-        let key = "uid"
-        UserDefaults.standard.set(Session.instance.fio, forKey: key)
-        let uid = UserDefaults.standard.string(forKey: key) ?? ""
-        print("Saved in UserDefaults UserId is \(uid)")
     }
 }
