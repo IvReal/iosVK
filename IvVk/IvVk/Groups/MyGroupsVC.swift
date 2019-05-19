@@ -12,10 +12,14 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadGroupsList(user: Session.instance.userId) { list in
+        // load from server
+        /* loadGroupsList(user: Session.instance.userId) { list in
             myGroups = list
             self.tableView.reloadData()
-        }
+        } */
+        
+        // load from db
+        loadUserGroupsFromDb()
     }
     
     // MARK: - Table view data source
@@ -47,24 +51,16 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // Support editing the table view.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            myGroups.remove(at: indexPath.row)
-            tableView.reloadData()
+            if removeUserGroupFromDb(myGroups[indexPath.row]) {
+                myGroups.remove(at: indexPath.row)
+                tableView.reloadData()
+            }
             // Delete the row from the data source
             //tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         if segue.identifier == "AddGroup" {
@@ -76,10 +72,12 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 let group = allGroups[indexPath.row]
                 // add group to target
                 if !myGroups.contains(group) {
-                    myGroups.append(group)
+                    if addUserGroupToDb(group) {
+                        myGroups.append(group)
+                        // refresh table
+                        tableView.reloadData()
+                    }
                 }
-                // refresh table
-                tableView.reloadData()
             }
         }
     }

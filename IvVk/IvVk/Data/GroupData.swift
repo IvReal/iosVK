@@ -4,19 +4,21 @@
 //  Copyright © 2019 Iv. All rights reserved.
 
 import Alamofire
+import RealmSwift
 
 var myGroups: [Group] = []
 var allGroups: [Group] = []
 
-class Group : Decodable, Equatable {
-    static func == (lhs: Group, rhs: Group) -> Bool {
-        return lhs.id == rhs.id
+class Group : Object, Decodable {
+    
+    @objc dynamic var id: Int
+    @objc dynamic var name: String?
+    @objc dynamic var photoUrl: String?
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
-    
-    var id: Int?
-    var name: String?
-    var photoUrl: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -25,6 +27,17 @@ class Group : Decodable, Equatable {
     
     func getFoto(completion: @escaping (UIImage?) -> Void ) {
         getImage(urlString: photoUrl, completion: completion)
+    }
+    
+    /* standard Equatable
+     static func == (lhs: Group, rhs: Group) -> Bool {
+        return lhs.id == rhs.id
+     } */
+    override func isEqual(_ object: Any?) -> Bool {
+        if let obj = object as? Group {
+            return obj.id == self.id
+        }
+        return false
     }
 }
 
@@ -45,6 +58,8 @@ class GroupsList : Decodable {
         self.items = try itemsContainer.decode([Group].self, forKey: .items)
     }
 }
+
+// ---------- manage groups on server
 
 // load user groups
 func loadGroupsList(user: Int, completion: @escaping ([Group]) -> Void ) {
@@ -69,4 +84,43 @@ func searchGroupsList(searchString: String, completion: @escaping ([Group]) -> V
         }
     }
 }
+
+// ---------- manage groups in db
+
+func loadUserGroupsFromDb() {
+    do {
+        let realm = try Realm()
+        myGroups = Array(realm.objects(Group.self))
+    } catch {
+        print(error)
+    }
+}
+
+func addUserGroupToDb(_ group: Group) -> Bool {
+    do {
+        let realm = try Realm()
+        realm.beginWrite()
+        realm.add(group)
+        try realm.commitWrite()
+        return true
+    } catch {
+        print(error)
+        return false
+    }
+}
+
+func removeUserGroupFromDb(_ group: Group) -> Bool {
+    do {
+        let realm = try Realm()
+        realm.beginWrite()
+        realm.delete(group)
+        try realm.commitWrite()
+        return true
+    } catch {
+        print(error)
+        return false
+    }
+}
+
+
 

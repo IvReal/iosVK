@@ -79,7 +79,7 @@ class PhotosList : Decodable {
 
 // load user photos
 func loadPhotosList(owner: Int, completion: @escaping ([Photo]) -> Void ) {
-    let pars = Session.instance.getParams(["owner_id": String(owner), "count": "10"])
+    let pars = Session.instance.getParams(["owner_id": String(owner), "count": "20"])
     Alamofire.request("https://api.vk.com/method/photos.getAll", parameters: pars).responseData { repsonse in
         var res: [Photo] = []
         if let data = repsonse.value {

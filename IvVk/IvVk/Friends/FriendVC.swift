@@ -9,40 +9,42 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
 
     @IBOutlet weak var collView: UICollectionView!
     
-    public var selectedFriend: Person?
-    public var selectedFriends: [Person] = []
+    var images: [Photo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collView.isPagingEnabled = true
     }    
+    
+    func loadUserPhotos(userId: Int) {
+        images = []
+        loadPhotosList(owner: userId) { photos in
+            self.images = photos
+            self.collView.reloadData()
+        }
+    }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return 1
-        return selectedFriends.count
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendCell", for: indexPath) as! FriendCell
-        /*if let sf = selectedFriend {
-            cell.nameFriend.text = sf.name
-            cell.fotoFriend.image = sf.foto
-        }*/
-        cell.nameFriend.text = selectedFriends[indexPath.row].name
-        cell.fotoFriend.image = selectedFriends[indexPath.row].foto
+        let photo = images[indexPath.row]
+        cell.loadCell(photo: photo)
         return cell
     }
     
     // Adjust collection view cell size
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height
         let width  = collectionView.frame.width
         return CGSize(width: width, height: height)
-    }
+    }*/
 
     /*
     // MARK: - Navigation
