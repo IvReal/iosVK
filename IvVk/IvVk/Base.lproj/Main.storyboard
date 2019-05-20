@@ -242,7 +242,6 @@
                         <outlet property="searchBar" destination="eS5-zM-NXO" id="pxt-f2-U5f"/>
                         <outlet property="tableView" destination="aDS-j2-gAq" id="Ng3-Bm-fd7"/>
                         <segue destination="ag6-OD-gLW" kind="show" identifier="showFriend" id="nnm-LR-nl2"/>
-                        <segue destination="OpG-Z6-MUK" kind="show" identifier="showFriend2" id="HQw-ue-mb6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ydf-j5-NJA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -515,18 +514,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiC-q9-gzs">
-                                <rect key="frame" x="166.5" y="74" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiC-q9-gzs">
+                                <rect key="frame" x="10" y="74" width="355" height="20.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.66847425699234009" green="0.92187327146530151" blue="0.62095803022384644" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WHI-zo-9cE" firstAttribute="top" secondItem="ORT-ua-5pA" secondAttribute="top" id="3d1-XF-oPd"/>
+                            <constraint firstItem="yiC-q9-gzs" firstAttribute="leading" secondItem="ORT-ua-5pA" secondAttribute="leading" constant="10" id="4DG-hc-5Bi"/>
+                            <constraint firstAttribute="trailing" secondItem="yiC-q9-gzs" secondAttribute="trailing" constant="10" id="DKe-P4-enx"/>
                             <constraint firstAttribute="bottom" secondItem="WHI-zo-9cE" secondAttribute="bottom" id="QZV-Ng-TYZ"/>
-                            <constraint firstItem="yiC-q9-gzs" firstAttribute="top" secondItem="BVx-Vm-5cT" secondAttribute="top" constant="10" id="Sua-Zc-nUQ"/>
+                            <constraint firstItem="yiC-q9-gzs" firstAttribute="top" secondItem="WHI-zo-9cE" secondAttribute="top" constant="74" id="Sua-Zc-nUQ"/>
                             <constraint firstAttribute="trailing" secondItem="WHI-zo-9cE" secondAttribute="trailing" id="djI-Jb-tBy"/>
                             <constraint firstItem="WHI-zo-9cE" firstAttribute="leading" secondItem="ORT-ua-5pA" secondAttribute="leading" id="o3z-Ra-9g2"/>
                             <constraint firstItem="yiC-q9-gzs" firstAttribute="centerX" secondItem="ORT-ua-5pA" secondAttribute="centerX" id="rrt-Dc-YmF"/>
@@ -541,7 +543,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dqy-kM-m7r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="841" y="-1430"/>
+            <point key="canvasLocation" x="1577" y="-744"/>
         </scene>
         <!--My Friend-->
         <scene sceneID="RzO-1z-rAg">
@@ -603,6 +605,7 @@
                     </view>
                     <connections>
                         <outlet property="collView" destination="Pgm-TD-7IB" id="rPB-Sg-yMc"/>
+                        <segue destination="OpG-Z6-MUK" kind="show" identifier="showFriend2" id="ZW9-3m-gnf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HOb-zO-Hou" userLabel="First Responder" sceneMemberID="firstResponder"/>

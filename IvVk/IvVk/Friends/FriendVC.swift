@@ -10,14 +10,16 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     @IBOutlet weak var collView: UICollectionView!
     
     var images: [Photo] = []
+    var index: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collView.isPagingEnabled = true
     }    
     
-    func loadUserPhotos(userId: Int) {
+    func loadUserPhotos(userId: Int, userName: String?) {
         images = []
+        self.title = userName
         loadPhotosList(owner: userId) { photos in
             self.images = photos
             self.collView.reloadData()
@@ -46,14 +48,19 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         return CGSize(width: width, height: height)
     }*/
 
-    /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if let fc2 = segue.destination as? Friend2VC {
+            fc2.assignImages(images, index)
+        }
     }
-    */
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        index = indexPath.row
+        performSegue(withIdentifier: "showFriend2", sender: nil)
+    }
 }

@@ -10,17 +10,12 @@ class Friend2VC: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageLabel: UILabel!
     
-    //var images: [UIImage] = []
     var images: [Photo] = []
-    var indexCurrent = 0
+    var indexCurrent = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //imageView.image = images.count > 0 ? images[0] : nil
-        //imageLabel.text = getCurrentImageLabel()
-        imageLabel.text = ""
-
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
@@ -29,7 +24,17 @@ class Friend2VC: UIViewController {
         self.view.addGestureRecognizer(swipeLeft)
     }
     
-    func loadUserPhotos(userId: Int) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshImage()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        indexCurrent = -1
+    }
+    
+    /*func loadUserPhotos(userId: Int) {
         images = []
         loadPhotosList(owner: userId) { photos in
             self.images = photos
@@ -40,6 +45,22 @@ class Friend2VC: UIViewController {
                 }
             }
             self.imageLabel.text = self.getCurrentImageLabel()
+        }
+    }*/
+    
+    func assignImages(_ images: [Photo], _ index: Int) {
+        self.images = images
+        indexCurrent = index
+        refreshImage()
+    }
+    
+    func refreshImage() {
+        if imageView != nil && indexCurrent >= 0 {
+            imageLabel.text = getCurrentImageLabel()
+            self.title = getTitle()
+            images[indexCurrent].getFoto { photo in
+                self.imageView.image = photo
+            }
         }
     }
 
@@ -61,11 +82,10 @@ class Friend2VC: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.imageView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         }, completion: { _ in
-            //self.imageView.image = self.images[self.indexCurrent]
-            //self.imageLabel.text = self.getCurrentImageLabel()
             self.images[self.indexCurrent].getFoto { photo in
                 self.imageView.image = photo
                 self.imageLabel.text = self.getCurrentImageLabel()
+                self.title = self.getTitle()
                 
                 self.imageView.transform = .identity
                 
@@ -85,17 +105,15 @@ class Friend2VC: UIViewController {
     }
     
     func getCurrentImageLabel() -> String {
-        return images.count > 0 ? "image \(indexCurrent + 1) of \(images.count)" : "No images"
+        if images.count == 0 || indexCurrent < 0  {
+            return ""
+        } else {
+            return images[indexCurrent].text ?? ""
+        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func getTitle() -> String {
+        return "Photo \(indexCurrent + 1) of \(images.count)"
     }
-    */
 
 }

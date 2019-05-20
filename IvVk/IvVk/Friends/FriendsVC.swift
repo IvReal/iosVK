@@ -95,15 +95,15 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         if let fc = segue.destination as? FriendVC {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let p = groupedFriends[indexPath.section].persons[indexPath.row]
-                fc.loadUserPhotos(userId: p.id ?? 0)
+                fc.loadUserPhotos(userId: p.id ?? 0, userName: p.firstName)
             }
         }
-        if let fc2 = segue.destination as? Friend2VC {
+        /*if let fc2 = segue.destination as? Friend2VC {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let p = groupedFriends[indexPath.section].persons[indexPath.row]
                 fc2.loadUserPhotos(userId: p.id ?? 0)
             }
-        }
+        }*/
     }
     
     // Perform manual segue "showFriend" on select row
