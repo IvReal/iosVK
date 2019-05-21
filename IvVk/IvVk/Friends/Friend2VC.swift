@@ -34,20 +34,6 @@ class Friend2VC: UIViewController {
         indexCurrent = -1
     }
     
-    /*func loadUserPhotos(userId: Int) {
-        images = []
-        loadPhotosList(owner: userId) { photos in
-            self.images = photos
-            if self.images.count > 0 {
-                self.images[0].getFoto { photo in
-                    self.imageView.image = photo
-                    self.imageLabel.text = self.getCurrentImageLabel()
-                }
-            }
-            self.imageLabel.text = self.getCurrentImageLabel()
-        }
-    }*/
-    
     func assignImages(_ images: [Photo], _ index: Int) {
         self.images = images
         indexCurrent = index
@@ -58,8 +44,8 @@ class Friend2VC: UIViewController {
         if imageView != nil && indexCurrent >= 0 {
             imageLabel.text = getCurrentImageLabel()
             self.title = getTitle()
-            images[indexCurrent].getFoto { photo in
-                self.imageView.image = photo
+            images[indexCurrent].getFoto { [weak self] photo in
+                self?.imageView.image = photo
             }
         }
     }
@@ -82,12 +68,12 @@ class Friend2VC: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             self.imageView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         }, completion: { _ in
-            self.images[self.indexCurrent].getFoto { photo in
-                self.imageView.image = photo
-                self.imageLabel.text = self.getCurrentImageLabel()
-                self.title = self.getTitle()
+            self.images[self.indexCurrent].getFoto { [weak self] photo in
+                self?.imageView.image = photo
+                self?.imageLabel.text = self?.getCurrentImageLabel()
+                self?.title = self?.getTitle()
                 
-                self.imageView.transform = .identity
+                self?.imageView.transform = .identity
                 
                 let tr1 = CATransition()
                 tr1.duration = 0.5
@@ -98,8 +84,8 @@ class Friend2VC: UIViewController {
                 tr2.duration = 0.5
                 tr2.type = CATransitionType.fade
                 
-                self.imageView.layer.add(tr1, forKey: nil)
-                self.imageLabel.layer.add(tr2, forKey: nil)
+                self?.imageView.layer.add(tr1, forKey: nil)
+                self?.imageLabel.layer.add(tr2, forKey: nil)
             }
        })
     }
