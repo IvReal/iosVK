@@ -11,7 +11,7 @@ class News {
     var text: String
     var image: UIImage?
     var countLike: Int = 0
-    var userLike: Set<String> = []
+    var userLike: Set<Int> = []
     var countView: Int = 0
     
     init(author: String, date: Date, text: String, image: String, likes: Int) {
@@ -23,16 +23,14 @@ class News {
     }
     
     var isCurrentUserLiked: Bool {
-        if let cu = Session.instance.login {
-            return userLike.contains(cu)
-        }
-        return false
+        return userLike.contains(Session.instance.userId)
     }
     
     // return true if likes increased, false if likes decreased, nil if likes no changed
     func changeLike() -> Bool? {
         var res: Bool? = nil
-        if let cu = Session.instance.login {
+        let cu = Session.instance.userId
+        if  cu > 0 {
             if userLike.contains(cu) { // user already liked
                 countLike = countLike - 1
                 userLike.remove(cu)

@@ -7,7 +7,15 @@ import UIKit
 
 class FriendCell: UICollectionViewCell {
     
-    @IBOutlet weak var nameFriend: UILabel!
     @IBOutlet weak var fotoFriend: UIImageView!
     
+    override func prepareForReuse() {
+        fotoFriend.image = nil
+    }
+    
+    func loadCell(photo: Photo) {
+        photo.getFoto { [weak self] image in
+            self?.fotoFriend.image = image
+        }
+    }
 }

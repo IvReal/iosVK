@@ -95,30 +95,21 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         if let fc = segue.destination as? FriendVC {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let p = groupedFriends[indexPath.section].persons[indexPath.row]
-                fc.selectedFriend = p
-                fc.selectedFriends = []
-                if p.foto != nil {
-                    fc.selectedFriends.append(p)
-                }
-                for friend in friends {
-                    if friend.name != p.name, friend.foto != nil {
-                        fc.selectedFriends.append(friend)
-                    }
-                }
+                fc.loadUserPhotos(userId: p.id ?? 0, userName: p.firstName)
             }
         }
-        if let fc2 = segue.destination as? Friend2VC {
+        /*if let fc2 = segue.destination as? Friend2VC {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let p = groupedFriends[indexPath.section].persons[indexPath.row]
                 fc2.loadUserPhotos(userId: p.id ?? 0)
             }
-        }
+        }*/
     }
     
     // Perform manual segue "showFriend" on select row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //performSegue(withIdentifier: "showFriend", sender: nil)
-        performSegue(withIdentifier: "showFriend2", sender: nil)
+        performSegue(withIdentifier: "showFriend", sender: nil)
+        //performSegue(withIdentifier: "showFriend2", sender: nil)
     }
 
     // MARK: - Search bar

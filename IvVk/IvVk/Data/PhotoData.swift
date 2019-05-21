@@ -21,22 +21,8 @@ class Photo : Decodable {
     }
     
     func getFoto(completion: @escaping (UIImage?) -> Void ) {
-        if let urlObject = photoUrl,
-            let urlString = urlObject.url,
-            let url = URL(string: urlString)
-        {
-            if !Session.disableImageCache, let cachedImage = loadImageFromFile(url) {
-                completion(cachedImage)  // cache allowed and photo has cached in file
-            } else {
-                DispatchQueue.main.async {
-                    if let data = try? Data(contentsOf: url),
-                        let image = UIImage(data: data)
-                    {
-                        if !Session.disableImageCache { saveImageToFile(image, url) }  // cache image to file
-                        completion(image)  // photo loaded from server
-                    }
-                }
-            }
+        if let urlObject = photoUrl {
+            getImage(urlString: urlObject.url, completion: completion)
         }
     }
 }
@@ -93,7 +79,7 @@ class PhotosList : Decodable {
 
 // load user photos
 func loadPhotosList(owner: Int, completion: @escaping ([Photo]) -> Void ) {
-    let pars = Session.instance.getParams(["owner_id": String(owner), "count": "10"])
+    let pars = Session.instance.getParams(["owner_id": String(owner), "count": "20"])
     Alamofire.request("https://api.vk.com/method/photos.getAll", parameters: pars).responseData { repsonse in
         var res: [Photo] = []
         if let data = repsonse.value {
@@ -120,7 +106,6 @@ func saveImageToFile(_ image: UIImage, _ imageUrl: URL) {
     guard let imgdata = data else { return }
     do {
         try imgdata.write(to: path)
-        //print("File saved successfully")
     } catch {
         print("Error occured while file saving: \(error)")
     }
@@ -133,7 +118,6 @@ func loadImageFromFile(_ imageUrl: URL) -> UIImage? {
     if !FileManager.default.fileExists(atPath: path.path) { return nil }
     do {
         let imageData = try Data(contentsOf: path)
-        //print("File loaded successfully")
         return UIImage(data: imageData)
     } catch {
         print("Error occured while file loading: \(error)")

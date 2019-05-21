@@ -12,10 +12,14 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadGroupsList(user: Session.instance.userId) { list in
+        // load from server
+        /* loadGroupsList(user: Session.instance.userId) { list in
             myGroups = list
             self.tableView.reloadData()
-        }
+        } */
+        
+        // load from db
+        loadUserGroupsFromDb()
     }
     
     // MARK: - Table view data source
@@ -47,39 +51,28 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // Support editing the table view.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            myGroups.remove(at: indexPath.row)
-            tableView.reloadData()
             // Delete the row from the data source
+            if removeUserGroupFromDb(myGroups[indexPath.row]) {
+                myGroups.remove(at: indexPath.row)
+                tableView.reloadData()
+            }
             //tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
-        if segue.identifier == "AddGroup" {
-            // source controller
-            let allGroupsController = segue.source as! AllGroupsVC
-            // cell index
-            if let indexPath = allGroupsController.tableView.indexPathForSelectedRow {
-                // group by index
-                let group = allGroups[indexPath.row]
-                // add group to target
-                if !myGroups.contains(group) {
-                    myGroups.append(group)
-                }
-                // refresh table
-                tableView.reloadData()
+        guard segue.identifier == "AddGroup",
+            let allGroupsController = segue.source as? AllGroupsVC, // source controller
+            let indexPath = allGroupsController.tableView.indexPathForSelectedRow // cell index
+        else { return }
+        let group = allGroups[indexPath.row] // group by index
+        // add group to target
+        if !myGroups.contains(group) {
+            if addUserGroupToDb(group) { // save to db
+                myGroups.append(group)   // add to array
+                tableView.reloadData()   // refresh table
             }
         }
     }
