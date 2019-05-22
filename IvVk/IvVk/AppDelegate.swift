@@ -1,10 +1,7 @@
-//
 //  AppDelegate.swift
-//  Lesson1.1
-//
+//  IvVk
 //  Created by Iv on 28/02/2019.
 //  Copyright © 2019 Iv. All rights reserved.
-//
 
 import UIKit
 import RealmSwift

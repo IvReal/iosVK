@@ -1,4 +1,4 @@
-//  RealData.swift
+//  Common.swift
 //  IvVk
 //  Created by Iv on 26/04/2019.
 //  Copyright © 2019 Iv. All rights reserved.
