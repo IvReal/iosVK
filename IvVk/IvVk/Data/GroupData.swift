@@ -5,6 +5,7 @@
 
 import Alamofire
 import RealmSwift
+import FirebaseFirestore
 
 //var myGroups: [Group] = []
 var allGroups: [Group] = []
@@ -126,6 +127,29 @@ func removeUserGroupFromDb(_ group: Group) {
         try realm.commitWrite()
     } catch {
         print(error)
+    }
+}
+
+// ---------- firestore
+
+enum Action: String {
+    case add
+    case remove
+}
+
+func logUserGroupsInFirebase(_ group: String, _ action: Action) {
+    let db = Firestore.firestore()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd.MM.yyyy HH:mm"
+    db.collection("user_groups_log").addDocument(data: [
+        "userid": Session.instance.userId,
+        "group": group,
+        "action": action.rawValue,
+        "time": formatter.string(from: Date())
+    ]) { err in
+        if let err = err {
+            print("Error adding document: \(err)")
+        }
     }
 }
 

@@ -78,6 +78,7 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             // Delete the row from the data source
             if let group = myDbGroups?[indexPath.row] {
+                logUserGroupsInFirebase(group.name ?? "", .remove) // log to firebase
                 removeUserGroupFromDb(group) // remove from db
             }
         } else if editingStyle == .insert {
@@ -95,6 +96,7 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // add group to target if it is not exists
         if !groups.contains(group) {
             addUserGroupToDb(group) // save to db
+            logUserGroupsInFirebase(group.name ?? "", .add) // log to firebase
         }
     }
 }

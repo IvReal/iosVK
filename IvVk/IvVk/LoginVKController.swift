@@ -130,7 +130,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy HH:mm"
         db.collection("user_activity").addDocument(data: [
-            "user": Session.instance.fio,
+            "user": Session.instance.fio.split(separator: " ").first ?? "",
             "userid": Session.instance.userId,
             "time": formatter.string(from: Date())
         ]) { err in
