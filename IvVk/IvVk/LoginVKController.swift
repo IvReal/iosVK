@@ -6,7 +6,6 @@
 import UIKit
 import WebKit
 import SwiftKeychainWrapper
-import FirebaseFirestore
 
 class LoginVKController: UIViewController, WKNavigationDelegate {
 
@@ -108,7 +107,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
             user = person
             if user != nil {
                 Session.instance.fio = user!.name
-                self.saveUserToFirebase()
+                saveUserConnectionToFirebase()
                 self.performSegue(withIdentifier: self.segSuccessLogin, sender: self)
             } else {
                 self.logout()
@@ -122,21 +121,6 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
             let session = Session.instance
             session.token = token
             session.userId = uid
-        }
-    }
-
-    private func saveUserToFirebase() {
-        let db = Firestore.firestore()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy HH:mm"
-        db.collection("user_activity").addDocument(data: [
-            "user": Session.instance.fio.split(separator: " ").first ?? "",
-            "userid": Session.instance.userId,
-            "time": formatter.string(from: Date())
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            }
         }
     }
 }

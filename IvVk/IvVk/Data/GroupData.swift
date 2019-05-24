@@ -140,12 +140,15 @@ enum Action: String {
 func logUserGroupsInFirebase(_ group: String, _ action: Action) {
     let db = Firestore.firestore()
     let formatter = DateFormatter()
-    formatter.dateFormat = "dd.MM.yyyy HH:mm"
-    db.collection("user_groups_log").addDocument(data: [
+    formatter.dateFormat = "dd.MM.yyyy HH:mm:ss"
+    let strDate = formatter.string(from: Date())
+    formatter.dateFormat = "yyyyMMddHHmmss"
+    let strKey = formatter.string(from: Date())
+    db.collection("user_groups_log").document(strKey).setData([
         "userid": Session.instance.userId,
         "group": group,
         "action": action.rawValue,
-        "time": formatter.string(from: Date())
+        "time": strDate
     ]) { err in
         if let err = err {
             print("Error adding document: \(err)")
