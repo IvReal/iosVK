@@ -1,5 +1,5 @@
-///  FriendsVC.swift
-//  Lesson1.1
+//  FriendsVC.swift
+//  IvVk
 //  Created by Iv on 15/03/2019.
 //  Copyright © 2019 Iv. All rights reserved.
 
@@ -90,26 +90,17 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         if let fc = segue.destination as? FriendVC {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let p = groupedFriends[indexPath.section].persons[indexPath.row]
                 fc.loadUserPhotos(userId: p.id ?? 0, userName: p.firstName)
             }
         }
-        /*if let fc2 = segue.destination as? Friend2VC {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let p = groupedFriends[indexPath.section].persons[indexPath.row]
-                fc2.loadUserPhotos(userId: p.id ?? 0)
-            }
-        }*/
     }
     
     // Perform manual segue "showFriend" on select row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showFriend", sender: nil)
-        //performSegue(withIdentifier: "showFriend2", sender: nil)
     }
 
     // MARK: - Search bar

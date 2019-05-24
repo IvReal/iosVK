@@ -1,5 +1,5 @@
 //  FriendVC.swift
-//  Lesson1.1
+//  IvVk
 //  Created by Iv on 15/03/2019.
 //  Copyright © 2019 Iv. All rights reserved.
 
@@ -10,19 +10,13 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     @IBOutlet weak var collView: UICollectionView!
     
     var images: [Photo] = []
-    var index: Int = 0
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        collView.isPagingEnabled = true
-    }    
     
     func loadUserPhotos(userId: Int, userName: String?) {
         images = []
         self.title = userName
-        loadPhotosList(owner: userId) { photos in
-            self.images = photos
-            self.collView.reloadData()
+        loadPhotosList(owner: userId) { [weak self] photos in
+            self?.images = photos
+            self?.collView.reloadData()
         }
     }
 
@@ -40,27 +34,16 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         cell.loadCell(photo: photo)
         return cell
     }
-    
-    // Adjust collection view cell size
-    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = collectionView.frame.height
-        let width  = collectionView.frame.width
-        return CGSize(width: width, height: height)
-    }*/
 
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        if let fc2 = segue.destination as? Friend2VC {
-            fc2.assignImages(images, index)
-        }
+    // Perform manual segue "showFriend2" on select cell
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showFriend2", sender: nil)
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        index = indexPath.row
-        performSegue(withIdentifier: "showFriend2", sender: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? Friend2VC,
+           let selPaths = collView.indexPathsForSelectedItems, selPaths.count > 0 {
+            vc.assignImages(images, selPaths[0].row)
+        }
     }
 }

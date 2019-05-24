@@ -6,7 +6,7 @@
 import Alamofire
 import RealmSwift
 
-var myGroups: [Group] = []
+//var myGroups: [Group] = []
 var allGroups: [Group] = []
 
 class Group : Object, Decodable {
@@ -87,38 +87,45 @@ func searchGroupsList(searchString: String, completion: @escaping ([Group]) -> V
 
 // ---------- manage groups in db
 
-func loadUserGroupsFromDb() {
+func loadUserGroupsArrayFromDb() -> [Group] {
     do {
         let realm = try Realm()
-        myGroups = Array(realm.objects(Group.self))
+        return Array(realm.objects(Group.self))
     } catch {
         print(error)
+        return []
     }
 }
 
-func addUserGroupToDb(_ group: Group) -> Bool {
+func loadUserGroupsResultsFromDb() -> Results<Group>? {
+    do {
+        let realm = try Realm()
+        return realm.objects(Group.self)
+    } catch {
+        print(error)
+        return nil
+    }
+}
+
+func addUserGroupToDb(_ group: Group) {
     do {
         let realm = try Realm()
         realm.beginWrite()
         realm.add(group)
         try realm.commitWrite()
-        return true
     } catch {
         print(error)
-        return false
     }
 }
 
-func removeUserGroupFromDb(_ group: Group) -> Bool {
+func removeUserGroupFromDb(_ group: Group) {
     do {
         let realm = try Realm()
         realm.beginWrite()
         realm.delete(group)
         try realm.commitWrite()
-        return true
     } catch {
         print(error)
-        return false
     }
 }
 
