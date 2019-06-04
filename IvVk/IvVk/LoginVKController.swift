@@ -107,6 +107,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
             user = person
             if user != nil {
                 Session.instance.fio = user!.name
+                saveUserConnectionToFirebase()
                 self.performSegue(withIdentifier: self.segSuccessLogin, sender: self)
             } else {
                 self.logout()

@@ -6,6 +6,7 @@
 import UIKit
 import Alamofire
 import SwiftKeychainWrapper
+import FirebaseFirestore
 
 //------------- Session
 
@@ -80,5 +81,34 @@ let keyDisableCache = "udNoCache"
 
 func clearAppUserDefaults() {
     UserDefaults.standard.removeObject(forKey: keyDisableCache)
+}
+
+//------------- Firebase
+
+func saveUserConnectionToFirebase() {
+    let db = Firestore.firestore()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd.MM.yyyy HH:mm:ss"
+    let strDate = formatter.string(from: Date())
+    formatter.dateFormat = "yyyyMMddHHmmss"
+    let strKey = formatter.string(from: Date())
+    /*db.collection("user_activity").addDocument(data: [
+        "user": Session.instance.fio.split(separator: " ").first ?? "",
+        "userid": Session.instance.userId,
+        "time": strDate
+    ]) { err in
+        if let err = err {
+            print("Error adding document: \(err)")
+        }
+    }*/
+    db.collection("user_activity").document(strKey).setData([
+        "user": Session.instance.fio.split(separator: " ").first ?? "",
+        "userid": Session.instance.userId,
+        "time": strDate
+    ]) { err in
+        if let err = err {
+            print("Error adding document: \(err)")
+        }
+    }
 }
 

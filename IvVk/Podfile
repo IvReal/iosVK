@@ -10,6 +10,9 @@ target 'IvVk' do
 #pod 'AlamofireObjectMapper', '~> 5.2'
   pod 'SwiftKeychainWrapper'
   pod 'RealmSwift'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 
   # Pods for IvVk
 
