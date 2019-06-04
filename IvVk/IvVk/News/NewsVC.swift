@@ -8,10 +8,24 @@
 
 import UIKit
 
+var lastnews: [Photo] = []
+
 class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadNewsList(count: 20, filters: "wall_photo") { list in
+            lastnews = []
+            for item in list {
+                if let photos = item.photoitems {
+                    lastnews.append(contentsOf: photos)
+                }
+            }
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -21,12 +35,12 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news.count
+        return lastnews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-        cell.setCurrentNews(news[indexPath.row])
+        cell.setCurrentNews(lastnews[indexPath.row])
         return cell
     }
     

@@ -13,7 +13,7 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var imageNews: UIImageView!
     @IBOutlet weak var countLikes: LikeControl!
     
-    private weak var currentNews: News? = nil
+    private weak var currentNews: Photo? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,16 +24,18 @@ class NewsCell: UITableViewCell {
         imageNews.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:))))
     }
     
-    func setCurrentNews(_ news: News?) {
+    func setCurrentNews(_ news: Photo?) {
         currentNews = news
         if let n = currentNews {
-            labelAuthor.text = n.author
+            //labelAuthor.text = n.author
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
-            labelDate.text = dateFormatter.string(from: n.date)
+            dateFormatter.dateFormat = "dd.MM.yyyy hh:mm"
+            labelDate.text = dateFormatter.string(from: n.date!)
             textNews.text = n.text
-            imageNews.image = n.image
-            countLikes.setLikeStatus(n.countLike, n.isCurrentUserLiked)
+            n.getFoto() { photo in
+                self.imageNews.image = photo
+            }
+            countLikes.setLikeStatus(n.likes?.count ?? 0, false/*n.isCurrentUserLiked*/) // TODO
         }
     }
     
@@ -49,8 +51,8 @@ class NewsCell: UITableViewCell {
     private func likesChanged() -> (Int, Bool?) {
         var res: (Int, Bool?) = (0, nil)
         if let n = currentNews {
-            res.1 = n.changeLike()
-            res.0 = n.countLike
+            //res.1 = n.changeLike()
+            //res.0 = n.countLike
         }
         return res
     }

@@ -419,6 +419,9 @@
                         <viewLayoutGuide key="safeArea" id="Nv5-tx-L1E"/>
                     </view>
                     <navigationItem key="navigationItem" title="News" id="neD-Wi-7W9"/>
+                    <connections>
+                        <outlet property="tableView" destination="h2A-3O-XLj" id="Eav-p9-xtM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYO-Hg-OKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
