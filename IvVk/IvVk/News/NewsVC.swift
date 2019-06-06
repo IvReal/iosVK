@@ -17,7 +17,7 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadNewsList(count: 20, filters: "wall_photo") { list in
+        loadNewsList(count: 20, filters: "photo") { list in
             lastnews = []
             for item in list {
                 if let photos = item.photoitems {

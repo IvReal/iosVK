@@ -11,7 +11,7 @@ var userPhotos: [Photo] = []
 class Photo : Decodable {
     var id: Int?
     var text: String?
-    var date: Date?
+    var date: Double?
     var likes: Likes?
     var sizes: [PhotoCopy]
     
@@ -51,7 +51,7 @@ class PhotoCopy : Decodable {
 
 class Likes : Decodable {
     var count: Int?
-    var user_likes: Bool?
+    var user_likes: Int?
     
     enum CodingKeys: String, CodingKey {
         case count

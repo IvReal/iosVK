@@ -30,7 +30,8 @@ class NewsCell: UITableViewCell {
             //labelAuthor.text = n.author
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd.MM.yyyy hh:mm"
-            labelDate.text = dateFormatter.string(from: n.date!)
+            let date = Date(timeIntervalSince1970: n.date!)
+            labelDate.text = dateFormatter.string(from: date)
             textNews.text = n.text
             n.getFoto() { photo in
                 self.imageNews.image = photo
