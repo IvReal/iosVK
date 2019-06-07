@@ -402,6 +402,65 @@
                                             <outlet property="textNews" destination="RiS-BN-xKc" id="KkD-3F-xWs"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCellText" rowHeight="200" id="iQI-gQ-SWb" customClass="NewsCellText" customModule="IvVk" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="483" width="375" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iQI-gQ-SWb" id="efu-Yn-w3t">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="K9T-9n-lYu">
+                                                    <rect key="frame" x="10" y="10" width="355" height="18"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zg-R0-UWS">
+                                                            <rect key="frame" x="0.0" y="0.0" width="176.5" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Mc-cX-FRR">
+                                                            <rect key="frame" x="181.5" y="0.0" width="173.5" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Zh-FD-YAM">
+                                                    <rect key="frame" x="10" y="38" width="355" height="121.5"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndH-DG-foy" customClass="LikeControl" customModule="IvVk" customModuleProvider="target">
+                                                    <rect key="frame" x="10" y="169.5" width="60" height="25"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="9iL-rc-od2"/>
+                                                        <constraint firstAttribute="width" constant="60" id="q1G-fn-col"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="ndH-DG-foy" secondAttribute="bottom" constant="5" id="5BH-zN-48y"/>
+                                                <constraint firstItem="K9T-9n-lYu" firstAttribute="leading" secondItem="efu-Yn-w3t" secondAttribute="leading" constant="10" id="KQT-Yf-yGJ"/>
+                                                <constraint firstItem="7Zh-FD-YAM" firstAttribute="leading" secondItem="efu-Yn-w3t" secondAttribute="leading" constant="10" id="ULX-Ci-fzQ"/>
+                                                <constraint firstItem="K9T-9n-lYu" firstAttribute="top" secondItem="efu-Yn-w3t" secondAttribute="top" constant="10" id="UeH-Mw-mFb"/>
+                                                <constraint firstItem="ndH-DG-foy" firstAttribute="top" secondItem="7Zh-FD-YAM" secondAttribute="bottom" constant="10" id="V40-Yf-Bf6"/>
+                                                <constraint firstAttribute="trailing" secondItem="K9T-9n-lYu" secondAttribute="trailing" constant="10" id="dPx-02-5tJ"/>
+                                                <constraint firstItem="7Zh-FD-YAM" firstAttribute="top" secondItem="K9T-9n-lYu" secondAttribute="bottom" constant="10" id="iSK-tg-Z6K"/>
+                                                <constraint firstItem="ndH-DG-foy" firstAttribute="leading" secondItem="efu-Yn-w3t" secondAttribute="leading" constant="10" id="mlf-9W-wzS"/>
+                                                <constraint firstAttribute="trailing" secondItem="7Zh-FD-YAM" secondAttribute="trailing" constant="10" id="nRx-PE-5Sr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="countLikes" destination="ndH-DG-foy" id="DFt-ee-7Hj"/>
+                                            <outlet property="labelAuthor" destination="8Zg-R0-UWS" id="RsB-wQ-Cgv"/>
+                                            <outlet property="labelDate" destination="0Mc-cX-FRR" id="32o-ji-w1W"/>
+                                            <outlet property="textNews" destination="7Zh-FD-YAM" id="6dN-PN-G9A"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="hSa-Yl-c3k" id="JKB-gb-ata"/>

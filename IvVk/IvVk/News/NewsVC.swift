@@ -8,7 +8,7 @@
 
 import UIKit
 
-var lastnews: [Photo] = []
+var lastnews: [NewsItem] = []
 
 class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -17,13 +17,8 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadNewsList(count: 20, filters: "photo") { list in
-            lastnews = []
-            for item in list {
-                if let photos = item.photoitems {
-                    lastnews.append(contentsOf: photos)
-                }
-            }
+        loadNewsList(count: 50, filters: "photo,post") { list in
+            lastnews = list
             self.tableView.reloadData()
         }
     }
@@ -39,9 +34,17 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-        cell.setCurrentNews(lastnews[indexPath.row])
-        return cell
+        let cnew = lastnews[indexPath.row]
+        if cnew.type == "photo" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+            cell.setCurrentNews(lastnews[indexPath.row])
+            return cell
+        }
+        else /*if cnew.type == "post"*/ {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellText", for: indexPath) as! NewsCellText
+            cell.setCurrentNews(lastnews[indexPath.row])
+            return cell
+        }
     }
     
     // MARK: -  Animation of cells appearance

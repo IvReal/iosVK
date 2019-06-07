@@ -112,3 +112,13 @@ func saveUserConnectionToFirebase() {
     }
 }
 
+// ---------- Date helper
+
+func getDateStringFromUnixTime(time: Double?) -> String
+{
+    guard let time = time else { return "" }
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd.MM.yy hh:mm"
+    let date = Date(timeIntervalSince1970: time)
+    return dateFormatter.string(from: date)
+}
