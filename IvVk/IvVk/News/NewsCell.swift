@@ -13,7 +13,7 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var imageNews: UIImageView!
     @IBOutlet weak var countLikes: LikeControl!
     
-    private weak var currentNews: News? = nil
+    private weak var currentNews: NewsItem? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,16 +24,20 @@ class NewsCell: UITableViewCell {
         imageNews.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:))))
     }
     
-    func setCurrentNews(_ news: News?) {
+    func setCurrentNews(_ news: NewsItem?) {
         currentNews = news
-        if let n = currentNews {
-            labelAuthor.text = n.author
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
-            labelDate.text = dateFormatter.string(from: n.date)
-            textNews.text = n.text
-            imageNews.image = n.image
-            countLikes.setLikeStatus(n.countLike, n.isCurrentUserLiked)
+        guard let cnew = currentNews else { return }
+        textNews.text = cnew.text
+        labelDate.text = getDateStringFromUnixTime(time: cnew.date)
+        labelAuthor.text = nil // TODO
+        if cnew.type == "photo" {
+            if let photo = cnew.photo {
+                cnew.photo?.getFoto() { image in
+                    self.imageNews.image = image
+                }
+                textNews.text = photo.text
+                countLikes.setLikeStatus(photo.likes?.count ?? 0, (photo.likes?.user_likes ?? 0) == 1)
+            }
         }
     }
     
@@ -48,9 +52,11 @@ class NewsCell: UITableViewCell {
     // likes tap handler
     private func likesChanged() -> (Int, Bool?) {
         var res: (Int, Bool?) = (0, nil)
-        if let n = currentNews {
-            res.1 = n.changeLike()
-            res.0 = n.countLike
+        if let likes = currentNews?.photo?.likes {
+            res.1 = likes.user_likes == 0 // like or unlike
+            likes.count = (likes.count ?? 0) + 1  * (likes.user_likes == 0 ? 1 : -1) // new like count in object
+            likes.user_likes = likes.user_likes == 0 ? 1 : 0 // is current user liked
+            res.0 = likes.count ?? 0 // new like count in control
         }
         return res
     }
@@ -71,11 +77,4 @@ class NewsCell: UITableViewCell {
             })
         })
     }
-
-    /*
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
-    */
 }

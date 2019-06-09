@@ -8,10 +8,19 @@
 
 import UIKit
 
+var lastnews: [NewsItem] = []
+
 class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadNewsList(count: 50, filters: "photo,post") { list in
+            lastnews = list
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -21,13 +30,21 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news.count
+        return lastnews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-        cell.setCurrentNews(news[indexPath.row])
-        return cell
+        let cnew = lastnews[indexPath.row]
+        if cnew.type == "photo" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+            cell.setCurrentNews(lastnews[indexPath.row])
+            return cell
+        }
+        else /*if cnew.type == "post"*/ {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellText", for: indexPath) as! NewsCellText
+            cell.setCurrentNews(lastnews[indexPath.row])
+            return cell
+        }
     }
     
     // MARK: -  Animation of cells appearance
