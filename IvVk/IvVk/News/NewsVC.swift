@@ -8,7 +8,7 @@
 
 import UIKit
 
-var lastnews: [NewsItem] = []
+var allnews: [NewsItem] = []
 
 class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -17,8 +17,9 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadNewsList(count: 50, filters: "photo,post") { list in
-            lastnews = list
+        let ns = VkNewsService()
+        ns.loadPhotoNews(count: 50) { list in
+            allnews = list
             self.tableView.reloadData()
         }
     }
@@ -30,19 +31,19 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lastnews.count
+        return allnews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cnew = lastnews[indexPath.row]
+        let cnew = allnews[indexPath.row]
         if cnew.type == "photo" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-            cell.setCurrentNews(lastnews[indexPath.row])
+            cell.setCurrentNews(allnews[indexPath.row] as? PhotoNews)
             return cell
         }
         else /*if cnew.type == "post"*/ {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellText", for: indexPath) as! NewsCellText
-            cell.setCurrentNews(lastnews[indexPath.row])
+            cell.setCurrentNews(allnews[indexPath.row] as? PostNews)
             return cell
         }
     }
