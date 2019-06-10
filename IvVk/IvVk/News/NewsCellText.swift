@@ -12,13 +12,13 @@ class NewsCellText: UITableViewCell {
     @IBOutlet weak var textNews: UILabel!
     @IBOutlet weak var countLikes: LikeControl!
     
-    private weak var currentNews: NewsItem? = nil
+    private weak var currentNews: PostNews? = nil
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func setCurrentNews(_ news: NewsItem?) {
+    func setCurrentNews(_ news: PostNews?) {
         currentNews = news
         guard let cnew = currentNews else { return }
         textNews.text = cnew.text
