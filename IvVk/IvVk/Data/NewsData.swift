@@ -41,14 +41,16 @@ class PhotoNews: NewsItem
 
 class PostNews: NewsItem
 {
-    var text: String?         // текст новости
-    
+    var text: String?    // текст новости
+    var likes: Likes?
+
     enum CodingKeys: String, CodingKey {
         case type
         case source_id
         case date
         case text
         case copy_history
+        case likes
     }
     enum RepostsKeys: String, CodingKey {
         case text
@@ -61,6 +63,7 @@ class PostNews: NewsItem
         self.source_id = try values.decode(Int.self, forKey: .source_id)
         self.date = try values.decode(Double.self, forKey: .date)
         self.text = try values.decode(String.self, forKey: .text)
+        self.likes = try values.decode(Likes.self, forKey: .likes)
         if var reposts = try? values.nestedUnkeyedContainer(forKey: .copy_history) {
             if let repost = try? reposts.nestedContainer(keyedBy: RepostsKeys.self) {
                 let addtext = try? repost.decode(String.self, forKey: .text)

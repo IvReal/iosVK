@@ -12,6 +12,7 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var textNews: UILabel!
     @IBOutlet weak var imageNews: UIImageView!
     @IBOutlet weak var countLikes: LikeControl!
+    @IBOutlet weak var imageAvatar: RoundImageView!
     
     private weak var currentNews: PhotoNews? = nil
     
@@ -26,12 +27,20 @@ class NewsCell: UITableViewCell {
     
     func setCurrentNews(_ news: PhotoNews?) {
         currentNews = news
-        guard let cnew = currentNews else { return }
-        //textNews.text = cnew.text
-        labelDate.text = getDateStringFromUnixTime(time: cnew.date)
-        labelAuthor.text = nil // TODO
-        if cnew.type == "photo" {
-            if let photo = cnew.photos?.first {
+        guard let newsitem = currentNews else { return }
+        if let userid = newsitem.source_id, userid > 0 {
+            getUserById(userId: userid) { [weak self] user in
+                if let user = user {
+                    self?.labelAuthor.text = user.name
+                    user.getFoto { [weak self] photo in
+                        self?.imageAvatar.image = photo
+                    }
+                }
+            }
+        }
+        labelDate.text = getDateStringFromUnixTime(time: newsitem.date)
+        if newsitem.type == "photo" {
+            if let photo = newsitem.photos?.first {
                 photo.getFoto() { image in
                     self.imageNews.image = image
                 }

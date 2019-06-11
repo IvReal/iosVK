@@ -105,3 +105,17 @@ func loadCurrentUser(completion: @escaping (Person?) -> Void ) {
     }
 }
 
+func getUserById(userId: Int, completion: @escaping (Person?) -> Void ) {
+    let pars = Session.instance.getParams(["user_ids": String(userId), "fields": "photo_100"])
+    Alamofire.request("https://api.vk.com/method/users.get", parameters: pars).responseData { repsonse in
+        var res: Person? = nil
+        if let data = repsonse.value {
+            let list = try? JSONDecoder().decode(UsersList.self, from: data)
+            if let ulist = list, ulist.response.count > 0 {
+                res = ulist.response[0]
+            }
+        }
+        completion(res)
+    }
+}
+
