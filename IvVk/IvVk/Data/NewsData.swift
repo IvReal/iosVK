@@ -106,39 +106,58 @@ class VkNewsService
 {
     let newsfeedUrl = "https://api.vk.com/method/newsfeed.get"
 
-    func loadPhotoNews(count: Int, completion: @escaping ([PhotoNews]) -> Void) {
-        DispatchQueue.global().async {
-            let pars = Session.instance.getParams(["count": String(count), "filters": "photo"])
-            Alamofire.request(self.newsfeedUrl, parameters: pars).responseData { repsonse in
-                var res: [PhotoNews] = []
-                if let data = repsonse.value {
-                    let list = try? JSONDecoder().decode(PhotoNewsServerResponse.self, from: data)
-                    if let plist = list {
-                        res = plist.items
-                    }
+    private func loadPhotoNews(completion: @escaping ([PhotoNews]) -> Void) {
+        // создаем свою очередь и передаем ее параметром в метод responseData:
+        // тогда вся деятельность Alamofire и completion будут происходить в этой очереди;
+        // результат не перебрасываем в главный поток, поскольку эта функция не вызывается напрямую из интерфейса
+        let getPhotoQueue = DispatchQueue(label: "getPhotoQueue", qos: DispatchQoS.utility, attributes: DispatchQueue.Attributes.concurrent)
+        let pars = Session.instance.getParams(["filters": "photo"])
+        Alamofire.request(self.newsfeedUrl, parameters: pars).responseData(queue: getPhotoQueue) { repsonse in
+            //self.testThread("Parsing JSON") // убеждаемся, что работаем в фоновом потоке
+            var res: [PhotoNews] = []
+            if let data = repsonse.value {
+                let list = try? JSONDecoder().decode(PhotoNewsServerResponse.self, from: data)
+                if let plist = list {
+                    res = plist.items
                 }
+            }
+            completion(res)
+        }
+    }
+
+    private func loadPostNews(completion: @escaping ([PostNews]) -> Void) {
+        let getPostQueue = DispatchQueue(label: "getPostQueue", qos: DispatchQoS.utility, attributes: DispatchQueue.Attributes.concurrent)
+        let pars = Session.instance.getParams(["filters": "post"])
+        Alamofire.request(self.newsfeedUrl, parameters: pars).responseData(queue: getPostQueue) { repsonse in
+            var res: [PostNews] = []
+            if let data = repsonse.value {
+                let list = try? JSONDecoder().decode(PostNewsServerResponse.self, from: data)
+                if let plist = list {
+                    res = plist.items
+                }
+            }
+            completion(res)
+        }
+    }
+    
+    func loadNews(completion: @escaping ([NewsItem]) -> Void) {
+        loadPhotoNews() { list in
+            //self.testThread("LoadPhotoNews") // фоновый поток (см. loadPhotoNews)
+            let photos = list
+            self.loadPostNews() { list in
+                //self.testThread("LoadPostNews") // фоновый поток
+                let posts = list
+                let allnews = (photos + posts).sorted(by: { $0.date! > $1.date! })
                 DispatchQueue.main.async {
-                    completion(res)
+                    //self.testThread("Return result") // главный поток
+                    completion(allnews)
                 }
             }
         }
     }
-
-    func loadPostNews(count: Int, completion: @escaping ([PostNews]) -> Void) {
-        DispatchQueue.global().async {
-            let pars = Session.instance.getParams(["count": String(count), "filters": "post"])
-            Alamofire.request(self.newsfeedUrl, parameters: pars).responseData { repsonse in
-                var res: [PostNews] = []
-                if let data = repsonse.value {
-                    let list = try? JSONDecoder().decode(PostNewsServerResponse.self, from: data)
-                    if let plist = list {
-                        res = plist.items
-                    }
-                }
-                DispatchQueue.main.async {
-                    completion(res)
-                }
-            }
-        }
+    
+    private func testThread(_ placeDescription: String)
+    {
+        print("\(placeDescription) on thread: \(Thread.current) is main thread: \(Thread.isMainThread)")
     }
 }
