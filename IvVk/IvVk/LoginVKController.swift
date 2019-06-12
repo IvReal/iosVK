@@ -69,7 +69,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
                 URLQueryItem(name: "client_id", value: Session.vkClientId),
                 URLQueryItem(name: "display", value: "mobile"),
                 URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
-                URLQueryItem(name: "scope", value: "262150"),
+                URLQueryItem(name: "scope", value: Session.vkScope), 
                 URLQueryItem(name: "response_type", value: "token"),
                 URLQueryItem(name: "v", value: Session.vkAPI)
             ]
