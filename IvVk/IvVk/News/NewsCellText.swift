@@ -25,7 +25,7 @@ class NewsCellText: UITableViewCell {
         currentNews = news
         guard let newsitem = currentNews else { return }
         if let userid = newsitem.source_id, userid > 0 {
-            getUserById(userId: userid) { [weak self] user in
+            userInfo.getUserById(userId: userid) { [weak self] user in
                 if let user = user {
                     self?.labelAuthor.text = user.name
                     user.getFoto { [weak self] photo in

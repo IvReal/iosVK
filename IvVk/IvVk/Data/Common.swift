@@ -123,3 +123,10 @@ func getDateStringFromUnixTime(time: Double?) -> String
     let date = Date(timeIntervalSince1970: time)
     return dateFormatter.string(from: date)
 }
+
+// ----------- Debug helper
+
+func testThread(_ placeDescription: String)
+{
+    print("\(placeDescription) on thread: \(Thread.current) is main thread: \(Thread.isMainThread)")
+}

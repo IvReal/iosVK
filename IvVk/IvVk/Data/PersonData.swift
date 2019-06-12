@@ -7,7 +7,7 @@ import UIKit
 import Alamofire
 
 var friends: [Person] = []
-var user: Person!
+let userInfo = UserInfo()
 
 class Person : Decodable {
     var id: Int?
@@ -105,17 +105,58 @@ func loadCurrentUser(completion: @escaping (Person?) -> Void ) {
     }
 }
 
-func getUserById(userId: Int, completion: @escaping (Person?) -> Void ) {
-    let pars = Session.instance.getParams(["user_ids": String(userId), "fields": "photo_100"])
-    Alamofire.request("https://api.vk.com/method/users.get", parameters: pars).responseData { repsonse in
-        var res: Person? = nil
-        if let data = repsonse.value {
-            let list = try? JSONDecoder().decode(UsersList.self, from: data)
-            if let ulist = list, ulist.response.count > 0 {
-                res = ulist.response[0]
+class UserInfo
+{
+    private var users: [Int: Person] = [:]
+    private let syncQueue = DispatchQueue(label: "UsersSyncQueue", attributes: .concurrent)
+
+    func getUserById(userId: Int, completion: @escaping (Person?) -> Void ) {
+        let person = getUserFromCache(byId: userId)
+        if let person = person {
+            DispatchQueue.main.async {
+                completion(person)
             }
         }
-        completion(res)
+        else {
+            loadUserFromServer(userId: userId) { person in
+                if let person = person {
+                    self.appendUserToCache(user: person)
+                    DispatchQueue.main.async {
+                        completion(person)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func getUserFromCache(byId id: Int) -> Person? {
+        var person: Person?
+        syncQueue.sync {
+            person = self.users[id]
+        }
+        return person
+    }
+    
+    private func appendUserToCache(user: Person) {
+        syncQueue.async(flags: .barrier) {
+            self.users.updateValue(user, forKey: user.id!)
+        }
+    }
+    
+    private func loadUserFromServer(userId: Int, completion: @escaping (Person?) -> Void ) {
+        let pars = Session.instance.getParams(["user_ids": String(userId), "fields": "photo_100"])
+        Alamofire.request("https://api.vk.com/method/users.get", parameters: pars).responseData(queue: DispatchQueue.global()) { repsonse in
+            var res: Person? = nil
+            if let data = repsonse.value {
+                let list = try? JSONDecoder().decode(UsersList.self, from: data)
+                if let ulist = list, ulist.response.count > 0 {
+                    res = ulist.response[0]
+                    if let res = res {
+                        completion(res)
+                    }
+                }
+            }
+        }
     }
 }
 

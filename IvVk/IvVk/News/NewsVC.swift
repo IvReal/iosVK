@@ -18,7 +18,7 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         
         let ns = VkNewsService()
-        ns.loadNews() { list in
+        ns.getNews() { list in
             lastnews = list
             self.tableView.reloadData()
         }

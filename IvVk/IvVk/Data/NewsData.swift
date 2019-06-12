@@ -107,7 +107,7 @@ class PostNewsServerResponse: Decodable
 
 class VkNewsService
 {
-    let newsfeedUrl = "https://api.vk.com/method/newsfeed.get"
+    static let newsfeedUrl = "https://api.vk.com/method/newsfeed.get"
 
     private func loadPhotoNews(completion: @escaping ([PhotoNews]) -> Void) {
         // создаем свою очередь и передаем ее параметром в метод responseData:
@@ -115,8 +115,8 @@ class VkNewsService
         // результат не перебрасываем в главный поток, поскольку эта функция не вызывается напрямую из интерфейса
         let getPhotoQueue = DispatchQueue(label: "getPhotoQueue", qos: DispatchQoS.utility, attributes: DispatchQueue.Attributes.concurrent)
         let pars = Session.instance.getParams(["filters": "photo"])
-        Alamofire.request(self.newsfeedUrl, parameters: pars).responseData(queue: getPhotoQueue) { repsonse in
-            //self.testThread("Parsing JSON") // убеждаемся, что работаем в фоновом потоке
+        Alamofire.request(VkNewsService.newsfeedUrl, parameters: pars).responseData(queue: getPhotoQueue) { repsonse in
+            //testThread("Parsing JSON") // убеждаемся, что работаем в фоновом потоке
             var res: [PhotoNews] = []
             if let data = repsonse.value {
                 let list = try? JSONDecoder().decode(PhotoNewsServerResponse.self, from: data)
@@ -131,7 +131,7 @@ class VkNewsService
     private func loadPostNews(completion: @escaping ([PostNews]) -> Void) {
         let getPostQueue = DispatchQueue(label: "getPostQueue", qos: DispatchQoS.utility, attributes: DispatchQueue.Attributes.concurrent)
         let pars = Session.instance.getParams(["filters": "post"])
-        Alamofire.request(self.newsfeedUrl, parameters: pars).responseData(queue: getPostQueue) { repsonse in
+        Alamofire.request(VkNewsService.newsfeedUrl, parameters: pars).responseData(queue: getPostQueue) { repsonse in
             var res: [PostNews] = []
             if let data = repsonse.value {
                 let list = try? JSONDecoder().decode(PostNewsServerResponse.self, from: data)
@@ -143,24 +143,144 @@ class VkNewsService
         }
     }
     
+    // GCD variant
     func loadNews(completion: @escaping ([NewsItem]) -> Void) {
         loadPhotoNews() { list in
-            //self.testThread("LoadPhotoNews") // фоновый поток (см. loadPhotoNews)
+            //testThread("LoadPhotoNews") // фоновый поток (см. loadPhotoNews)
             let photos = list
             self.loadPostNews() { list in
-                //self.testThread("LoadPostNews") // фоновый поток
+                //testThread("LoadPostNews") // фоновый поток
                 let posts = list
                 let allnews = (photos + posts).sorted(by: { $0.date! > $1.date! })
                 DispatchQueue.main.async {
-                    //self.testThread("Return result") // главный поток
+                    //testThread("Return result") // главный поток
                     completion(allnews)
                 }
             }
         }
     }
     
-    private func testThread(_ placeDescription: String)
+    // NSOperation variant
+    func getNews(completion: @escaping ([NewsItem]) -> Void)
     {
-        print("\(placeDescription) on thread: \(Thread.current) is main thread: \(Thread.isMainThread)")
+        // получение post-новостей
+        let opq = OperationQueue()
+        let opGetPosts = GetNewsDataOperation(newstype: "post")
+        opq.addOperation(opGetPosts)
+        // получение photo-новостей
+        let opGetPhotos = GetNewsDataOperation(newstype: "photo")
+        opq.addOperation(opGetPhotos)
+        // маппирование post-новостей
+        let parsePostData = ParsePostsData()
+        parsePostData.addDependency(opGetPosts)
+        opq.addOperation(parsePostData)
+        // маппирование photo-новостей
+        let parsePhotoData = ParsePhotosData()
+        parsePhotoData.addDependency(opGetPhotos)
+        opq.addOperation(parsePhotoData)
+        // объединение post и photo новостей и выдача результата в главный поток
+        let opFinal = Operation()
+        opFinal.addDependency(parsePostData)
+        opFinal.addDependency(parsePhotoData)
+        opFinal.completionBlock = {
+            let allnews = (parsePostData.outputData + parsePhotoData.outputData).sorted(by: { $0.date! > $1.date! })
+            DispatchQueue.main.async {
+                completion(allnews)
+            }
+        }
+        opq.addOperation(opFinal)
+    }
+}
+
+//---------- NSOperation variant support
+
+// Base async operation class
+class AsyncOperation: Operation {
+    enum State: String {
+        case ready, executing, finished
+        fileprivate var keyPath: String {
+            return "is" + rawValue.capitalized
+        }
+    }
+    var state = State.ready {
+        willSet {
+            willChangeValue(forKey: state.keyPath)
+            willChangeValue(forKey: newValue.keyPath)
+        }
+        didSet {
+            didChangeValue(forKey: state.keyPath)
+            didChangeValue(forKey: oldValue.keyPath)
+        }
+    }
+    override var isAsynchronous: Bool {
+        return true
+    }
+    override var isReady: Bool {
+        return super.isReady && state == .ready
+    }
+    override var isExecuting: Bool {
+        return state == .executing
+    }
+    override var isFinished: Bool {
+        return state == .finished
+    }
+    override func start() {
+        if isCancelled {
+            state = .finished
+        } else {
+            main()
+            state = .executing
+        }
+    }
+    override func cancel() {
+        super.cancel()
+        state = .finished
+    }
+}
+
+// Get news data operation class
+class GetNewsDataOperation : AsyncOperation
+{
+    var data: Data?
+    private var request: DataRequest
+    override func cancel() {
+        request.cancel()
+        super.cancel()
+    }
+    override func main() {
+        request.responseData(queue: DispatchQueue.global()) { [weak self] response in
+            self?.data = response.value
+            self?.state = .finished
+        }
+    }
+    init(newstype: String) {
+        let pars = Session.instance.getParams(["filters": newstype])
+        request = Alamofire.request(VkNewsService.newsfeedUrl, parameters: pars)
+        super.init()
+    }
+}
+
+// Parsing news opertion classes (TODO: maybe do generic class?)
+class ParsePostsData: Operation {
+    var outputData: [PostNews] = []
+    override func main() {
+        guard let getDataOperation = dependencies.first as? GetNewsDataOperation,
+              let data = getDataOperation.data else { return }
+        let list = try? JSONDecoder().decode(PostNewsServerResponse.self, from: data)
+        if let plist = list {
+            outputData = plist.items
+        }
+    }
+}
+
+class ParsePhotosData: Operation {
+    var outputData: [PhotoNews] = []
+    override func main() {
+        guard let getDataOperation = dependencies.first as? GetNewsDataOperation,
+            let data = getDataOperation.data else { return }
+        let list = try? JSONDecoder().decode(PhotoNewsServerResponse.self, from: data)
+        if let plist = list {
+            outputData = plist.items
+        }
     }
 }
