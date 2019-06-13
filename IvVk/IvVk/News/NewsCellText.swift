@@ -24,6 +24,7 @@ class NewsCellText: UITableViewCell {
     func setCurrentNews(_ news: PostNews?) {
         currentNews = news
         guard let newsitem = currentNews else { return }
+        imageAvatar.image = nil
         if let userid = newsitem.source_id, userid > 0 {
             UserInfo.instance.getUserById(userId: userid) { [weak self] user in
                 if let user = user {

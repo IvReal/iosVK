@@ -111,13 +111,15 @@ class UserInfo
     private let syncQueue = DispatchQueue(label: "UsersSyncQueue", attributes: .concurrent)
 
     func getUserById(userId: Int, completion: @escaping (Person?) -> Void ) {
-        let person = getUserFromCache(byId: userId)
+        var person = getUserFromCache(byId: userId)
+        if person == nil {
+            person = getUserFromFriendsList(byId: userId)
+        }
         if let person = person {
             DispatchQueue.main.async {
                 completion(person)
             }
-        }
-        else {
+        } else {
             loadUserFromServer(userId: userId) { [weak self] person in
                 if let person = person {
                     self?.appendUserToCache(user: person)
@@ -143,11 +145,20 @@ class UserInfo
         }
     }
     
+    private func getUserFromFriendsList(byId id: Int) -> Person? {
+        for person in friends {
+            if person.id == id {
+                return person
+            }
+        }
+        return nil
+    }
+    
     private func loadUserFromServer(userId: Int, completion: @escaping (Person?) -> Void ) {
         let pars = Session.instance.getParams(["user_ids": String(userId), "fields": "photo_100"])
-        Alamofire.request("https://api.vk.com/method/users.get", parameters: pars).responseData(queue: DispatchQueue.global()) { repsonse in
+        Alamofire.request("https://api.vk.com/method/users.get", parameters: pars).responseData(queue: DispatchQueue.global()) { response in
             var res: Person? = nil
-            if let data = repsonse.value {
+            if let data = response.value {
                 let list = try? JSONDecoder().decode(UsersList.self, from: data)
                 if let ulist = list, ulist.response.count > 0 {
                     res = ulist.response[0]
