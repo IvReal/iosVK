@@ -171,11 +171,11 @@ class VkNewsService
         let opGetPhotos = GetNewsDataOperation(newstype: "photo")
         opq.addOperation(opGetPhotos)
         // маппирование post-новостей
-        let parsePostData = ParsePostsData()
+        let parsePostData = ParseNewsData<PostNews>()
         parsePostData.addDependency(opGetPosts)
         opq.addOperation(parsePostData)
         // маппирование photo-новостей
-        let parsePhotoData = ParsePhotosData()
+        let parsePhotoData = ParseNewsData<PhotoNews>()
         parsePhotoData.addDependency(opGetPhotos)
         opq.addOperation(parsePhotoData)
         // объединение post и photo новостей и выдача результата в главный поток
@@ -260,27 +260,24 @@ class GetNewsDataOperation : AsyncOperation
     }
 }
 
-// Parsing news opertion classes (TODO: maybe do generic class?)
-class ParsePostsData: Operation {
-    var outputData: [PostNews] = []
+// Parsing news opertion class
+class ParseNewsData<T> : Operation where T : NewsItem
+{
+    var outputData: [T] = []
     override func main() {
         guard let getDataOperation = dependencies.first as? GetNewsDataOperation,
               let data = getDataOperation.data else { return }
-        let list = try? JSONDecoder().decode(PostNewsServerResponse.self, from: data)
-        if let plist = list {
-            outputData = plist.items
+        if T.self == PostNews.self {
+            let list = try? JSONDecoder().decode(PostNewsServerResponse.self, from: data)
+            if let plist = list {
+                outputData = plist.items as! [T]
+            }
         }
-    }
-}
-
-class ParsePhotosData: Operation {
-    var outputData: [PhotoNews] = []
-    override func main() {
-        guard let getDataOperation = dependencies.first as? GetNewsDataOperation,
-            let data = getDataOperation.data else { return }
-        let list = try? JSONDecoder().decode(PhotoNewsServerResponse.self, from: data)
-        if let plist = list {
-            outputData = plist.items
+        else if T.self == PhotoNews.self {
+            let list = try? JSONDecoder().decode(PhotoNewsServerResponse.self, from: data)
+            if let plist = list {
+                outputData = plist.items as! [T]
+            }
         }
     }
 }
