@@ -1,7 +1,7 @@
 //  NewsCellText.swift
+//  IvVk
 //  Created by Iv on 07/06/2019.
 //  Copyright © 2019 Iv. All rights reserved.
-//
 
 import UIKit
 
@@ -25,7 +25,7 @@ class NewsCellText: UITableViewCell {
         currentNews = news
         guard let newsitem = currentNews else { return }
         if let userid = newsitem.source_id, userid > 0 {
-            userInfo.getUserById(userId: userid) { [weak self] user in
+            UserInfo.instance.getUserById(userId: userid) { [weak self] user in
                 if let user = user {
                     self?.labelAuthor.text = user.name
                     user.getFoto { [weak self] photo in

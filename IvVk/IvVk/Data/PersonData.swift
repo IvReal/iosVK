@@ -7,7 +7,6 @@ import UIKit
 import Alamofire
 
 var friends: [Person] = []
-let userInfo = UserInfo()
 
 class Person : Decodable {
     var id: Int?
@@ -107,6 +106,7 @@ func loadCurrentUser(completion: @escaping (Person?) -> Void ) {
 
 class UserInfo
 {
+    static let instance = UserInfo()
     private var users: [Int: Person] = [:]
     private let syncQueue = DispatchQueue(label: "UsersSyncQueue", attributes: .concurrent)
 
