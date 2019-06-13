@@ -118,9 +118,9 @@ class UserInfo
             }
         }
         else {
-            loadUserFromServer(userId: userId) { person in
+            loadUserFromServer(userId: userId) { [weak self] person in
                 if let person = person {
-                    self.appendUserToCache(user: person)
+                    self?.appendUserToCache(user: person)
                     DispatchQueue.main.async {
                         completion(person)
                     }

@@ -35,16 +35,15 @@ class NewsCellText: UITableViewCell {
             }
         }
         labelDate.text = getDateStringFromUnixTime(time: newsitem.date)
-        if newsitem.type == "post" {
-            textNews.text = newsitem.text
-            countLikes.setLikeStatus(newsitem.likes?.count ?? 0, (newsitem.likes?.user_likes ?? 0) == 1)
-        }
+        textNews.text = newsitem.text
+        countLikes.setLikeStatus(newsitem.likes?.count ?? 0, (newsitem.likes?.user_likes ?? 0) == 1)
     }
     
     override func prepareForReuse() {
         labelAuthor.text = nil
         labelDate.text = nil
         textNews.text = nil
+        imageAvatar.image = nil
         countLikes.setLikeStatus(0, false)
     }
     

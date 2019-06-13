@@ -39,14 +39,12 @@ class NewsCell: UITableViewCell {
             }
         }
         labelDate.text = getDateStringFromUnixTime(time: newsitem.date)
-        if newsitem.type == "photo" {
-            if let photo = newsitem.photos?.first {
-                photo.getFoto() { image in
-                    self.imageNews.image = image
-                }
-                textNews.text = photo.text
-                countLikes.setLikeStatus(photo.likes?.count ?? 0, (photo.likes?.user_likes ?? 0) == 1)
+        if let photo = newsitem.photos?.first {
+            photo.getFoto() { [weak self] image in
+                self?.imageNews.image = image
             }
+            textNews.text = photo.text
+            countLikes.setLikeStatus(photo.likes?.count ?? 0, (photo.likes?.user_likes ?? 0) == 1)
         }
     }
     
@@ -55,6 +53,7 @@ class NewsCell: UITableViewCell {
         labelDate.text = nil
         textNews.text = nil
         imageNews.image = nil
+        imageAvatar.image = nil
         countLikes.setLikeStatus(0, false)
     }
     
