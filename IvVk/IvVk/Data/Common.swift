@@ -14,6 +14,7 @@ class Session {
     static let instance = Session()
     static let vkAPI = "5.95"
     static let vkClientId = "6964606"
+    static let vkScope = "270342"  // битовая маска прав (262144(группы)+8192(стена)+4(фото)+2(друзья)) // 262150
     static var disableImageCache = false
 
     var fio: String = ""
@@ -118,7 +119,14 @@ func getDateStringFromUnixTime(time: Double?) -> String
 {
     guard let time = time else { return "" }
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd.MM.yy hh:mm"
+    dateFormatter.dateFormat = "dd.MM.yyyy hh:mm"
     let date = Date(timeIntervalSince1970: time)
     return dateFormatter.string(from: date)
+}
+
+// ----------- Debug helper
+
+func testThread(_ placeDescription: String)
+{
+    print("\(placeDescription) on thread: \(Thread.current) is main thread: \(Thread.isMainThread)")
 }

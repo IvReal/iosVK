@@ -23,7 +23,6 @@
 		AA5559482232BD1000C1A86C /* AllGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5559472232BD1000C1A86C /* AllGroupsCell.swift */; };
 		AA55594C2232C5B000C1A86C /* MyGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55594B2232C5B000C1A86C /* MyGroupsCell.swift */; };
 		AA5559502232D71600C1A86C /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55594F2232D71600C1A86C /* FriendsCell.swift */; };
-		AA570456223D7973003F2E3F /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA570455223D7973003F2E3F /* FakeData.swift */; };
 		AA570458223D8DD3003F2E3F /* FriendsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA570457223D8DD3003F2E3F /* FriendsHeader.swift */; };
 		AA90145322735A7A009C558B /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90145222735A7A009C558B /* Common.swift */; };
 		AA90145522774BAF009C558B /* LoginVKController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90145422774BAF009C558B /* LoginVKController.swift */; };
@@ -66,7 +65,6 @@
 		AA5559472232BD1000C1A86C /* AllGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsCell.swift; sourceTree = "<group>"; };
 		AA55594B2232C5B000C1A86C /* MyGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsCell.swift; sourceTree = "<group>"; };
 		AA55594F2232D71600C1A86C /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
-		AA570455223D7973003F2E3F /* FakeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
 		AA570457223D8DD3003F2E3F /* FriendsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsHeader.swift; sourceTree = "<group>"; };
 		AA90145222735A7A009C558B /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		AA90145422774BAF009C558B /* LoginVKController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVKController.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				AA22D75422A6DA8400B5A65E /* NewsData.swift */,
-				AA570455223D7973003F2E3F /* FakeData.swift */,
 				AA90145222735A7A009C558B /* Common.swift */,
 				AABE995F228B3865008B4923 /* PersonData.swift */,
 				AABE9961228B38A6008B4923 /* PhotoData.swift */,
@@ -373,7 +370,6 @@
 				AA555941222824E100C1A86C /* LoginFormController.swift in Sources */,
 				AA9729DA22368C2D00C24885 /* RoundImageView.swift in Sources */,
 				AA9729E2223BCC1500C24885 /* AllGroupsVC.swift in Sources */,
-				AA570456223D7973003F2E3F /* FakeData.swift in Sources */,
 				AA570458223D8DD3003F2E3F /* FriendsHeader.swift in Sources */,
 				AA90145522774BAF009C558B /* LoginVKController.swift in Sources */,
 				AA02DFC5224E5155003FC1B0 /* GroupsNC.swift in Sources */,

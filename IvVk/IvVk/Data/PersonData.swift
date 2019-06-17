@@ -7,7 +7,6 @@ import UIKit
 import Alamofire
 
 var friends: [Person] = []
-var user: Person!
 
 class Person : Decodable {
     var id: Int?
@@ -102,6 +101,73 @@ func loadCurrentUser(completion: @escaping (Person?) -> Void ) {
             }
         }
         completion(res)
+    }
+}
+
+class UserInfo
+{
+    static let instance = UserInfo()
+    private var users: [Int: Person] = [:]
+    private let syncQueue = DispatchQueue(label: "UsersSyncQueue", attributes: .concurrent)
+
+    func getUserById(userId: Int, completion: @escaping (Person?) -> Void ) {
+        var person = getUserFromCache(byId: userId)
+        if person == nil {
+            person = getUserFromFriendsList(byId: userId)
+        }
+        if let person = person {
+            DispatchQueue.main.async {
+                completion(person)
+            }
+        } else {
+            loadUserFromServer(userId: userId) { [weak self] person in
+                if let person = person {
+                    self?.appendUserToCache(user: person)
+                    DispatchQueue.main.async {
+                        completion(person)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func getUserFromCache(byId id: Int) -> Person? {
+        var person: Person?
+        syncQueue.sync {
+            person = self.users[id]
+        }
+        return person
+    }
+    
+    private func appendUserToCache(user: Person) {
+        syncQueue.async(flags: .barrier) {
+            self.users.updateValue(user, forKey: user.id!)
+        }
+    }
+    
+    private func getUserFromFriendsList(byId id: Int) -> Person? {
+        for person in friends {
+            if person.id == id {
+                return person
+            }
+        }
+        return nil
+    }
+    
+    private func loadUserFromServer(userId: Int, completion: @escaping (Person?) -> Void ) {
+        let pars = Session.instance.getParams(["user_ids": String(userId), "fields": "photo_100"])
+        Alamofire.request("https://api.vk.com/method/users.get", parameters: pars).responseData(queue: DispatchQueue.global()) { response in
+            var res: Person? = nil
+            if let data = response.value {
+                let list = try? JSONDecoder().decode(UsersList.self, from: data)
+                if let ulist = list, ulist.response.count > 0 {
+                    res = ulist.response[0]
+                    if let res = res {
+                        completion(res)
+                    }
+                }
+            }
+        }
     }
 }
 

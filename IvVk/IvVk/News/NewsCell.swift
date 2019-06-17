@@ -1,5 +1,5 @@
 //  NewsCell.swift
-//  Lesson1.1
+//  IvVk
 //  Created by Iv on 18/03/2019.
 //  Copyright © 2019 Iv. All rights reserved.
 
@@ -12,6 +12,7 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var textNews: UILabel!
     @IBOutlet weak var imageNews: UIImageView!
     @IBOutlet weak var countLikes: LikeControl!
+    @IBOutlet weak var imageAvatar: RoundImageView!
     
     private weak var currentNews: PhotoNews? = nil
     
@@ -26,18 +27,24 @@ class NewsCell: UITableViewCell {
     
     func setCurrentNews(_ news: PhotoNews?) {
         currentNews = news
-        guard let cnew = currentNews else { return }
-        //textNews.text = cnew.text
-        labelDate.text = getDateStringFromUnixTime(time: cnew.date)
-        labelAuthor.text = nil // TODO
-        if cnew.type == "photo" {
-            if let photo = cnew.photos?.first {
-                photo.getFoto() { image in
-                    self.imageNews.image = image
+        guard let newsitem = currentNews else { return }
+        if let userid = newsitem.source_id, userid > 0 {
+            UserInfo.instance.getUserById(userId: userid) { [weak self] user in
+                if let user = user {
+                    self?.labelAuthor.text = user.name
+                    user.getFoto { [weak self] photo in
+                        self?.imageAvatar.image = photo
+                    }
                 }
-                textNews.text = photo.text
-                countLikes.setLikeStatus(photo.likes?.count ?? 0, (photo.likes?.user_likes ?? 0) == 1)
             }
+        }
+        labelDate.text = getDateStringFromUnixTime(time: newsitem.date)
+        if let photo = newsitem.photos?.first {
+            photo.getFoto() { [weak self] image in
+                self?.imageNews.image = image
+            }
+            textNews.text = photo.text
+            countLikes.setLikeStatus(photo.likes?.count ?? 0, (photo.likes?.user_likes ?? 0) == 1)
         }
     }
     
@@ -46,6 +53,7 @@ class NewsCell: UITableViewCell {
         labelDate.text = nil
         textNews.text = nil
         imageNews.image = nil
+        imageAvatar.image = nil
         countLikes.setLikeStatus(0, false)
     }
     
