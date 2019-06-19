@@ -30,7 +30,7 @@ class Person : Decodable {
             completion(foto) // photo already loaded and stored in object
             return
         }
-        getImage(urlString: photoUrl) { [weak self] image in
+        VkPhotoService.instance.getImage(urlString: photoUrl) { [weak self] image in
             self?.foto = image
             completion(image)
         }
@@ -114,7 +114,9 @@ class VkUsersService
             } else {
                 // todo: handle error
             }
-            completion(res)
+            DispatchQueue.main.async {
+                completion(res)
+            }
         }
     }
 }
@@ -126,6 +128,7 @@ class VkUsersService
 class UserInfo
 {
     static let instance = UserInfo()
+    private init() {}
     private var users: [Int: Person] = [:]
     private let syncQueue = DispatchQueue(label: "UsersSyncQueue", attributes: .concurrent)
 

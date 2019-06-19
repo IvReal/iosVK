@@ -43,23 +43,22 @@ class Session {
     }
 }
 
-// get image by url with caching support
-func getImage(urlString: String?, completion: @escaping (UIImage?) -> Void ) {
-    if let urlStr = urlString, let url = URL(string: urlStr) {
-        if !Session.disableImageCache, let cachedImage = loadImageFromFile(url) {
-            completion(cachedImage)  // photo has cached in file
-        } else {
-            DispatchQueue.global(qos: .background).async {
-                if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                    if !Session.disableImageCache { saveImageToFile(image, url) }  // cache image to file
-                    DispatchQueue.main.async {
-                        completion(image)  // photo loaded from server
-                    }
-                }
-            }
-        }
-    }
-}
+/*func downloadFile(url: URL, pars: Parameters)
+{
+    let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
+    Alamofire.download(
+        url,
+        method: .get,
+        parameters: pars,
+        encoding: JSONEncoding.default,
+        headers: nil,
+        to: destination).downloadProgress(closure: { (progress) in
+            //progress closure
+        }).response(completionHandler: { (DefaultDownloadResponse) in
+            //here you able to access the DefaultDownloadResponse
+            //result closure
+        })
+}*/
 
 //------------- Keychains
 

@@ -14,7 +14,7 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     func loadUserPhotos(userId: Int, userName: String?) {
         images = []
         self.title = userName
-        loadPhotosList(owner: userId) { [weak self] photos in
+        VkPhotoService.instance.loadPhotosList(owner: userId) { [weak self] photos in
             self?.images = photos
             self?.collView.reloadData()
         }
