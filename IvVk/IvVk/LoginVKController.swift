@@ -103,7 +103,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     
     // Проверка валидности токена (поскольку токен теперь может читаться из keychains, он может потерять актуальность)
     private func checkTokenValid() {
-        loadCurrentUser(completion: { person in
+        VkUsersService().loadUser(Session.instance.userId) { person in
             let user = person
             if user != nil {
                 Session.instance.fio = user!.name
@@ -113,7 +113,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
                 self.logout()
                 self.login()
             }
-        })
+        }
     }
     
     private func saveSessionParams(token: String, uid: Int) {

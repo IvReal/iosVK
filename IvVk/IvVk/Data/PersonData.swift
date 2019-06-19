@@ -6,8 +6,9 @@
 import UIKit
 import Alamofire
 
-var friends: [Person] = []
+var friends: [Person] = []  // глобальный список друзей текущего пользователя
 
+// Класс информации о пользователе
 class Person : Decodable {
     var id: Int?
     var firstName: String?
@@ -22,9 +23,9 @@ class Person : Decodable {
     }
     
     var name: String { return "\(lastName ?? "") \(firstName ?? "")" } // full name
-    var foto: UIImage?  // cached photo // todo: make private
+    private var foto: UIImage?  // cached photo
     
-    func getFoto(completion: @escaping (UIImage?) -> Void ) {
+    func getFoto(completion: @escaping (UIImage?) -> Void) {
         if foto != nil {
             completion(foto) // photo already loaded and stored in object
             return
@@ -44,6 +45,7 @@ class Person : Decodable {
     }
 }
 
+// Класс списка друзей (для маппинга данных запроса friends.get)
 class FriendsList : Decodable {
     let count: Int
     let items: [Person]
@@ -62,6 +64,7 @@ class FriendsList : Decodable {
     }
 }
 
+// Класс списка пользователей (для маппинга данных запроса users.get)
 class UsersList : Decodable {
     let response: [Person]
     enum CodingKeys: String, CodingKey {
@@ -69,41 +72,57 @@ class UsersList : Decodable {
     }
 }
 
-// load session user friends list with avatars
-func loadFriendsList(completion: @escaping ([Person]) -> Void ) {
-    let pars = Session.instance.getParams(["user_id": String(Session.instance.userId), "fields": "photo_100"])
-    Alamofire.request("https://api.vk.com/method/friends.get", parameters: pars).responseData { repsonse in
-        guard let data = repsonse.value else { return }
-        let list = try? JSONDecoder().decode(FriendsList.self, from: data)
-        if let flist = list {
-            let res = flist.items.filter { person in
-                person.firstName?.uppercased() != "DELETED"
+// Класс сервиса для работы с пользователями
+class VkUsersService
+{
+    static let friendsUrl = "https://api.vk.com/method/friends.get"
+    static let usersUrl = "https://api.vk.com/method/users.get"
+
+    // load session user friends list with avatars
+    func loadFriendsList(completion: @escaping ([Person]) -> Void ) {
+        let pars = Session.instance.getParams(["user_id": String(Session.instance.userId), "fields": "photo_100"])
+        Alamofire.request(VkUsersService.friendsUrl, parameters: pars).responseData(queue: DispatchQueue.global()) { response in
+            if response.result.isSuccess {
+                if let jsonData = response.result.value,
+                   let values = try? JSONDecoder().decode(FriendsList.self, from: jsonData)
+                {
+                        let res = values.items.filter { person in
+                            person.firstName?.uppercased() != "DELETED"
+                        }
+                        DispatchQueue.main.async {
+                            completion(res)
+                        }
+                }
+            } else {
+                // todo: handle error
+            }
+        }
+    }
+
+    // load user by id
+    func loadUser(_ userId: Int, completion: @escaping (Person?) -> Void ) {
+        let pars = Session.instance.getParams(["user_ids": String(userId), "fields": "photo_100"])
+        Alamofire.request(VkUsersService.usersUrl, parameters: pars).responseData(queue: DispatchQueue.global()) { response in
+         var res: Person? = nil
+            if response.result.isSuccess {
+                if let jsonData = response.result.value,
+                    let values = try? JSONDecoder().decode(UsersList.self, from: jsonData),
+                    values.response.count > 0
+                {
+                    res = values.response[0]
+                }
+            } else {
+                // todo: handle error
             }
             completion(res)
         }
     }
-    /* don't work :-(
-     Alamofire("https://api.vk.com/method/friends.get", parameters: pars).responseArray(keyPath: "items") { (response: DataResponse<[PersonVk]>) in
-     let friends = response.result.value
-     }
-     */
 }
 
-// load current user
-func loadCurrentUser(completion: @escaping (Person?) -> Void ) {
-    let pars = Session.instance.getParams(["user_ids": String(Session.instance.userId), "fields": "photo_100"])
-    Alamofire.request("https://api.vk.com/method/users.get", parameters: pars).responseData { repsonse in
-        var res: Person? = nil
-        if let data = repsonse.value {
-            let list = try? JSONDecoder().decode(UsersList.self, from: data)
-            if let ulist = list, ulist.response.count > 0 {
-                res = ulist.response[0]
-            }
-        }
-        completion(res)
-    }
-}
-
+// Класс для получения данных о пользователе по его идентификатору
+// Сначала делается попытка получить пользователя из списка друзей
+// Затем делается попытка получить пользователя из кэша
+// Наконец, делается запрос пользователя на сервере (sic! существует ограничение на количество запросов в секунду)
 class UserInfo
 {
     static let instance = UserInfo()
@@ -120,7 +139,7 @@ class UserInfo
                 completion(person)
             }
         } else {
-            loadUserFromServer(userId: userId) { [weak self] person in
+            VkUsersService().loadUser(userId) { [weak self] person in
                 if let person = person {
                     self?.appendUserToCache(user: person)
                     DispatchQueue.main.async {
@@ -152,22 +171,6 @@ class UserInfo
             }
         }
         return nil
-    }
-    
-    private func loadUserFromServer(userId: Int, completion: @escaping (Person?) -> Void ) {
-        let pars = Session.instance.getParams(["user_ids": String(userId), "fields": "photo_100"])
-        Alamofire.request("https://api.vk.com/method/users.get", parameters: pars).responseData(queue: DispatchQueue.global()) { response in
-            var res: Person? = nil
-            if let data = response.value {
-                let list = try? JSONDecoder().decode(UsersList.self, from: data)
-                if let ulist = list, ulist.response.count > 0 {
-                    res = ulist.response[0]
-                    if let res = res {
-                        completion(res)
-                    }
-                }
-            }
-        }
     }
 }
 
