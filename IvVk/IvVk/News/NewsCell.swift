@@ -38,7 +38,7 @@ class NewsCell: UITableViewCell {
                 }
             }
         }
-        labelDate.text = getDateStringFromUnixTime(time: newsitem.date)
+        labelDate.text = CommomHelper.instance.getDateStringFromUnixTime(time: newsitem.date)
         if let photo = newsitem.photos?.first {
             photo.getFoto() { [weak self] image in
                 self?.imageNews.image = image

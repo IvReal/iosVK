@@ -160,20 +160,18 @@ class VkGroupService
     }
     
     func logUserGroupsInFirebase(_ group: String, _ action: Action) {
-        let db = Firestore.firestore()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy HH:mm:ss"
-        let strDate = formatter.string(from: Date())
-        formatter.dateFormat = "yyyyMMddHHmmss"
-        let strKey = formatter.string(from: Date())
-        db.collection("user_groups_log").document(strKey).setData([
-            "userid": Session.instance.userId,
-            "group": group,
-            "action": action.rawValue,
-            "time": strDate
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
+        DispatchQueue.global(qos: .background).async {
+            let db = Firestore.firestore()
+            let dateTuple = CommomHelper.instance.getDateKeyAndDateString()
+            db.collection("user_groups_log").document(dateTuple.key).setData([
+                "userid": Session.instance.userId,
+                "group": group,
+                "action": action.rawValue,
+                "time": dateTuple.str
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                }
             }
         }
     }

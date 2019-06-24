@@ -43,6 +43,43 @@ class Session {
     }
 }
 
+class CommomHelper
+{
+    static let instance = CommomHelper()
+    private init() {}
+    
+    let minMask = "dd.MM.yyyy HH.mm"
+    let secMask = "dd.MM.yyyy HH:mm:ss"
+    let sctMask2 = "yyyyMMddHHmmss"
+    
+    private let dateFormatter: DateFormatter = {
+        return DateFormatter()
+    }()
+    
+    func getDateStringFromUnixTime(time: Double?) -> String
+    {
+        guard let time = time else { return "" }
+        let date = Date(timeIntervalSince1970: time)
+        dateFormatter.dateFormat = minMask
+        return dateFormatter.string(from: date)
+    }
+    
+    func getDateKeyAndDateString() -> (key: String, str: String)
+    {
+        let date = Date()
+        dateFormatter.dateFormat = "dd.MM.yyyy HH:mm:ss"
+        let strDate = dateFormatter.string(from: date)
+        dateFormatter.dateFormat = "yyyyMMddHHmmss"
+        let strKey = dateFormatter.string(from: date)
+        return (key: strKey, str: strDate)
+    }
+    
+    func testThread(_ placeDescription: String)
+    {
+        print("\(placeDescription) on thread: \(Thread.current) is main thread: \(Thread.isMainThread)")
+    }
+}
+
 /*func downloadFile(url: URL, pars: Parameters)
 {
     let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
@@ -86,46 +123,17 @@ func clearAppUserDefaults() {
 //------------- Firebase
 
 func saveUserConnectionToFirebase() {
-    let db = Firestore.firestore()
-    let formatter = DateFormatter()
-    formatter.dateFormat = "dd.MM.yyyy HH:mm:ss"
-    let strDate = formatter.string(from: Date())
-    formatter.dateFormat = "yyyyMMddHHmmss"
-    let strKey = formatter.string(from: Date())
-    /*db.collection("user_activity").addDocument(data: [
-        "user": Session.instance.fio.split(separator: " ").first ?? "",
-        "userid": Session.instance.userId,
-        "time": strDate
-    ]) { err in
-        if let err = err {
-            print("Error adding document: \(err)")
-        }
-    }*/
-    db.collection("user_activity").document(strKey).setData([
-        "user": Session.instance.fio.split(separator: " ").first ?? "",
-        "userid": Session.instance.userId,
-        "time": strDate
-    ]) { err in
-        if let err = err {
-            print("Error adding document: \(err)")
+    DispatchQueue.global(qos: .background).async {
+        let db = Firestore.firestore()
+        let dateTuple = CommomHelper.instance.getDateKeyAndDateString()
+        db.collection("user_activity").document(dateTuple.key).setData([
+            "user": Session.instance.fio.split(separator: " ").first ?? "",
+            "userid": Session.instance.userId,
+            "time": dateTuple.str
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            }
         }
     }
-}
-
-// ---------- Date helper
-
-func getDateStringFromUnixTime(time: Double?) -> String
-{
-    guard let time = time else { return "" }
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd.MM.yyyy hh:mm"
-    let date = Date(timeIntervalSince1970: time)
-    return dateFormatter.string(from: date)
-}
-
-// ----------- Debug helper
-
-func testThread(_ placeDescription: String)
-{
-    print("\(placeDescription) on thread: \(Thread.current) is main thread: \(Thread.isMainThread)")
 }
