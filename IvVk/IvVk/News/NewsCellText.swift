@@ -35,7 +35,7 @@ class NewsCellText: UITableViewCell {
                 }
             }
         }
-        labelDate.text = getDateStringFromUnixTime(time: newsitem.date)
+        labelDate.text = CommomHelper.instance.getDateStringFromUnixTime(time: newsitem.date)
         textNews.text = newsitem.text
         countLikes.setLikeStatus(newsitem.likes?.count ?? 0, (newsitem.likes?.user_likes ?? 0) == 1)
     }
