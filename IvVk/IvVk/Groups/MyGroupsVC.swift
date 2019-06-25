@@ -19,16 +19,16 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         
         /* load from server
-        loadGroupsList(user: Session.instance.userId) { list in
+        VkGroupService.instance.loadGroupsList(user: Session.instance.userId) { list in
             myGroups = list
             self.tableView.reloadData()
         } */
         
         /* load from db
-        myDbGroups = loadUserGroupsArrayFromDb() */
+        myDbGroups = VkGroupService.instance.loadUserGroupsArrayFromDb() */
         
         /* load from db with realm notifications support */
-        myDbGroups = loadUserGroupsResultsFromDb()
+        myDbGroups = VkGroupService.instance.loadUserGroupsResultsFromDb()
         token = myDbGroups?.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -78,8 +78,8 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             // Delete the row from the data source
             if let group = myDbGroups?[indexPath.row] {
-                logUserGroupsInFirebase(group.name ?? "", .remove) // log to firebase
-                removeUserGroupFromDb(group) // remove from db
+                VkGroupService.instance.logUserGroupsInFirebase(group.name ?? "", .remove) // log to firebase
+                VkGroupService.instance.removeUserGroupFromDb(group) // remove from db
             }
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -95,8 +95,8 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let group = allGroups[indexPath.row] // group by index
         // add group to target if it is not exists
         if !groups.contains(group) {
-            addUserGroupToDb(group) // save to db
-            logUserGroupsInFirebase(group.name ?? "", .add) // log to firebase
+            VkGroupService.instance.addUserGroupToDb(group) // save to db
+            VkGroupService.instance.logUserGroupsInFirebase(group.name ?? "", .add) // log to firebase
         }
     }
 }

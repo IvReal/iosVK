@@ -16,7 +16,7 @@ class ServiceController: UIViewController {
     
     @IBAction func clearCache(_ sender: Any) {
         showConfirmAlertOk("Service", "Do you want to clear application images cache?") {
-            let res = clearAppImageCache()
+            let res = VkPhotoService.instance.clearAppImageCache()
             self.showAlert("Service", res ? "Applicatioin images cache cleared successfully" : "Error occured while clearing application image cache")
         }
     }

@@ -21,7 +21,7 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadFriendsList { list in
+        VkUsersService().loadFriendsList { list in
             friends = list
             self.groupFriends(friends)
             self.tableView.reloadData()

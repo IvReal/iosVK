@@ -12,7 +12,7 @@ class AllGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchGroupsList(searchString: "travel") { list in
+        VkGroupService.instance.searchGroupsList(searchString: "travel") { list in
             allGroups = list
             self.tableView.reloadData()
         }
