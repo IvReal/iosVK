@@ -16,9 +16,12 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
             webView.navigationDelegate = self
         }
     }
+    @IBOutlet weak var loadControl: LoadingControl!
+    @IBOutlet weak var titleImage: UIImageView!
     
     // unwind logout action
     @IBAction func loginUnwind(unwindSegue: UIStoryboardSegue) {
+        webView.isHidden = true
         logout()
     }
 
@@ -26,10 +29,12 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         Session.disableImageCache = UserDefaults.standard.bool(forKey: keyDisableCache)
         clearWebViewCache()
+        loadControl.run()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        webView.isHidden = true
         login()
     }
     
@@ -80,6 +85,7 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void)
     {
+        webView.isHidden = false
         guard let url = navigationResponse.response.url, url.path == "/blank.html",
               let fragment = url.fragment  else {
                 decisionHandler(.allow)
@@ -101,17 +107,18 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         checkTokenValid()
     }
     
+    
     // Проверка валидности токена (поскольку токен теперь может читаться из keychains, он может потерять актуальность)
     private func checkTokenValid() {
-        VkUsersService().loadUser(Session.instance.userId) { person in
+        VkUsersService().loadUser(Session.instance.userId) { [weak self] person in
             let user = person
             if user != nil {
                 Session.instance.fio = user!.name
                 saveUserConnectionToFirebase()
-                self.performSegue(withIdentifier: self.segSuccessLogin, sender: self)
+                self?.performSegue(withIdentifier: self!.segSuccessLogin, sender: self)
             } else {
-                self.logout()
-                self.login()
+                self?.logout()
+                self?.login()
             }
         }
     }
