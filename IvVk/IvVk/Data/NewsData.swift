@@ -37,6 +37,14 @@ class PhotoNews: NewsItem
         let photosContainer = try values.nestedContainer(keyedBy: PhotosKeys.self, forKey: .photos)
         self.photos = try photosContainer.decode([Photo].self, forKey: .items)
     }
+    
+    init(bycollection coll: PhotoNews, photo: Photo) {
+        super.init()
+        super.type = coll.type
+        super.source_id = coll.source_id
+        super.date = coll.date
+        photos = [photo]
+    }
 }
 
 class PostNews: NewsItem
@@ -67,7 +75,7 @@ class PostNews: NewsItem
         if var reposts = try? values.nestedUnkeyedContainer(forKey: .copy_history) {
             if let repost = try? reposts.nestedContainer(keyedBy: RepostsKeys.self) {
                 let addtext = try? repost.decode(String.self, forKey: .text)
-                self.text = (self.text ?? "") + (addtext ?? "")
+                self.text = (self.text ?? "") + " Re: " + (addtext ?? "")
             }
         }
     }
@@ -275,8 +283,21 @@ class ParseNewsData<T> : Operation where T : NewsItem
         }
         else if T.self == PhotoNews.self {
             let list = try? JSONDecoder().decode(PhotoNewsServerResponse.self, from: data)
-            if let plist = list {
-                outputData = plist.items as! [T]
+            guard let plist = list else { return }
+            //outputData = plist.items as! [T]
+            // преобразуем объект PhotoNews со множеством фото в множество объектов PhotoNews с одной фотографией
+            for photonews in plist.items {
+                if let photos = photonews.photos {
+                    if photos.count == 1 {
+                        outputData.append(photonews as! T)
+                    } else {
+                        for photo in photos {
+                            if let simplePhotoNews = PhotoNews(bycollection: photonews, photo: photo) as? T {
+                                outputData.append(simplePhotoNews)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
