@@ -37,10 +37,10 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+        /*DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
             self.login()
-        })
-        //login()
+        })*/
+        login()
     }
     
     private func manageLoadingIndicator(_ isSet: Bool)
@@ -104,7 +104,9 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         guard let url = navigationResponse.response.url, url.path == "/blank.html",
               let fragment = url.fragment  else {
                 decisionHandler(.allow)
-                manageLoadingIndicator(false)
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                    self.manageLoadingIndicator(false)
+                })
                 return
         }
         let params = fragment
