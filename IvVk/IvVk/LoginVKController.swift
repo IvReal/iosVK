@@ -21,7 +21,6 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     
     // unwind logout action
     @IBAction func loginUnwind(unwindSegue: UIStoryboardSegue) {
-        webView.isHidden = true
         logout()
     }
 
@@ -29,13 +28,30 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         Session.disableImageCache = UserDefaults.standard.bool(forKey: keyDisableCache)
         clearWebViewCache()
-        loadControl.run()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        manageLoadingIndicator(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        webView.isHidden = true
-        login()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.login()
+        })
+        //login()
+    }
+    
+    private func manageLoadingIndicator(_ isSet: Bool)
+    {
+        webView.isHidden = isSet
+        loadControl.alpha = isSet ? 1 : 0
+        if isSet {
+            loadControl.run()
+        } else {
+            webView.endEditing(true)
+        }
     }
     
     // ---------- logout ----------
@@ -85,10 +101,10 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void)
     {
-        webView.isHidden = false
         guard let url = navigationResponse.response.url, url.path == "/blank.html",
               let fragment = url.fragment  else {
                 decisionHandler(.allow)
+                manageLoadingIndicator(false)
                 return
         }
         let params = fragment
@@ -106,7 +122,6 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         setAppKeychains()
         checkTokenValid()
     }
-    
     
     // Проверка валидности токена (поскольку токен теперь может читаться из keychains, он может потерять актуальность)
     private func checkTokenValid() {
