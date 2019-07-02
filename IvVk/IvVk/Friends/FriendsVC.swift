@@ -21,16 +21,12 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        VkUsersService().loadFriendsList { list in
-            friends = list
-            self.groupFriends(friends)
-            self.tableView.reloadData()
-        }
-
         tableView.register(UINib(nibName: "FriendsHeader", bundle: Bundle.main), forHeaderFooterViewReuseIdentifier: "FriendsHeader")
         letterControl.changeLetterHandler = letterChanged
         searchBar.returnKeyType = .done
         tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.size.height)
+        
+        refresh()
     }
 
     // letter control change letter handler
@@ -85,7 +81,19 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         header?.contentView.alpha = 0.5
         return header
     }
+    
+    private func refresh() {
+        VkUsersService().loadFriendsList { [weak self] list in
+            friends = list
+            self?.groupFriends(friends)
+            self?.tableView.reloadData()
+        }
+    }
 
+    @IBAction func refreshFriends(_ sender: UIBarButtonItem) {
+        refresh()
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
