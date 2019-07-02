@@ -795,6 +795,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3No-X9-bCU"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="All Groups" id="nZJ-10-iDE">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="0bE-Tf-FcR">
+                            <connections>
+                                <action selector="refreshGroups:" destination="UXP-PI-r9e" id="w1e-vw-cp9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="cFK-s0-C1B" id="rXh-eX-GfN"/>
                     </connections>

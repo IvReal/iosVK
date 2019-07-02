@@ -11,10 +11,12 @@ class AllGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        VkGroupService.instance.searchGroupsList(searchString: "travel") { list in
-            allGroups = list
-            self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if allGroups.count == 0 {
+            refresh()
         }
     }
 
@@ -36,5 +38,36 @@ class AllGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
             cell.imageAllGroup.image = photo
         }
         return cell
+    }
+    
+    private func refresh() {
+        var userIdTextField: UITextField?
+        // Declare alert message
+        let dialogMessage = UIAlertController(title: "Groups searching", message: "Please enter groups search string", preferredStyle: .alert)
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            if let userInput = userIdTextField!.text {
+                VkGroupService.instance.searchGroupsList(searchString: userInput) { [weak self] list in
+                    allGroups = list
+                    self?.tableView.reloadData()
+                }
+           }
+        })
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        // Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        // Add input TextField to dialog message
+        dialogMessage.addTextField { (textField) -> Void in
+            userIdTextField = textField
+            userIdTextField?.placeholder = "search string"
+        }
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    @IBAction func refreshGroups(_ sender: UIBarButtonItem) {
+        refresh()
     }
 }
