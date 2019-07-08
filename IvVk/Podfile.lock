@@ -101,6 +101,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - PinLayout (1.8.7)
   - Protobuf (3.7.0)
   - Realm (3.14.2):
     - Realm/Headers (= 3.14.2)
@@ -114,6 +115,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
+  - PinLayout
   - RealmSwift
   - SwiftKeychainWrapper
 
@@ -135,6 +137,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - PinLayout
     - Protobuf
     - Realm
     - RealmSwift
@@ -157,11 +160,12 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  PinLayout: a0722a5c8f0e0168a9c091ffe4930dabf0c8582c
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   Realm: 179c6706e3a49dbfe112e572fd3c03d3169bea35
   RealmSwift: 1797f272fb51c555b764fada32e82159a2c65247
   SwiftKeychainWrapper: 82c4c02cdc36f9a24f7edfcaab3e336401caa1a1
 
-PODFILE CHECKSUM: 7aa701a10555a622cf8c9d0579b12fce1203996f
+PODFILE CHECKSUM: c7162b520a8a4967cc6dae0b6f41e501e3f7ff8c
 
 COCOAPODS: 1.6.1

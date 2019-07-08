@@ -16,6 +16,8 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
             webView.navigationDelegate = self
         }
     }
+    @IBOutlet weak var loadControl: LoadingControl!
+    @IBOutlet weak var titleImage: UIImageView!
     
     // unwind logout action
     @IBAction func loginUnwind(unwindSegue: UIStoryboardSegue) {
@@ -28,9 +30,28 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         clearWebViewCache()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        manageLoadingIndicator(true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        /*DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.login()
+        })*/
         login()
+    }
+    
+    private func manageLoadingIndicator(_ isSet: Bool)
+    {
+        webView.isHidden = isSet
+        loadControl.alpha = isSet ? 1 : 0
+        if isSet {
+            loadControl.run()
+        } else {
+            webView.endEditing(true)
+        }
     }
     
     // ---------- logout ----------
@@ -83,6 +104,9 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
         guard let url = navigationResponse.response.url, url.path == "/blank.html",
               let fragment = url.fragment  else {
                 decisionHandler(.allow)
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                    self.manageLoadingIndicator(false)
+                })
                 return
         }
         let params = fragment
@@ -103,15 +127,15 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     
     // Проверка валидности токена (поскольку токен теперь может читаться из keychains, он может потерять актуальность)
     private func checkTokenValid() {
-        VkUsersService().loadUser(Session.instance.userId) { person in
+        VkUsersService().loadUser(Session.instance.userId) { [weak self] person in
             let user = person
             if user != nil {
                 Session.instance.fio = user!.name
                 saveUserConnectionToFirebase()
-                self.performSegue(withIdentifier: self.segSuccessLogin, sender: self)
+                self?.performSegue(withIdentifier: self!.segSuccessLogin, sender: self)
             } else {
-                self.logout()
-                self.login()
+                self?.logout()
+                self?.login()
             }
         }
     }

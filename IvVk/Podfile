@@ -13,6 +13,7 @@ target 'IvVk' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'PinLayout' 
 
   # Pods for IvVk
 
