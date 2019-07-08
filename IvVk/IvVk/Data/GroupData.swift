@@ -68,7 +68,7 @@ class VkGroupService
     private init() {}
     static let userGroupsUrl = "https://api.vk.com/method/groups.get"
     static let searchGroupsUrl = "https://api.vk.com/method/groups.search"
-    static let groupsCount = 20
+    static let groupsCount = 50
 
     // ---------- manage groups on server
     

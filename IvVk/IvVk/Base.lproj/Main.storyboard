@@ -236,7 +236,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gYj-gm-VTp"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Friends" id="0zK-6c-VVl"/>
+                    <navigationItem key="navigationItem" title="Friends" id="0zK-6c-VVl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="OMY-ti-zJw">
+                            <connections>
+                                <action selector="refreshFriends:" destination="BOs-fk-9lU" id="3fj-3A-kah"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="letterControl" destination="j6c-Ww-WCl" id="Hd7-ib-S6w"/>
                         <outlet property="searchBar" destination="eS5-zM-NXO" id="pxt-f2-U5f"/>
@@ -523,7 +529,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nv5-tx-L1E"/>
                     </view>
-                    <navigationItem key="navigationItem" title="News" id="neD-Wi-7W9"/>
+                    <navigationItem key="navigationItem" title="News" id="neD-Wi-7W9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="jUx-Mh-GIH">
+                            <connections>
+                                <action selector="refreshNews:" destination="hSa-Yl-c3k" id="izQ-Tp-Gfv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="h2A-3O-XLj" id="Eav-p9-xtM"/>
                     </connections>
@@ -783,6 +795,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3No-X9-bCU"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="All Groups" id="nZJ-10-iDE">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="0bE-Tf-FcR">
+                            <connections>
+                                <action selector="refreshGroups:" destination="UXP-PI-r9e" id="w1e-vw-cp9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="cFK-s0-C1B" id="rXh-eX-GfN"/>
                     </connections>

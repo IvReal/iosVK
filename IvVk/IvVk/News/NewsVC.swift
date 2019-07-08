@@ -13,12 +13,7 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let ns = VkNewsService()
-        ns.getNews() { list in
-            lastnews = list
-            self.tableView.reloadData()
-        }
+        refresh()
     }
 
     // MARK: - Table view data source
@@ -66,5 +61,16 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             newscell.contentView.alpha = 0
             newscell.contentView.transform = CGAffineTransform(scaleX: 0.25, y: 0.25)
         }
+    }
+    
+    private func refresh() {
+        VkNewsService().getNews() { [weak self] list in
+            lastnews = list
+            self?.tableView.reloadData()
+        }
+    }
+    
+    @IBAction func refreshNews(_ sender: UIBarButtonItem) {
+        refresh()
     }
 }
