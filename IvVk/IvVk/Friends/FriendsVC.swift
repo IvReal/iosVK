@@ -20,7 +20,8 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.backgroundColor = UIColor.myLightGreen
+
         tableView.register(UINib(nibName: "FriendsHeader", bundle: Bundle.main), forHeaderFooterViewReuseIdentifier: "FriendsHeader")
         letterControl.changeLetterHandler = letterChanged
         searchBar.returnKeyType = .done

@@ -15,9 +15,15 @@ class LoginFormController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var signButton: UIButton!
     @IBOutlet weak var loadIndicator: LoadingControl!
+    @IBOutlet weak var topView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        contentView.backgroundColor = UIColor.myLightBlue
+        topView.backgroundColor = UIColor.myLightBlue
+        signButton.backgroundColor = UIColor.myDarkBlue
+        signButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+
         // tap gesture -> hideKeyboard action
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)

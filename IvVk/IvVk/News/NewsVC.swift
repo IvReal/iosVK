@@ -13,6 +13,7 @@ class NewsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundColor = UIColor.myLightGreen
         refresh()
     }
 
