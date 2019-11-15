@@ -129,7 +129,19 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
     
     // Проверка валидности токена (поскольку токен теперь может читаться из keychains, он может потерять актуальность)
     private func checkTokenValid() {
-        VkUsersService().loadUser(Session.instance.userId) { [weak self] person in
+        /*VkUsersService().loadUser(Session.instance.userId) { [weak self] person in
+            let user = person
+            if user != nil {
+                Session.instance.fio = user!.name
+                saveUserConnectionToFirebase()
+                self?.performSegue(withIdentifier: self!.segSuccessLogin, sender: self)
+            } else {
+                self?.logout()
+                self?.login()
+            }
+        }*/
+        let userServiceProxy = VkUsersServiceProxy(userService: VkUsersService())
+        userServiceProxy.loadUser(Session.instance.userId) { [weak self] person in
             let user = person
             if user != nil {
                 Session.instance.fio = user!.name
