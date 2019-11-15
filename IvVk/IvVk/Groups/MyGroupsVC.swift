@@ -17,7 +17,8 @@ class MyGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.backgroundColor = UIColor.myLightGreen
+
         /* load from server
         VkGroupService.instance.loadGroupsList(user: Session.instance.userId) { list in
             myGroups = list

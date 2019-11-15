@@ -26,6 +26,8 @@ class LoginVKController: UIViewController, WKNavigationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.myLightBlue
+        webView.backgroundColor = UIColor.myLightBlue
         Session.disableImageCache = UserDefaults.standard.bool(forKey: keyDisableCache)
         clearWebViewCache()
     }

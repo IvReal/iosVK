@@ -8,10 +8,29 @@ import UIKit
 class ServiceController: UIViewController {
     
     @IBOutlet weak var switchCache: UISwitch!
+    @IBOutlet weak var btnClearImageCache: UIButton!
+    @IBOutlet weak var btnClearAppKeychain: UIButton!
+    @IBOutlet weak var btnClearAppUserDefaults: UIButton!
+    @IBOutlet weak var btnSignOut: UIButton!
+    @IBOutlet weak var lblCache: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setColors(self.view, btnClearImageCache, btnClearAppKeychain, btnClearAppUserDefaults, btnSignOut, lblCache)
         switchCache.isOn = Session.disableImageCache
+    }
+    
+    private func setColors(_ views: UIView...) {
+        for view in views {
+            if let button = (view as? UIButton) {
+                button.backgroundColor = UIColor.myDarkBlue
+                button.setTitleColor(UIColor.white, for: UIControl.State.normal)
+            } else if let label = (view as? UILabel) {
+                label.textColor = UIColor.white
+            } else {
+                view.backgroundColor = UIColor.myLightBlue
+            }
+        }
     }
     
     @IBAction func clearCache(_ sender: Any) {

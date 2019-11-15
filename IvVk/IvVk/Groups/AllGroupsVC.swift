@@ -11,6 +11,7 @@ class AllGroupsVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundColor = UIColor.myLightGreen
     }
     
     override func viewDidAppear(_ animated: Bool) {

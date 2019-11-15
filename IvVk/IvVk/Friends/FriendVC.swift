@@ -11,6 +11,12 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     var images: [Photo] = []
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collView.backgroundColor = UIColor.myLightGreen
+        self.view.backgroundColor = UIColor.myLightGreen
+    }
+    
     func loadUserPhotos(userId: Int, userName: String?) {
         images = []
         self.title = userName
