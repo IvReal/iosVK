@@ -73,13 +73,18 @@ class UsersList : Decodable {
 }
 
 // Класс сервиса для работы с пользователями
-class VkUsersService
+protocol VkUsersServiceInterface {
+    func loadFriendsList(completion: @escaping ([Person]) -> Void)
+    func loadUser(_ userId: Int, completion: @escaping (Person?) -> Void)
+}
+
+class VkUsersService: VkUsersServiceInterface
 {
     static let friendsUrl = "https://api.vk.com/method/friends.get"
     static let usersUrl = "https://api.vk.com/method/users.get"
 
     // load session user friends list with avatars
-    func loadFriendsList(completion: @escaping ([Person]) -> Void ) {
+    func loadFriendsList(completion: @escaping ([Person]) -> Void) {
         let pars = Session.instance.getParams(["user_id": String(Session.instance.userId), "fields": "photo_100"])
         Alamofire.request(VkUsersService.friendsUrl, parameters: pars).responseData(queue: DispatchQueue.global()) { response in
             if response.result.isSuccess {
@@ -100,7 +105,7 @@ class VkUsersService
     }
 
     // load user by id
-    func loadUser(_ userId: Int, completion: @escaping (Person?) -> Void ) {
+    func loadUser(_ userId: Int, completion: @escaping (Person?) -> Void) {
         let pars = Session.instance.getParams(["user_ids": String(userId), "fields": "photo_100"])
         Alamofire.request(VkUsersService.usersUrl, parameters: pars).responseData(queue: DispatchQueue.global()) { response in
          var res: Person? = nil
@@ -118,6 +123,21 @@ class VkUsersService
                 completion(res)
             }
         }
+    }
+}
+
+class VkUsersServiceProxy: VkUsersServiceInterface {
+    let userService: VkUsersService
+    init(userService: VkUsersService) {
+        self.userService = userService
+    }
+    func loadFriendsList(completion: @escaping ([Person]) -> Void ) {
+        print("Try to load friends list")
+        userService.loadFriendsList(completion: completion)
+    }
+    func loadUser(_ userId: Int, completion: @escaping (Person?) -> Void ) {
+        print("Try to load user with id=\(userId) data")
+        userService.loadUser(userId, completion: completion)
     }
 }
 

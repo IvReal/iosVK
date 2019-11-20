@@ -84,7 +84,13 @@ class FriendsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     }
     
     private func refresh() {
-        VkUsersService().loadFriendsList { [weak self] list in
+        /*VkUsersService().loadFriendsList { [weak self] list in
+            friends = list
+            self?.groupFriends(friends)
+            self?.tableView.reloadData()
+        }*/
+        let userServiceProxy = VkUsersServiceProxy(userService: VkUsersService())
+        userServiceProxy.loadFriendsList { [weak self] list in
             friends = list
             self?.groupFriends(friends)
             self?.tableView.reloadData()
